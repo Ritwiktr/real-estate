@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "@/contexts/AuthContext";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import MainWithHomeLayout from "@/components/MainWithHomeLayout";
+import LayoutWithConditionalFooter from "@/components/LayoutWithConditionalFooter";
 
-const plusJakarta = Plus_Jakarta_Sans({
+const dmSans = DM_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
@@ -22,12 +23,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={plusJakarta.variable}>
+    <html lang="en" className={dmSans.variable}>
       <body className="flex min-h-screen flex-col font-sans">
         <AuthProvider>
           <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
+          <LayoutWithConditionalFooter>
+            <MainWithHomeLayout>{children}</MainWithHomeLayout>
+          </LayoutWithConditionalFooter>
         </AuthProvider>
       </body>
     </html>

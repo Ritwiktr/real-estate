@@ -16,12 +16,12 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
   if (!post) notFound();
   return (
     <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
-      <Link href="/blog" className="text-sm text-primary hover:underline">← Blog</Link>
-      <h1 className="mt-4 text-3xl font-bold text-slate-900">{post.title}</h1>
-      {post.publishedAt && <p className="mt-2 text-sm text-slate-500">{new Date(post.publishedAt).toLocaleDateString()}</p>}
-      {post.author && <p className="text-sm text-slate-600">By {post.author}</p>}
-      <div className="mt-6 prose prose-slate max-w-none">
-        <p className="whitespace-pre-wrap text-slate-600">{post.body}</p>
+      <Link href="/blog" className="text-sm text-[#818cf8] hover:underline">← Blog</Link>
+      <h1 className="mt-4 text-3xl font-bold text-white">{post.title}</h1>
+      {post.publishedAt && <p className="mt-2 text-sm text-neutral-400">{new Date(post.publishedAt).toLocaleDateString()}</p>}
+      {post.author && <p className="text-sm text-neutral-400">By {post.author}</p>}
+      <div className="mt-6 max-w-none">
+        <p className="whitespace-pre-wrap text-neutral-300 leading-relaxed">{post.body}</p>
       </div>
     </article>
   );

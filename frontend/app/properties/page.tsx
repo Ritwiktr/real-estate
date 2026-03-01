@@ -37,17 +37,17 @@ export default async function PropertiesPage({ searchParams }: { searchParams: S
   const totalPages = Math.max(1, Math.ceil(total / limit));
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-black">
       {/* Page header */}
-      <div className="border-b border-slate-200 bg-white">
+      <div className="border-b border-white/10">
         <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6">
-          <p className="text-sm font-medium uppercase tracking-widest text-sky-500">
+          <p className="text-xs font-medium uppercase tracking-[0.2em] text-neutral-400">
             Listings
           </p>
-          <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+          <h1 className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Explore exclusive properties
           </h1>
-          <p className="mt-2 text-lg text-slate-600">
+          <p className="mt-2 text-lg text-neutral-400">
             Showcasing a curated portfolio of exceptional homes
           </p>
         </div>
@@ -91,7 +91,7 @@ export default async function PropertiesPage({ searchParams }: { searchParams: S
 
         {items.length === 0 && (
           <div className="py-16 text-center">
-            <p className="text-slate-600">No properties match your criteria.</p>
+            <p className="text-neutral-400">No properties match your criteria.</p>
             <Link href="/properties" className="btn-primary mt-4 inline-flex">
               Clear filters
             </Link>
@@ -103,18 +103,18 @@ export default async function PropertiesPage({ searchParams }: { searchParams: S
             {page > 1 && (
               <Link
                 href={`/properties?${new URLSearchParams({ ...searchParams, page: String(page - 1) } as Record<string, string>).toString()}`}
-                className="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+                className="rounded-lg border border-white/20 bg-white/5 px-4 py-2 text-sm font-medium text-white hover:bg-white/10"
               >
                 Previous
               </Link>
             )}
-            <span className="px-4 py-2 text-sm text-slate-600">
+            <span className="px-4 py-2 text-sm text-neutral-400">
               Page {page} of {totalPages}
             </span>
             {page < totalPages && (
               <Link
                 href={`/properties?${new URLSearchParams({ ...searchParams, page: String(page + 1) } as Record<string, string>).toString()}`}
-                className="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+                className="rounded-lg border border-white/20 bg-white/5 px-4 py-2 text-sm font-medium text-white hover:bg-white/10"
               >
                 Next
               </Link>

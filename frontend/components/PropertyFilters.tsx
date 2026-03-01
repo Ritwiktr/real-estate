@@ -32,19 +32,20 @@ export function PropertyFilters({
     router.push(`/properties?${params.toString()}`);
   }, [search, listingType, areaId, minPrice, maxPrice, beds, router]);
 
+  const inputClass = "rounded-lg border border-white/20 bg-white/5 px-3 py-2.5 text-sm text-white placeholder-neutral-500 focus:border-white/40 focus:outline-none [&>option]:bg-neutral-900";
   return (
-    <div className="flex flex-wrap items-end gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm sm:gap-4 sm:p-5">
+    <div className="flex flex-wrap items-end gap-3 rounded-xl border border-white/10 bg-neutral-900/50 p-4 sm:gap-4 sm:p-5">
       <input
         type="text"
         placeholder="Search"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        className="min-w-[140px] rounded-lg border border-slate-300 px-3 py-2.5 text-sm text-slate-900 placeholder-slate-400 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500"
+        className={`min-w-[140px] ${inputClass}`}
       />
       <select
         value={listingType}
         onChange={(e) => setListingType(e.target.value)}
-        className="rounded-lg border border-slate-300 px-3 py-2.5 text-sm text-slate-700 focus:border-sky-500 focus:outline-none"
+        className={inputClass}
       >
         <option value="">All types</option>
         <option value="RENTAL">Rental</option>
@@ -53,7 +54,7 @@ export function PropertyFilters({
       <select
         value={areaId}
         onChange={(e) => setAreaId(e.target.value)}
-        className="rounded-lg border border-slate-300 px-3 py-2.5 text-sm text-slate-700 focus:border-sky-500 focus:outline-none"
+        className={inputClass}
       >
         <option value="">All areas</option>
         {areas.map((a) => (
@@ -65,14 +66,14 @@ export function PropertyFilters({
         placeholder="Min price"
         value={minPrice}
         onChange={(e) => setMinPrice(e.target.value)}
-        className="w-28 rounded-lg border border-slate-300 px-3 py-2.5 text-sm focus:border-sky-500 focus:outline-none"
+        className={`w-28 ${inputClass}`}
       />
       <input
         type="number"
         placeholder="Max price"
         value={maxPrice}
         onChange={(e) => setMaxPrice(e.target.value)}
-        className="w-28 rounded-lg border border-slate-300 px-3 py-2.5 text-sm focus:border-sky-500 focus:outline-none"
+        className={`w-28 ${inputClass}`}
       />
       <input
         type="number"
@@ -80,12 +81,12 @@ export function PropertyFilters({
         value={beds}
         onChange={(e) => setBeds(e.target.value)}
         min={1}
-        className="w-20 rounded-lg border border-slate-300 px-3 py-2.5 text-sm focus:border-sky-500 focus:outline-none"
+        className={`w-20 ${inputClass}`}
       />
       <button
         type="button"
         onClick={apply}
-        className="rounded-lg bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800"
+        className="rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-neutral-200"
       >
         Search
       </button>

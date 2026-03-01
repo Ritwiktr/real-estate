@@ -3,13 +3,16 @@
 @tailwind utilities;
 
 :root {
-  --color-primary: #0f172a;
-  --color-primary-light: #1e293b;
-  --color-accent: #0ea5e9;
-  --color-accent-hover: #0284c7;
-  --color-surface: #f8fafc;
-  --color-muted: #64748b;
-  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  /* Full black theme – sleek, modern, aesthetic */
+  --color-primary: #000000;
+  --color-primary-light: #171717;
+  --color-surface: #0a0a0a;
+  --color-surface-alt: #171717;
+  --color-muted: #a3a3a3;
+  --color-border: #262626;
+  --color-accent: #818cf8;
+  --color-accent-hover: #6366f1;
+  --font-sans: "DM Sans", system-ui, -apple-system, sans-serif;
 }
 
 * {
@@ -30,20 +33,53 @@ body {
 
 body {
   font-family: var(--font-sans);
-  @apply bg-slate-50 text-slate-900 antialiased min-h-screen;
+  background-color: var(--color-surface);
+  color: #fafafa;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
 }
 
 @layer components {
+  .snap-container {
+    height: 100%;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+  }
+  .snap-section {
+    min-height: 100%;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
   .btn-primary {
-    @apply inline-flex items-center justify-center rounded-lg bg-sky-500 px-6 py-3 font-semibold text-white shadow-lg transition hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2;
+    @apply inline-flex items-center justify-center rounded-full px-6 py-2.5 text-sm font-medium text-white transition focus:outline-none focus:ring-2 focus:ring-white/30 focus:ring-offset-2 focus:ring-offset-black;
+    background-color: #fafafa;
+    color: #0a0a0a;
+  }
+  .btn-primary:hover {
+    background-color: #e5e5e5;
+    color: #0a0a0a;
+  }
+  .btn-hero {
+    @apply inline-flex items-center justify-center rounded-md border-2 border-white bg-white px-8 py-3.5 text-sm font-semibold uppercase tracking-widest text-black transition hover:bg-black hover:text-white hover:border-white focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-transparent;
   }
   .btn-outline {
-    @apply inline-flex items-center justify-center rounded-lg border-2 border-white px-6 py-3 font-semibold text-white transition hover:bg-white hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-slate-900;
+    @apply inline-flex items-center justify-center rounded-md border-2 border-white bg-transparent px-6 py-2.5 text-sm font-medium text-white transition hover:bg-white hover:text-black focus:outline-none focus:ring-2 focus:ring-white/40 focus:ring-offset-2 focus:ring-offset-transparent;
   }
   .section-heading {
-    @apply text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl;
+    @apply text-2xl font-semibold tracking-tight sm:text-3xl;
+    color: #fafafa;
   }
   .section-subheading {
-    @apply mt-2 text-lg text-slate-600;
+    @apply mt-1.5 text-base;
+    color: var(--color-muted);
+  }
+  .section-label {
+    @apply text-xs font-medium uppercase tracking-[0.2em];
+    color: var(--color-muted);
+  }
+  .text-elegant-muted {
+    color: var(--color-muted);
   }
 }
