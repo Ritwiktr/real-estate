@@ -60,6 +60,7 @@ export default async function PropertiesPage({ searchParams }: { searchParams: S
           {items.map(
             (p: {
               id: string;
+              slug?: string;
               title: string;
               address: string;
               city: string;
@@ -74,6 +75,7 @@ export default async function PropertiesPage({ searchParams }: { searchParams: S
               <PropertyCard
                 key={p.id}
                 id={p.id}
+                slug={p.slug}
                 title={p.title}
                 address={p.address}
                 city={p.city}

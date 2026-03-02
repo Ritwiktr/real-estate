@@ -2,33 +2,163 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Services",
-  description: "Property management services overview.",
+  title: "Services | Residence",
+  description: "Full-service property management for landlords. Tenant placement, maintenance, and financial oversight.",
 };
 
+const services = [
+  {
+    href: "/services/tenant-placement",
+    title: "Tenant Placement and Screening",
+    desc: "Advertising, referencing, and onboarding — we find the right tenant for your property.",
+    image: "https://images.unsplash.com/photo-1560185127-6a1896ab1348?w=800",
+    icon: "◇",
+    stats: ["500+", "Tenants Placed"],
+  },
+  {
+    href: "/services/maintenance-inspections",
+    title: "Property Maintenance and Inspections",
+    desc: "Maintenance coordination, inspections, and contractor management — kept in exemplary condition.",
+    image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800",
+    icon: "◆",
+    stats: ["24/7", "Support"],
+  },
+  {
+    href: "/services/financial-management",
+    title: "Financial Management and Reporting",
+    desc: "Rent collection, financial reporting, and landlord oversight — complete transparency.",
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800",
+    icon: "◈",
+    stats: ["100%", "On-Time"],
+  },
+];
+
 export default function ServicesPage() {
-  const services = [
-    { href: "/services/tenant-placement", title: "Tenant Placement and Screening", desc: "Advertising, referencing, and onboarding." },
-    { href: "/services/maintenance-inspections", title: "Property Maintenance and Inspections", desc: "Maintenance coordination, inspections, and contractor management." },
-    { href: "/services/financial-management", title: "Financial Management and Reporting", desc: "Rent collection, financial reporting, and landlord oversight." },
-  ];
   return (
-    <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
-      <h1 className="text-3xl font-bold text-white">Services</h1>
-      <p className="mt-4 text-neutral-300">
-        We offer full-service property management for landlords and a clear, compliant experience for tenants.
-      </p>
-      <ul className="mt-8 space-y-6">
-        {services.map((s) => (
-          <li key={s.href}>
-            <Link href={s.href} className="block rounded-xl border border-white/10 bg-neutral-900/50 p-6 transition hover:border-white/20">
-              <h2 className="text-xl font-semibold text-white">{s.title}</h2>
-              <p className="mt-2 text-neutral-300">{s.desc}</p>
-              <span className="mt-2 inline-block font-medium text-[#818cf8]">Read more →</span>
+    <div className="min-h-screen bg-black">
+      {/* Hero with background image */}
+      <section className="relative flex min-h-[50vh] flex-col justify-end overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url(https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920)",
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/60 to-black" />
+        <div className="relative mx-auto w-full max-w-7xl px-4 pb-16 pt-28 sm:px-6 lg:pb-24">
+          <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/70">
+            What we do
+          </p>
+          <h1 className="mt-4 text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+            Property Management
+            <br />
+            <span className="text-[#818cf8]">Reimagined</span>
+          </h1>
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/85">
+            Full-service property management for landlords and a clear, compliant experience for tenants. From placement to maintenance to finances — we handle it all.
+          </p>
+        </div>
+      </section>
+
+      {/* Service cards with background images */}
+      <section className="relative border-t border-white/5">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-24">
+          <div className="grid gap-8 lg:gap-12">
+            {services.map((s, i) => (
+              <Link
+                key={s.href}
+                href={s.href}
+                className="group relative block overflow-hidden rounded-2xl border border-white/10 transition-all duration-500 hover:border-white/20 hover:shadow-2xl hover:shadow-[#818cf8]/10"
+              >
+                {/* Background image */}
+                <div
+                  className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 group-hover:scale-105"
+                  style={{ backgroundImage: `url(${s.image})` }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-black/60" />
+                <div className="absolute inset-0 bg-[#818cf8]/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+                <div className="relative flex min-h-[280px] flex-col justify-between p-8 sm:p-10 lg:flex-row lg:items-end lg:justify-between lg:p-12">
+                  <div className="max-w-2xl">
+                    <span className="inline-block text-2xl text-[#818cf8]">{s.icon}</span>
+                    <h2 className="mt-4 text-2xl font-bold tracking-tight text-white sm:text-3xl lg:text-4xl">
+                      {s.title}
+                    </h2>
+                    <p className="mt-3 text-base leading-relaxed text-white/80 sm:text-lg">
+                      {s.desc}
+                    </p>
+                    <span className="mt-6 inline-flex items-center gap-2 font-semibold text-[#818cf8] transition-transform group-hover:translate-x-1">
+                      Read more
+                      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </span>
+                  </div>
+                  <div className="mt-8 flex items-center gap-6 lg:mt-0 lg:flex-col lg:items-end lg:gap-2">
+                    <span className="text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
+                      {s.stats[0]}
+                    </span>
+                    <span className="text-sm font-medium uppercase tracking-widest text-white/60">
+                      {s.stats[1]}
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Stats / Trust bar */}
+      <section className="border-t border-white/5 bg-black">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-20">
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { value: "15+", label: "Years Experience" },
+              { value: "2,000+", label: "Properties Managed" },
+              { value: "98%", label: "Client Satisfaction" },
+              { value: "24/7", label: "Support Available" },
+            ].map((stat) => (
+              <div key={stat.label} className="text-center">
+                <p className="text-3xl font-bold text-[#818cf8] sm:text-4xl">{stat.value}</p>
+                <p className="mt-1 text-sm font-medium uppercase tracking-wider text-white/60">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="relative overflow-hidden border-t border-white/5">
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-30"
+          style={{
+            backgroundImage: "url(https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920)",
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/60" />
+        <div className="relative mx-auto max-w-3xl px-4 py-20 text-center sm:px-6">
+          <h2 className="text-2xl font-bold text-white sm:text-3xl">
+            Ready to simplify property management?
+          </h2>
+          <p className="mt-3 text-white/80">
+            Get in touch and discover how we can help you maximise your investment.
+          </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
+            <Link href="/contact" className="btn-hero">
+              Get in touch
             </Link>
-          </li>
-        ))}
-      </ul>
+            <Link
+              href="/properties"
+              className="inline-flex items-center justify-center rounded-md border-2 border-white/40 bg-transparent px-6 py-3 text-sm font-medium text-white transition hover:border-white hover:bg-white/10"
+            >
+              View properties
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

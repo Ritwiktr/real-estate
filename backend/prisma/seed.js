@@ -58,18 +58,65 @@ async function main() {
     });
   }
 
-  await prisma.blogPost.upsert({
-    where: { slug: "welcome-to-our-blog" },
-    update: {},
-    create: {
-      title: "Welcome to Our Blog",
+  const BLOG_POSTS = [
+    {
       slug: "welcome-to-our-blog",
+      title: "Welcome to Our Blog",
       excerpt: "Property management insights and updates for landlords and tenants.",
-      body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. We provide expert property management.",
+      body: "We provide expert property management services across London and beyond. Our blog keeps you informed on regulatory changes, market insights, and best practices for landlords and tenants alike.",
       author: "Property Team",
-      publishedAt: new Date(),
     },
-  });
+    {
+      slug: "tenant-screening-best-practices",
+      title: "Tenant Screening Best Practices in 2025",
+      excerpt: "How to find and vet quality tenants while staying compliant with UK regulations.",
+      body: "Tenant screening has evolved significantly. Modern referencing combines credit checks, employment verification, and right-to-rent compliance. We walk through our process and why thorough vetting protects your investment while giving tenants a fair assessment.",
+      author: "Residence Editorial",
+    },
+    {
+      slug: "property-maintenance-tips",
+      title: "Essential Property Maintenance Tips for Landlords",
+      excerpt: "Proactive maintenance reduces costs and keeps tenants happy. Here's what to prioritise.",
+      body: "Regular inspections, seasonal checks, and prompt repairs form the backbone of effective property maintenance. We share practical tips on scheduling, contractor relationships, and common issues to watch for in rental and holiday let properties.",
+      author: "Property Team",
+    },
+    {
+      slug: "rental-market-outlook-2025",
+      title: "Rental Market Outlook for 2025",
+      excerpt: "Key trends shaping the private rental sector and what they mean for landlords.",
+      body: "The private rental sector continues to adapt to regulatory changes, interest rates, and demand patterns. We analyse current trends and offer our outlook for rental yields, tenant demand, and areas of growth across London and regional markets.",
+      author: "Residence Research",
+    },
+    {
+      slug: "holiday-let-vs-long-term-rental",
+      title: "Holiday Let vs Long-Term Rental: A Landlord's Guide",
+      excerpt: "Weighing the pros and cons of each model for your property portfolio.",
+      body: "Holiday lets offer flexibility and potentially higher nightly rates, but require more hands-on management. Long-term rentals provide steady income with less day-to-day involvement. We compare the two approaches to help you choose the right strategy.",
+      author: "Property Team",
+    },
+    {
+      slug: "deposit-protection-schemes",
+      title: "Understanding Deposit Protection Schemes",
+      excerpt: "Your obligations as a landlord and how to stay compliant with deposit regulations.",
+      body: "Deposit protection is mandatory for assured shorthold tenancies in England and Wales. We explain the three government-approved schemes, registration timelines, and the prescribed information you must provide to tenants within the required timeframe.",
+      author: "Residence Legal",
+    },
+  ];
+
+  for (const post of BLOG_POSTS) {
+    await prisma.blogPost.upsert({
+      where: { slug: post.slug },
+      update: {},
+      create: {
+        title: post.title,
+        slug: post.slug,
+        excerpt: post.excerpt,
+        body: post.body,
+        author: post.author,
+        publishedAt: new Date(),
+      },
+    });
+  }
 
   await prisma.testimonial.upsert({
     where: { id: "seed-testimonial-1" },
@@ -84,7 +131,7 @@ async function main() {
     },
   });
 
-  console.log("Seed completed: areas, properties, blog, testimonial.");
+  console.log("Seed completed: areas, properties, blog posts, testimonial.");
 }
 
 main()

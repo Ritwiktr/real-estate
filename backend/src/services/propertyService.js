@@ -46,9 +46,12 @@ export async function listProperties({
   return { items, total, page, limit };
 }
 
-export async function getPropertyById(id) {
-  const property = await prisma.property.findUnique({
-    where: { id },
+const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+export async function getPropertyById(idOrSlug) {
+  const isUuid = UUID_REGEX.test(idOrSlug);
+  const property = await prisma.property.findFirst({
+    where: isUuid ? { id: idOrSlug } : { slug: idOrSlug },
     include: {
       images: { orderBy: { order: "asc" } },
       area: true,

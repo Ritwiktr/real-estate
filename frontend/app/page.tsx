@@ -92,6 +92,7 @@ export default async function HomePage() {
               <div className="mt-6 grid flex-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {displayList.slice(0, 6).map((p: {
                 id: string;
+                slug?: string;
                 title: string;
                 address: string;
                 city: string;
@@ -106,6 +107,7 @@ export default async function HomePage() {
                 <PropertyCard
                   key={p.id}
                   id={p.id}
+                  slug={p.slug}
                   title={p.title}
                   address={p.address}
                   city={p.city}
