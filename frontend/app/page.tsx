@@ -2,6 +2,7 @@ import Link from "next/link";
 import { EnquiryForm } from "@/components/forms/EnquiryForm";
 import { PropertyCard } from "@/components/PropertyCard";
 import Footer from "@/components/Footer";
+import { HeroSearch } from "@/components/HeroSearch";
 import { getAreas, getFeaturedProperties, getProperties } from "@/lib/server-api";
 
 export const dynamic = "force-dynamic";
@@ -45,34 +46,7 @@ export default async function HomePage() {
             </Link>
           </div>
           <div className="relative z-10 mx-auto w-full max-w-4xl px-4 pb-10 sm:px-6">
-            <div className="rounded-xl border border-white/10 bg-black/50 p-4 shadow-2xl shadow-black/30 backdrop-blur-md sm:p-5">
-              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-                <input
-                  type="text"
-                  placeholder="Location"
-                  className="min-w-[140px] flex-1 rounded border border-white/20 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/50 focus:border-white/40 focus:outline-none"
-                  readOnly
-                  aria-label="Search location - go to properties"
-                />
-                <select className="rounded border border-white/20 bg-white/5 px-4 py-2.5 text-sm text-white focus:border-white/40 focus:outline-none [&>option]:bg-neutral-900">
-                  <option>Min. Price</option>
-                </select>
-                <select className="rounded border border-white/20 bg-white/5 px-4 py-2.5 text-sm text-white focus:border-white/40 focus:outline-none [&>option]:bg-neutral-900">
-                  <option>Type</option>
-                  <option>Rental</option>
-                  <option>Holiday Let</option>
-                </select>
-                <select className="rounded border border-white/20 bg-white/5 px-4 py-2.5 text-sm text-white focus:border-white/40 focus:outline-none [&>option]:bg-neutral-900">
-                  <option>Beds</option>
-                </select>
-                <Link
-                  href="/properties"
-                  className="rounded border border-white bg-white px-5 py-2.5 text-sm font-medium text-black transition hover:bg-black hover:text-white hover:border-white"
-                >
-                  Search
-                </Link>
-              </div>
-            </div>
+            <HeroSearch areas={areaList} />
           </div>
         </div>
       </section>

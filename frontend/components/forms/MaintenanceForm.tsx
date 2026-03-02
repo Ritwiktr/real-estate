@@ -36,12 +36,51 @@ export function MaintenanceForm({ defaultAddress = "" }: { defaultAddress?: stri
 
   return (
     <form onSubmit={handleSubmit} className="mt-4 space-y-3">
-      <input type="text" placeholder="Your name *" value={tenantName} onChange={(e) => setTenantName(e.target.value)} required className="w-full rounded border border-slate-300 px-3 py-2 text-sm" />
-      <input type="email" placeholder="Your email *" value={tenantEmail} onChange={(e) => setTenantEmail(e.target.value)} required className="w-full rounded border border-slate-300 px-3 py-2 text-sm" />
-      <input type="text" placeholder="Property address or reference *" value={propertyAddressOrRef} onChange={(e) => setPropertyAddressOrRef(e.target.value)} required className="w-full rounded border border-slate-300 px-3 py-2 text-sm" />
-      <input type="text" placeholder="Issue category (e.g. Plumbing, Heating) *" value={issueCategory} onChange={(e) => setIssueCategory(e.target.value)} required className="w-full rounded border border-slate-300 px-3 py-2 text-sm" />
-      <textarea placeholder="Description *" value={description} onChange={(e) => setDescription(e.target.value)} required rows={3} className="w-full rounded border border-slate-300 px-3 py-2 text-sm" />
-      <select value={urgency} onChange={(e) => setUrgency(e.target.value)} className="rounded border border-slate-300 px-3 py-2 text-sm">
+      <input
+        type="text"
+        placeholder="Your name *"
+        value={tenantName}
+        onChange={(e) => setTenantName(e.target.value)}
+        required
+        className="w-full rounded-lg border border-white/15 bg-black/40 px-3 py-2 text-sm text-white placeholder-neutral-500 focus:border-white/40 focus:outline-none"
+      />
+      <input
+        type="email"
+        placeholder="Your email *"
+        value={tenantEmail}
+        onChange={(e) => setTenantEmail(e.target.value)}
+        required
+        className="w-full rounded-lg border border-white/15 bg-black/40 px-3 py-2 text-sm text-white placeholder-neutral-500 focus:border-white/40 focus:outline-none"
+      />
+      <input
+        type="text"
+        placeholder="Property address or reference *"
+        value={propertyAddressOrRef}
+        onChange={(e) => setPropertyAddressOrRef(e.target.value)}
+        required
+        className="w-full rounded-lg border border-white/15 bg-black/40 px-3 py-2 text-sm text-white placeholder-neutral-500 focus:border-white/40 focus:outline-none"
+      />
+      <input
+        type="text"
+        placeholder="Issue category (e.g. Plumbing, Heating) *"
+        value={issueCategory}
+        onChange={(e) => setIssueCategory(e.target.value)}
+        required
+        className="w-full rounded-lg border border-white/15 bg-black/40 px-3 py-2 text-sm text-white placeholder-neutral-500 focus:border-white/40 focus:outline-none"
+      />
+      <textarea
+        placeholder="Description *"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+        required
+        rows={3}
+        className="w-full rounded-lg border border-white/15 bg-black/40 px-3 py-2 text-sm text-white placeholder-neutral-500 focus:border-white/40 focus:outline-none"
+      />
+      <select
+        value={urgency}
+        onChange={(e) => setUrgency(e.target.value)}
+        className="w-full rounded-lg border border-white/15 bg-black/40 px-3 py-2 text-sm text-white focus:border-white/40 focus:outline-none [&>option]:bg-neutral-900"
+      >
         <option value="LOW">Low</option>
         <option value="MEDIUM">Medium</option>
         <option value="HIGH">High</option>

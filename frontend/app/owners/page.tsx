@@ -24,6 +24,13 @@ export default function OwnersPage() {
       <p className="mt-2 text-slate-600">
         We keep you on the right side of the law: deposit protection, gas safety, EPCs, and right to rent checks.
       </p>
+      <ul className="mt-3 list-inside list-disc text-slate-600">
+        <li>Tenancy deposit protection (TDP) and prescribed information</li>
+        <li>Gas safety certificates (where applicable)</li>
+        <li>Energy Performance Certificates (EPCs)</li>
+        <li>Right to rent checks</li>
+        <li>Licensing and HMO requirements where they apply</li>
+      </ul>
       <p className="mt-6">
         <Link href="/contact" className="font-medium text-primary hover:underline">Get in touch</Link> to discuss your portfolio.
       </p>

@@ -19,7 +19,7 @@ export default function LoginPage() {
     setLoading(true);
     try {
       await login(email, password);
-      router.push("/");
+      router.push("/portal");
       router.refresh();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Login failed");
@@ -68,7 +68,7 @@ export default function LoginPage() {
         </button>
       </form>
       <p className="mt-4 text-center text-sm text-neutral-400">
-        Don&apos;t have an account? <Link href="/register" className="text-[#818cf8] hover:underline">Create one</Link>
+        Don&apos;t have an account? <Link href="/contact" className="text-[#818cf8] hover:underline">Contact us</Link> to get set up with portal access.
       </p>
     </div>
   );

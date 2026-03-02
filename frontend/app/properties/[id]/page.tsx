@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProperty } from "@/lib/server-api";
 import { MaintenanceForm } from "@/components/forms/MaintenanceForm";
+import { PropertyMap } from "@/components/PropertyMap";
 
 export const dynamic = "force-dynamic";
 
@@ -96,6 +97,10 @@ export default async function PropertyDetailPage({
             )}
           </div>
         </article>
+
+        <PropertyMap
+          address={`${property.address}, ${property.city}${property.postCode ? ` ${property.postCode}` : ""}`}
+        />
 
         <section className="mt-10 overflow-hidden rounded-2xl border border-white/10 bg-neutral-900/50 p-6">
           <h2 className="text-xl font-semibold text-white">

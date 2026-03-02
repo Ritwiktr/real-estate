@@ -139,6 +139,12 @@ export default function Header({ variant = "sticky" }: HeaderProps) {
             <>
               {user ? (
                 <div className="flex items-center gap-2">
+                  <Link
+                    href="/portal"
+                    className="rounded border border-white/30 px-3 py-1.5 text-sm font-medium text-white/90 hover:bg-white/10"
+                  >
+                    Portal
+                  </Link>
                   <span className="hidden text-sm text-white/80 sm:inline">{user.email}</span>
                   <button
                     type="button"

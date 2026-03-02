@@ -9,11 +9,11 @@ export const metadata: Metadata = {
 export default function MaintenanceRequestPage() {
   return (
     <div className="mx-auto max-w-2xl px-4 py-12 sm:px-6">
-      <h1 className="text-3xl font-bold text-slate-900">Maintenance Request</h1>
-      <p className="mt-4 text-slate-600">
+      <h1 className="text-3xl font-bold text-white">Maintenance Request</h1>
+      <p className="mt-4 text-neutral-300">
         Tenants: use this form to report a maintenance issue. We&apos;ll respond and coordinate repairs as needed.
       </p>
-      <div className="mt-8 rounded-lg border border-slate-200 bg-white p-6">
+      <div className="mt-8 rounded-2xl border border-white/10 bg-neutral-900/60 p-6 shadow-xl shadow-black/40">
         <MaintenanceForm />
       </div>
     </div>

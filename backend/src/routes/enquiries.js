@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { z } from "zod";
 import * as enquiryService from "../services/enquiryService.js";
+import { authMiddleware } from "../middleware/auth.js";
 
 const router = Router();
 
@@ -23,6 +24,20 @@ router.post("/", async (req, res, next) => {
       const msg = e.errors?.[0]?.message || "Validation failed";
       return res.status(400).json({ error: msg, code: "VALIDATION_ERROR" });
     }
+    next(e);
+  }
+});
+
+// Admin-only: list recent enquiries for dashboard
+router.get("/", authMiddleware, async (req, res, next) => {
+  try {
+    if (req.user.role !== "ADMIN") {
+      return res.status(403).json({ error: "Forbidden", code: "FORBIDDEN" });
+    }
+    const limit = req.query.limit;
+    const items = await enquiryService.listRecentEnquiries(limit);
+    res.json({ items });
+  } catch (e) {
     next(e);
   }
 });

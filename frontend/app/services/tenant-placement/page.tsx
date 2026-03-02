@@ -19,6 +19,13 @@ export default function TenantPlacementPage() {
         <li>Right to rent checks</li>
         <li>Tenancy agreements and move-in coordination</li>
       </ul>
+      <h2 className="mt-8 text-xl font-semibold text-white">How it works</h2>
+      <ol className="mt-2 list-decimal list-inside space-y-2 text-neutral-300">
+        <li>We list your property on leading portals and market it to suitable tenants.</li>
+        <li>We screen enquiries, arrange viewings, and shortlist applicants.</li>
+        <li>We carry out referencing (employment, previous landlord, credit) and right to rent checks.</li>
+        <li>We prepare the tenancy agreement, protect the deposit, and coordinate the move-in.</li>
+      </ol>
     </div>
   );
 }

@@ -1,4 +1,5 @@
-const API_BASE = "";
+/** Set NEXT_PUBLIC_API_BASE in production when frontend and backend are on different origins. */
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "";
 
 export type User = { id: string; email: string; name: string | null; role: string };
 export type Property = {
@@ -20,6 +21,17 @@ export type Property = {
 export type Area = { id: string; name: string; slug: string; imageUrl: string | null; description: string | null };
 export type BlogPost = { id: string; title: string; slug: string; excerpt: string | null; publishedAt: string | null; author: string | null };
 export type Testimonial = { id: string; authorName: string; role: string; content: string; rating: number | null };
+export type EnquirySummary = { id: string; name: string; email: string; subject: string | null; source: string; createdAt: string };
+export type MaintenanceSummary = {
+  id: string;
+  tenantName: string;
+  tenantEmail: string;
+  propertyAddressOrRef: string;
+  issueCategory: string;
+  urgency: string;
+  status: string;
+  createdAt: string;
+};
 
 function getToken(): string | null {
   if (typeof window === "undefined") return null;
@@ -94,4 +106,11 @@ export const favoritesApi = {
   list: () => api<Property[]>("/api/users/me/favorites"),
   add: (propertyId: string) => api<{ message: string }>(`/api/users/me/favorites/${propertyId}`, { method: "POST" }),
   remove: (propertyId: string) => api<{ message: string }>(`/api/users/me/favorites/${propertyId}`, { method: "DELETE" }),
+};
+
+export const adminApi = {
+  listEnquiries: (limit = 5) =>
+    api<{ items: EnquirySummary[] }>("/api/enquiries", { params: { limit } }),
+  listMaintenanceRequests: (limit = 5) =>
+    api<{ items: MaintenanceSummary[] }>("/api/maintenance-requests", { params: { limit } }),
 };

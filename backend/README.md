@@ -41,12 +41,20 @@ Server: **http://localhost:4000**
 |--------|----------|-------------|
 | GET | `/api/health` | Health check |
 | GET | `/api/properties` | List properties (query: `type`, `minPrice`, `maxPrice`) |
-| GET | `/api/properties/:slug` | Single property by slug |
-| POST | `/api/inquire` | Submit inquiry (body: `property_id?`, `name`, `email`, `phone`, `message`, `type`) |
-| POST | `/api/maintenance` | Submit maintenance request (body: `tenant_name`, `property_address`, `issue_type`, `description`) |
+| GET | `/api/properties/:id` | Single property by id |
+| POST | `/api/auth/login` | Login (body: `email`, `password`) |
+| POST | `/api/auth/register` | Register (body: `email`, `password`, `name?`, `role?`) |
+| GET | `/api/auth/me` | Current user (Authorization: Bearer token) |
+| POST | `/api/enquiries` | Submit enquiry (body: `name`, `email`, `phone?`, `subject?`, `message`, `consent`) |
+| POST | `/api/maintenance-requests` | Submit maintenance request (body: `tenantName`, `tenantEmail`, `propertyAddressOrRef`, `issueCategory`, `description`, `urgency?`) |
+| GET | `/api/users/me/favorites` | List favorites (auth) |
+| POST | `/api/users/me/favorites/:propertyId` | Add favorite (auth) |
+| DELETE | `/api/users/me/favorites/:propertyId` | Remove favorite (auth) |
 
 ## Schema (Prisma)
 
-- **Property** – type (SALE | RENT | HOLIDAY), status, price, address, bedrooms, bathrooms, area_sqft, features, images, is_featured.
-- **Inquiry** – optional property_id, name, email, phone, message, type.
-- **MaintenanceRequest** – tenant_name, property_address, issue_type, description, status.
+- **User** – email, hashedPassword, name, role (TENANT | LANDLORD | ADMIN).
+- **Property** – title, slug, description, address, city, postCode, listingType (RENTAL | HOLIDAY_LET), beds, baths, areaSqFt, pricePerMonth, isFeatured, images, area.
+- **Enquiry** – name, email, phone?, subject?, message, consent, source, propertyId?.
+- **Favorite** – userId, propertyId (unique per user+property).
+- **MaintenanceRequest** – tenantName, tenantEmail, propertyAddressOrRef, issueCategory, description, urgency, status.

@@ -17,6 +17,14 @@ export default function TenantsPage() {
       <p className="mt-2 text-slate-600">
         View our <Link href="/properties" className="text-primary hover:underline">property listings</Link>, then contact us to arrange a viewing. We&apos;ll guide you through referencing and the tenancy agreement.
       </p>
+      <h3 className="mt-4 text-base font-semibold text-slate-800">What you&apos;ll need</h3>
+      <ul className="mt-1 list-inside list-disc text-slate-600">
+        <li>Proof of identity (e.g. passport or driving licence)</li>
+        <li>Proof of address (e.g. utility bill or bank statement)</li>
+        <li>Employment and income details for referencing</li>
+        <li>Details of your current or previous landlord (if applicable)</li>
+      </ul>
+      <p className="mt-2 text-sm text-slate-500">We&apos;ll confirm the exact requirements when you apply. Typical turnaround for referencing is a few working days.</p>
       <h2 className="mt-8 text-xl font-semibold text-slate-900">During your tenancy</h2>
       <ul className="mt-2 list-inside list-disc text-slate-600">
         <li>Use our <Link href="/maintenance-request" className="text-primary hover:underline">maintenance request form</Link> to report issues.</li>

@@ -8,12 +8,13 @@ datasource db {
 }
 
 model User {
-  id             String   @id @default(uuid())
-  email          String   @unique
+  id         String     @id @default(uuid())
+  email      String     @unique
   hashedPassword String
-  name           String?
-  role           String   @default("TENANT")
-  createdAt      DateTime @default(now())
+  name       String?
+  role       String     @default("TENANT")
+  createdAt  DateTime   @default(now())
+  favorites  Favorite[]
 }
 
 model Area {
@@ -44,7 +45,8 @@ model Property {
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
   images        PropertyImage[]
-  inquiries     Inquiry[]
+  enquiries     Enquiry[]
+  favorites    Favorite[]
 }
 
 enum ListingType {
@@ -60,26 +62,40 @@ model PropertyImage {
   order      Int      @default(0)
 }
 
-model Inquiry {
-  id          String    @id @default(uuid())
-  property_id String?
-  property    Property? @relation(fields: [property_id], references: [id])
-  name        String
-  email       String
-  phone       String
-  message     String    @db.Text
-  type        String
-  createdAt   DateTime @default(now())
+model Enquiry {
+  id        String    @id @default(uuid())
+  name      String
+  email     String
+  phone     String?
+  subject   String?
+  message   String    @db.Text
+  consent   Boolean
+  source    String    @default("CONTACT_PAGE")
+  propertyId String?
+  property  Property? @relation(fields: [propertyId], references: [id])
+  createdAt DateTime @default(now())
+}
+
+model Favorite {
+  id         String   @id @default(uuid())
+  userId     String
+  propertyId String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+  @@unique([userId, propertyId])
 }
 
 model MaintenanceRequest {
-  id               String   @id @default(uuid())
-  tenant_name      String
-  property_address String
-  issue_type       String
-  description      String   @db.Text
-  status           String   @default("pending")
-  createdAt        DateTime @default(now())
+  id                   String   @id @default(uuid())
+  tenantName           String   @map("tenant_name")
+  tenantEmail          String   @default("")
+  propertyAddressOrRef String   @map("property_address")
+  issueCategory        String   @map("issue_type")
+  description          String   @db.Text
+  urgency              String   @default("MEDIUM")
+  status               String   @default("pending")
+  createdAt            DateTime @default(now())
 }
 
 model BlogPost {

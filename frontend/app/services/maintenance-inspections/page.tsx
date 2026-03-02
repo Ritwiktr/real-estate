@@ -19,6 +19,10 @@ export default function MaintenanceInspectionsPage() {
         <li>Periodic property inspections</li>
         <li>Compliance and safety checks</li>
       </ul>
+      <h2 className="mt-8 text-xl font-semibold text-white">How we work</h2>
+      <p className="mt-2 text-neutral-300">
+        We use a vetted network of contractors and obtain multiple quotes where appropriate. Inspections are carried out at agreed intervals (typically every six to twelve months) and after major works. We keep you informed and ensure all work meets safety and compliance standards.
+      </p>
     </div>
   );
 }
