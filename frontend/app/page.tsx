@@ -106,7 +106,7 @@ export default async function HomePage() {
             <p className="text-elegant-muted">No properties loaded. This usually means the API isn’t responding.</p>
               <ul className="mx-auto mt-3 max-w-md list-inside list-disc text-left text-sm text-elegant-muted">
               <li>Start the backend: <code className="rounded bg-white/10 px-1 py-0.5 font-mono text-xs">cd backend && npm run dev</code></li>
-              <li>Backend should run on port 4000 (the frontend calls <code className="rounded bg-white/10 px-1 py-0.5 font-mono text-xs">http://localhost:4000</code>)</li>
+              <li>Backend runs at <code className="rounded bg-white/10 px-1 py-0.5 font-mono text-xs">https://realestate-u3vr.onrender.com</code></li>
               <li>If you haven’t seeded yet: <code className="rounded bg-white/10 px-1 py-0.5 font-mono text-xs">cd backend && npx prisma db seed</code></li>
               </ul>
               <Link href="/properties" className="btn-primary mt-4 inline-flex">

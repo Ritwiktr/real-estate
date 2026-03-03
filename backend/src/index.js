@@ -1,6 +1,7 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
+import rateLimit from "express-rate-limit";
 import { env } from "./config/env.js";
 import { errorHandler } from "./middleware/errorHandler.js";
 import authRoutes from "./routes/auth.js";
@@ -11,18 +12,30 @@ import maintenanceRequestsRoutes from "./routes/maintenance-requests.js";
 import blogRoutes from "./routes/blog.js";
 import testimonialsRoutes from "./routes/testimonials.js";
 import usersRoutes from "./routes/users.js";
+import landlordRoutes from "./routes/landlord.js";
+import tenantRoutes from "./routes/tenant.js";
+import tenanciesRoutes from "./routes/tenancies.js";
+import adminRoutes from "./routes/admin.js";
 
 const app = express();
 const PORT = env.PORT || 4000;
 
-app.use(cors({ origin: process.env.FRONTEND_ORIGIN || "http://localhost:3000" }));
+const allowedOrigins = process.env.FRONTEND_ORIGIN
+  ? process.env.FRONTEND_ORIGIN.split(",").map((o) => o.trim()).filter(Boolean)
+  : ["http://localhost:3000", "http://localhost:3007", "http://127.0.0.1:3000", "http://127.0.0.1:3007"];
+app.use(cors({ origin: allowedOrigins, credentials: true }));
 app.use(express.json());
 
 app.get("/api/health", (_req, res) => {
   res.json({ status: "ok", message: "Backend is running" });
 });
 
-app.use("/api/auth", authRoutes);
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 50,
+  message: { error: "Too many attempts. Please try again later.", code: "RATE_LIMIT" },
+});
+app.use("/api/auth", authLimiter, authRoutes);
 app.use("/api/properties", propertiesRoutes);
 app.use("/api/areas", areasRoutes);
 app.use("/api/enquiries", enquiriesRoutes);
@@ -30,6 +43,10 @@ app.use("/api/maintenance-requests", maintenanceRequestsRoutes);
 app.use("/api/blog", blogRoutes);
 app.use("/api/testimonials", testimonialsRoutes);
 app.use("/api/users", usersRoutes);
+app.use("/api/landlord", landlordRoutes);
+app.use("/api/tenant", tenantRoutes);
+app.use("/api/tenancies", tenanciesRoutes);
+app.use("/api/admin", adminRoutes);
 
 app.use("/api/*", (_req, res) => {
   res.status(404).json({ error: "Not found", code: "NOT_FOUND" });

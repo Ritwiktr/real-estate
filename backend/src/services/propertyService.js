@@ -22,6 +22,7 @@ export async function listProperties({
   if (areaId) where.areaId = areaId;
   if (listingType) where.listingType = listingType;
   if (featured === "true" || featured === true) where.isFeatured = true;
+  where.status = "LIVE";
   if (search && search.trim()) {
     where.OR = [
       { title: { contains: search.trim(), mode: "insensitive" } },
@@ -48,10 +49,13 @@ export async function listProperties({
 
 const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
-export async function getPropertyById(idOrSlug) {
+export async function getPropertyById(idOrSlug, options = {}) {
+  const { forPublic = true } = options;
   const isUuid = UUID_REGEX.test(idOrSlug);
+  const where = isUuid ? { id: idOrSlug } : { slug: idOrSlug };
+  if (forPublic) where.status = "LIVE";
   const property = await prisma.property.findFirst({
-    where: isUuid ? { id: idOrSlug } : { slug: idOrSlug },
+    where,
     include: {
       images: { orderBy: { order: "asc" } },
       area: true,

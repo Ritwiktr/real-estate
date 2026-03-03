@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { maintenanceApi } from "@/lib/api";
+import { useAuth } from "@/contexts/AuthContext";
+import { maintenanceApi, tenantApi } from "@/lib/api";
 
-export function MaintenanceForm({ defaultAddress = "" }: { defaultAddress?: string }) {
-  const [tenantName, setTenantName] = useState("");
-  const [tenantEmail, setTenantEmail] = useState("");
+export function MaintenanceForm({ defaultAddress = "", propertyId }: { defaultAddress?: string; propertyId?: string }) {
+  const { user } = useAuth();
+  const [tenantName, setTenantName] = useState(user?.name ?? "");
+  const [tenantEmail, setTenantEmail] = useState(user?.email ?? "");
   const [propertyAddressOrRef, setPropertyAddressOrRef] = useState(defaultAddress);
   const [issueCategory, setIssueCategory] = useState("");
   const [description, setDescription] = useState("");
@@ -18,16 +20,25 @@ export function MaintenanceForm({ defaultAddress = "" }: { defaultAddress?: stri
     setErrorMsg("");
     setStatus("loading");
     try {
-      await maintenanceApi.submit({
-        tenantName,
-        tenantEmail,
-        propertyAddressOrRef,
-        issueCategory,
-        description,
-        urgency,
-      });
+      if (propertyId && user?.role === "TENANT") {
+        await tenantApi.submitMaintenanceRequest(propertyId, {
+          issueCategory,
+          description,
+          urgency,
+        });
+      } else {
+        await maintenanceApi.submit({
+          tenantName: tenantName || (user?.name ?? ""),
+          tenantEmail: tenantEmail || (user?.email ?? ""),
+          propertyAddressOrRef: propertyId ? defaultAddress : propertyAddressOrRef,
+          issueCategory,
+          description,
+          urgency,
+          propertyId,
+        });
+      }
       setStatus("success");
-      setTenantName(""); setTenantEmail(""); setPropertyAddressOrRef(defaultAddress); setIssueCategory(""); setDescription("");
+      setTenantName(user?.name ?? ""); setTenantEmail(user?.email ?? ""); setPropertyAddressOrRef(defaultAddress); setIssueCategory(""); setDescription("");
     } catch (err) {
       setStatus("error");
       setErrorMsg(err instanceof Error ? err.message : "Something went wrong.");

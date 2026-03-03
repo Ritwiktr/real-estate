@@ -12,6 +12,7 @@ const requestSchema = z.object({
   issueCategory: z.string().min(1, "Issue category is required"),
   description: z.string().min(1, "Description is required"),
   urgency: z.enum(["LOW", "MEDIUM", "HIGH"]).optional(),
+  propertyId: z.string().uuid().optional(),
 });
 
 router.post("/", async (req, res, next) => {

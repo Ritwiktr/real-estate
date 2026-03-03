@@ -4,10 +4,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 import { useState, useEffect } from "react";
+import { NotificationDropdown } from "./NotificationDropdown";
 
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/properties", label: "Properties" },
+  { href: "/about", label: "About" },
   {
     label: "Services",
     children: [
@@ -139,11 +141,19 @@ export default function Header({ variant = "sticky" }: HeaderProps) {
             <>
               {user ? (
                 <div className="flex items-center gap-2">
+                  {(user.role === "TENANT" || user.role === "LANDLORD") && (
+                    <NotificationDropdown />
+                  )}
                   <Link
-                    href="/portal"
-                    className="rounded border border-white/30 px-3 py-1.5 text-sm font-medium text-white/90 hover:bg-white/10"
+                    href={user.role === "ADMIN" ? "/admin" : "/portal"}
+                    className={`rounded border px-3 py-1.5 text-sm font-medium ${
+                      (user.role === "ADMIN" && pathname === "/admin") ||
+                      (user.role !== "ADMIN" && pathname === "/portal")
+                        ? "border-[#818cf8] bg-[#818cf8]/20 text-white"
+                        : "border-white/30 text-white/90 hover:bg-white/10"
+                    }`}
                   >
-                    Portal
+                    {user.role === "ADMIN" ? "Admin" : "Portal"}
                   </Link>
                   <span className="hidden text-sm text-white/80 sm:inline">{user.email}</span>
                   <button
@@ -181,6 +191,17 @@ export default function Header({ variant = "sticky" }: HeaderProps) {
       {mobileOpen && (
         <div className="border-t border-white/10 bg-black lg:hidden">
           <nav className="mx-auto max-w-7xl px-4 py-4 sm:px-6">
+            {user?.role === "ADMIN" && (
+              <div className="mb-4 border-b border-white/10 pb-4">
+                <Link
+                  href="/admin"
+                  className={`block py-2.5 text-sm font-medium ${pathname === "/admin" ? "text-white" : "text-white/80"}`}
+                  onClick={() => setMobileOpen(false)}
+                >
+                  Admin Portal
+                </Link>
+              </div>
+            )}
             <ul className="space-y-1">
               {navLinks.map((item) =>
                 "children" in item ? (

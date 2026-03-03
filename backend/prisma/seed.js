@@ -1,6 +1,8 @@
 import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
+const SALT_ROUNDS = 10;
 
 const AREAS = [
   { name: "12 South", slug: "12-south", imageUrl: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800", description: "Upscale Nashville community known for its vibrant atmosphere and modern homes." },
@@ -38,7 +40,7 @@ async function main() {
     const areaId = areaMap[p.areaSlug] || null;
     await prisma.property.upsert({
       where: { slug: p.slug },
-      update: {},
+      update: { status: "LIVE" },
       create: {
         title: p.title,
         slug: p.slug,
@@ -53,6 +55,7 @@ async function main() {
         areaSqFt: p.areaSqFt,
         pricePerMonth: p.pricePerMonth,
         isFeatured: p.isFeatured ?? false,
+        status: "LIVE",
         images: { create: [{ url: p.imageUrl, order: 0 }] },
       },
     });
@@ -118,20 +121,58 @@ async function main() {
     });
   }
 
-  await prisma.testimonial.upsert({
-    where: { id: "seed-testimonial-1" },
-    update: {},
-    create: {
+  const TESTIMONIALS = [
+    {
       id: "seed-testimonial-1",
       authorName: "Jane Smith",
       role: "Landlord",
       content: "Professional service from start to finish. Highly recommend.",
       rating: 5,
-      isApproved: true,
+    },
+    {
+      id: "seed-testimonial-2",
+      authorName: "Michael O'Brien",
+      role: "Tenant",
+      content: "Smooth move-in process and quick response when we had a maintenance issue. The team really cares about tenants.",
+      rating: 5,
+    },
+    {
+      id: "seed-testimonial-3",
+      authorName: "Priya Patel",
+      role: "Landlord",
+      content: "They manage three of my London properties. Clear reporting, reliable rent collection, and peace of mind on compliance.",
+      rating: 5,
+    },
+  ];
+
+  for (const t of TESTIMONIALS) {
+    await prisma.testimonial.upsert({
+      where: { id: t.id },
+      update: {},
+      create: {
+        id: t.id,
+        authorName: t.authorName,
+        role: t.role,
+        content: t.content,
+        rating: t.rating,
+        isApproved: true,
+      },
+    });
+  }
+
+  const adminHashedPassword = await bcrypt.hash("1234", SALT_ROUNDS);
+  await prisma.user.upsert({
+    where: { email: "admin" },
+    update: { hashedPassword: adminHashedPassword, role: "ADMIN" },
+    create: {
+      email: "admin",
+      hashedPassword: adminHashedPassword,
+      name: "Admin",
+      role: "ADMIN",
     },
   });
 
-  console.log("Seed completed: areas, properties, blog posts, testimonial.");
+  console.log("Seed completed: areas, properties, blog posts, testimonials, admin user.");
 }
 
 main()

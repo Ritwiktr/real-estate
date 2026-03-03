@@ -6,9 +6,9 @@ import { authApi, type User } from "@/lib/api";
 type AuthContextType = {
   user: User | null;
   loading: boolean;
-  login: (email: string, password: string) => Promise<void>;
+  login: (email: string, password: string) => Promise<User>;
   logout: () => void;
-  register: (email: string, password: string, name?: string) => Promise<void>;
+  register: (email: string, password: string, name?: string, role?: "LANDLORD" | "TENANT") => Promise<void>;
   refreshUser: () => Promise<void>;
 };
 
@@ -44,6 +44,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const { user: u, token } = await authApi.login(email, password);
     localStorage.setItem("token", token);
     setUser(u);
+    return u;
   }, []);
 
   const logout = useCallback(() => {
@@ -51,8 +52,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setUser(null);
   }, []);
 
-  const register = useCallback(async (email: string, password: string, name?: string) => {
-    const { user: u, token } = await authApi.register(email, password, name);
+  const register = useCallback(async (email: string, password: string, name?: string, role?: "LANDLORD" | "TENANT") => {
+    const { user: u, token } = await authApi.register(email, password, name, role);
     localStorage.setItem("token", token);
     setUser(u);
   }, []);

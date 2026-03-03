@@ -17,7 +17,11 @@ export default function Footer() {
             <p className="text-xs font-medium uppercase tracking-[0.2em] text-white/50">Explore</p>
             <ul className="mt-3 space-y-2 text-sm">
               <li><Link href="/properties" className="hover:text-white">Properties</Link></li>
+              <li><Link href="/about" className="hover:text-white">About Us</Link></li>
+              <li><Link href="/owners" className="hover:text-white">For Owners</Link></li>
+              <li><Link href="/tenants" className="hover:text-white">For Tenants</Link></li>
               <li><Link href="/blog" className="hover:text-white">Blog</Link></li>
+              <li><Link href="/testimonials" className="hover:text-white">Testimonials</Link></li>
               <li><Link href="/contact" className="hover:text-white">Contact</Link></li>
             </ul>
           </div>

@@ -65,8 +65,8 @@ export async function api<T>(
 export const authApi = {
   login: (email: string, password: string) =>
     api<{ user: User; token: string }>("/api/auth/login", { method: "POST", body: JSON.stringify({ email, password }) }),
-  register: (email: string, password: string, name?: string) =>
-    api<{ user: User; token: string }>("/api/auth/register", { method: "POST", body: JSON.stringify({ email, password, name }) }),
+  register: (email: string, password: string, name?: string, role?: "LANDLORD" | "TENANT") =>
+    api<{ user: User; token: string }>("/api/auth/register", { method: "POST", body: JSON.stringify({ email, password, name, role }) }),
   me: () => api<User>("/api/auth/me"),
 };
 
@@ -74,6 +74,8 @@ export const propertiesApi = {
   list: (params?: { page?: number; limit?: number; search?: string; listingType?: string; areaId?: string; minPrice?: string; maxPrice?: string; beds?: string; featured?: string }) =>
     api<{ items: Property[]; total: number; page: number; limit: number }>("/api/properties", { params: params as Record<string, string> }),
   get: (id: string) => api<Property>(`/api/properties/${id}`),
+  getAvailability: (id: string) =>
+    api<{ items: Array<{ id: string; startDate: string; endDate: string }> }>(`/api/properties/${id}/availability`),
 };
 
 export const areasApi = {
@@ -86,7 +88,7 @@ export const enquiriesApi = {
 };
 
 export const maintenanceApi = {
-  submit: (body: { tenantName: string; tenantEmail: string; propertyAddressOrRef: string; issueCategory: string; description: string; urgency?: string }) =>
+  submit: (body: { tenantName: string; tenantEmail: string; propertyAddressOrRef: string; issueCategory: string; description: string; urgency?: string; propertyId?: string }) =>
     api<{ id: string }>("/api/maintenance-requests", { method: "POST", body: JSON.stringify(body) }),
 };
 
@@ -108,9 +110,122 @@ export const favoritesApi = {
   remove: (propertyId: string) => api<{ message: string }>(`/api/users/me/favorites/${propertyId}`, { method: "DELETE" }),
 };
 
+export type NotificationItem = {
+  type: "maintenance" | "application";
+  id: string;
+  title: string;
+  message: string;
+  link: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export const notificationsApi = {
+  list: (limit?: number) =>
+    api<{ items: NotificationItem[] }>("/api/users/me/notifications", { params: { limit } }),
+};
+
+export type AdminAnalytics = {
+  landlordsCount: number;
+  tenantsCount: number;
+  propertiesCount: number;
+  enquiriesCount: number;
+  maintenance: { total: number; pending: number; in_progress: number; resolved: number };
+  applications: { total: number; PENDING: number; APPROVED: number; REJECTED: number };
+  recentMaintenance: Array<MaintenanceSummary & { property?: { id: string; title: string; address: string } }>;
+  recentApplications: TenancyApplicationItem[];
+  recentEnquiries: EnquirySummary[];
+};
+
 export const adminApi = {
+  getAnalytics: () => api<AdminAnalytics>("/api/admin/analytics"),
   listEnquiries: (limit = 5) =>
     api<{ items: EnquirySummary[] }>("/api/enquiries", { params: { limit } }),
   listMaintenanceRequests: (limit = 5) =>
     api<{ items: MaintenanceSummary[] }>("/api/maintenance-requests", { params: { limit } }),
+  listPendingTestimonials: (limit = 50) =>
+    api<{ items: Testimonial[] }>("/api/admin/testimonials", { params: { approved: "false", limit } }),
+  updateTestimonialApproval: (id: string, isApproved: boolean) =>
+    api<{ id: string; isApproved: boolean }>(`/api/admin/testimonials/${id}`, { method: "PATCH", body: JSON.stringify({ isApproved }) }),
+};
+
+export type LandlordProperty = Property & {
+  status?: string;
+  openMaintenanceCount?: number;
+  activeTenanciesCount?: number;
+};
+
+export type MaintenanceRequestDetail = {
+  id: string;
+  tenantName: string;
+  tenantEmail: string;
+  propertyAddressOrRef: string;
+  issueCategory: string;
+  description?: string;
+  urgency: string;
+  status: string;
+  createdAt: string;
+  property?: { id: string; title: string; address: string; city?: string };
+};
+
+export const landlordApi = {
+  listProperties: (params?: { page?: number; limit?: number }) =>
+    api<{ items: LandlordProperty[]; total: number; page: number; limit: number }>("/api/landlord/properties", { params: params as Record<string, string> }),
+  getProperty: (id: string) => api<LandlordProperty>("/api/landlord/properties/" + id),
+  createProperty: (body: Record<string, unknown>) =>
+    api<LandlordProperty>("/api/landlord/properties", { method: "POST", body: JSON.stringify(body) }),
+  updateProperty: (id: string, body: Record<string, unknown>) =>
+    api<LandlordProperty>("/api/landlord/properties/" + id, { method: "PUT", body: JSON.stringify(body) }),
+  listMaintenanceRequests: (limit?: number) =>
+    api<{ items: MaintenanceRequestDetail[] }>("/api/landlord/maintenance-requests", { params: { limit } }),
+  listPropertyMaintenance: (propertyId: string) =>
+    api<{ items: MaintenanceRequestDetail[] }>(`/api/landlord/properties/${propertyId}/maintenance-requests`),
+  updateMaintenanceStatus: (id: string, status: string) =>
+    api<MaintenanceRequestDetail>(`/api/landlord/maintenance-requests/${id}`, { method: "PATCH", body: JSON.stringify({ status }) }),
+  listApplications: (propertyId: string) =>
+    api<{ items: TenancyApplicationItem[] }>(`/api/landlord/properties/${propertyId}/applications`),
+  approveApplication: (id: string) =>
+    api<unknown>(`/api/landlord/applications/${id}/approve`, { method: "POST" }),
+  rejectApplication: (id: string) =>
+    api<unknown>(`/api/landlord/applications/${id}/reject`, { method: "POST" }),
+  getFinancialSummary: () =>
+    api<{ dueThisMonth: number; collected: number; overdue: number }>("/api/landlord/financials/summary"),
+  getPropertyFinancials: (propertyId: string) =>
+    api<{ tenancies: Array<{ id: string; tenant: unknown; rentLedgerEntries: Array<{ id: string; dueDate: string; amount: string | number; type: string; status: string }> }> }>(`/api/landlord/properties/${propertyId}/financials`),
+  getPropertyActivity: (propertyId: string) =>
+    api<{ views: Array<{ id: string; viewedAt: string; user?: { id: string; name: string | null; email: string } }>; maintenanceRequests: MaintenanceRequestDetail[]; applications: TenancyApplicationItem[] }>(`/api/landlord/properties/${propertyId}/activity`),
+  getPropertyAnalytics: (propertyId: string) =>
+    api<{ views: { last7d: number; last30d: number; allTime: number }; maintenance: { open: number; resolved: number }; applications: { pending: number; approved: number; rejected: number }; favoritesCount: number }>(`/api/landlord/properties/${propertyId}/analytics`),
+  listPropertyAvailability: (propertyId: string) =>
+    api<{ items: Array<{ id: string; startDate: string; endDate: string }> }>(`/api/landlord/properties/${propertyId}/availability`),
+  addPropertyAvailability: (propertyId: string, body: { startDate: string; endDate: string }) =>
+    api<{ id: string; startDate: string; endDate: string }>(`/api/landlord/properties/${propertyId}/availability`, { method: "POST", body: JSON.stringify(body) }),
+  removePropertyAvailability: (propertyId: string, availabilityId: string) =>
+    api<void>(`/api/landlord/properties/${propertyId}/availability/${availabilityId}`, { method: "DELETE" }),
+};
+
+export type TenancyApplicationItem = {
+  id: string;
+  propertyId: string;
+  name: string;
+  email: string;
+  status: string;
+  createdAt: string;
+  property?: { id: string; title: string; address: string; city?: string };
+};
+
+export const tenantApi = {
+  listMaintenanceRequests: (limit?: number) =>
+    api<{ items: MaintenanceRequestDetail[] }>("/api/tenant/maintenance-requests", { params: { limit } }),
+  submitMaintenanceRequest: (propertyId: string, body: { issueCategory: string; description: string; urgency?: string }) =>
+    api<{ id: string; message: string }>(`/api/tenant/properties/${propertyId}/maintenance-requests`, { method: "POST", body: JSON.stringify(body) }),
+  listApplications: () =>
+    api<{ items: TenancyApplicationItem[] }>("/api/tenant/applications"),
+  getFinancials: () =>
+    api<{ tenancy: { id: string; property: unknown; rentAmount: string | number; startDate: string } | null; entries: Array<{ id: string; dueDate: string; amount: string | number; type: string; status: string }> }>("/api/tenant/financials"),
+};
+
+export const tenanciesApi = {
+  submitApplication: (body: { propertyId: string; name: string; email: string; phone?: string; employment?: string; references?: string }) =>
+    api<{ id: string; message: string }>("/api/tenancies/applications", { method: "POST", body: JSON.stringify(body) }),
 };

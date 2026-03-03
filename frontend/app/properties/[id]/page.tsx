@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getProperty } from "@/lib/server-api";
+import { getProperty, getPropertyAvailability } from "@/lib/server-api";
 import { MaintenanceForm } from "@/components/forms/MaintenanceForm";
+import { ApplicationForm } from "@/components/forms/ApplicationForm";
 import { PropertyMap } from "@/components/PropertyMap";
+import { PropertyImageGallery } from "@/components/PropertyImageGallery";
 
 export const dynamic = "force-dynamic";
 
@@ -25,10 +27,14 @@ export default async function PropertyDetailPage({
 }: {
   params: { id: string };
 }) {
-  const property = await getProperty(params.id);
+  const [property, availability] = await Promise.all([
+    getProperty(params.id),
+    getPropertyAvailability(params.id),
+  ]);
   if (!property) notFound();
 
-  const imageUrl = property.images?.[0]?.url;
+  const images = property.images ?? [];
+  const availableRanges = availability?.items ?? [];
   const typeLabel =
     property.listingType === "HOLIDAY_LET" ? "Holiday Let" : "For Rent";
 
@@ -43,25 +49,9 @@ export default async function PropertyDetailPage({
         </Link>
 
         <article className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-black shadow-xl shadow-black/50">
-          <div className="relative aspect-[16/10] bg-neutral-900">
-            {imageUrl ? (
-              <>
-                <img
-                  src={imageUrl}
-                  alt={property.title}
-                  className="h-full w-full object-cover"
-                />
-                <div
-                  className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"
-                  aria-hidden
-                />
-              </>
-            ) : (
-              <div className="flex h-full items-center justify-center text-neutral-500">
-                No image
-              </div>
-            )}
-            <div className="absolute left-4 top-4 flex gap-2">
+          <div className="relative p-4 pt-4">
+            <PropertyImageGallery images={images} title={property.title} />
+            <div className="absolute left-6 top-6 flex gap-2">
               {property.isFeatured && (
                 <span className="rounded-md bg-white/95 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-black">
                   Featured
@@ -95,12 +85,28 @@ export default async function PropertyDetailPage({
                 {property.description}
               </p>
             )}
+            {availableRanges.length > 0 && (
+              <div className="mt-6 rounded-lg border border-green-500/30 bg-green-500/10 p-4">
+                <p className="text-sm font-medium text-green-400">Available for booking</p>
+                <p className="mt-1 text-sm text-neutral-300">
+                  {availableRanges.map((r: { startDate: string; endDate: string }) => `${new Date(r.startDate).toLocaleDateString()} – ${new Date(r.endDate).toLocaleDateString()}`).join(" · ")}
+                </p>
+              </div>
+            )}
           </div>
         </article>
 
         <PropertyMap
           address={`${property.address}, ${property.city}${property.postCode ? ` ${property.postCode}` : ""}`}
         />
+
+        <section className="mt-10 overflow-hidden rounded-2xl border border-white/10 bg-neutral-900/50 p-6">
+          <h2 className="text-xl font-semibold text-white">Apply for this property</h2>
+          <p className="mt-1 text-sm text-neutral-400">
+            Interested in renting? Submit your application and we&apos;ll get back to you.
+          </p>
+          <ApplicationForm propertyId={property.id} />
+        </section>
 
         <section className="mt-10 overflow-hidden rounded-2xl border border-white/10 bg-neutral-900/50 p-6">
           <h2 className="text-xl font-semibold text-white">
@@ -111,6 +117,7 @@ export default async function PropertyDetailPage({
           </p>
           <MaintenanceForm
             defaultAddress={`${property.address}, ${property.city}`}
+            propertyId={property.id}
           />
         </section>
       </div>

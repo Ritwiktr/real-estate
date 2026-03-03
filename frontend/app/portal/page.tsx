@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
-import { adminApi, type EnquirySummary, type MaintenanceSummary } from "@/lib/api";
+import { adminApi, landlordApi, tenantApi, type EnquirySummary, type MaintenanceSummary, type Testimonial } from "@/lib/api";
 
 const PORTAL_URL = typeof process !== "undefined" ? process.env.NEXT_PUBLIC_PORTAL_URL : undefined;
 
@@ -14,6 +14,9 @@ export default function PortalPage() {
   const [enquiries, setEnquiries] = useState<EnquirySummary[] | null>(null);
   const [maintenance, setMaintenance] = useState<MaintenanceSummary[] | null>(null);
   const [adminError, setAdminError] = useState<string | null>(null);
+  const [pendingTestimonials, setPendingTestimonials] = useState<Testimonial[] | null>(null);
+  const [financialSummary, setFinancialSummary] = useState<{ dueThisMonth: number; collected: number; overdue: number } | null>(null);
+  const [tenantFinancials, setTenantFinancials] = useState<{ tenancy: unknown; entries: unknown[] } | null>(null);
 
   useEffect(() => {
     if (!loading && !user) {
@@ -26,18 +29,32 @@ export default function PortalPage() {
       (async () => {
         try {
           setAdminError(null);
-          const [enqRes, mrRes] = await Promise.all([
+          const [enqRes, mrRes, testRes] = await Promise.all([
             adminApi.listEnquiries(5),
             adminApi.listMaintenanceRequests(5),
+            adminApi.listPendingTestimonials(20).catch(() => ({ items: [] })),
           ]);
           setEnquiries(enqRes.items);
           setMaintenance(mrRes.items);
+          setPendingTestimonials(testRes.items);
         } catch (err) {
           setAdminError("Could not load dashboard data. Please try again later.");
         }
       })();
     }
   }, [loading, user]);
+
+  useEffect(() => {
+    if (!loading && user?.role === "LANDLORD") {
+      landlordApi.getFinancialSummary().then(setFinancialSummary).catch(() => setFinancialSummary(null));
+    }
+  }, [loading, user?.role]);
+
+  useEffect(() => {
+    if (!loading && user?.role === "TENANT") {
+      tenantApi.getFinancials().then(setTenantFinancials).catch(() => setTenantFinancials(null));
+    }
+  }, [loading, user?.role]);
 
   if (loading) {
     return (
@@ -53,6 +70,8 @@ export default function PortalPage() {
 
   const roleLabel = user.role === "LANDLORD" ? "Landlord" : user.role === "ADMIN" ? "Admin" : "Tenant";
   const isAdmin = user.role === "ADMIN";
+  const isLandlord = user.role === "LANDLORD";
+  const isTenant = user.role === "TENANT";
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6">
@@ -61,8 +80,86 @@ export default function PortalPage() {
         Welcome back{user.name ? `, ${user.name}` : ""}. You are signed in as a {roleLabel}.
       </p>
 
+      {/* Landlord dashboard */}
+      {isLandlord && (
+        <section className="mt-6 space-y-4">
+          <h2 className="text-xl font-semibold text-white">Landlord dashboard</h2>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {financialSummary && (
+              <>
+                <div className="rounded-xl border border-white/10 bg-neutral-900/50 p-4">
+                  <p className="text-xs uppercase tracking-wider text-neutral-500">Rent due this month</p>
+                  <p className="mt-1 text-xl font-bold text-white">£{financialSummary.dueThisMonth.toLocaleString()}</p>
+                </div>
+                <div className="rounded-xl border border-white/10 bg-neutral-900/50 p-4">
+                  <p className="text-xs uppercase tracking-wider text-neutral-500">Collected</p>
+                  <p className="mt-1 text-xl font-bold text-green-400">£{financialSummary.collected.toLocaleString()}</p>
+                </div>
+                <div className="rounded-xl border border-white/10 bg-neutral-900/50 p-4">
+                  <p className="text-xs uppercase tracking-wider text-neutral-500">Overdue</p>
+                  <p className="mt-1 text-xl font-bold text-amber-400">£{financialSummary.overdue.toLocaleString()}</p>
+                </div>
+              </>
+            )}
+            <Link
+              href="/portal/properties"
+              className="flex flex-col rounded-xl border border-white/10 bg-neutral-900/50 p-5 transition hover:border-white/20 hover:bg-neutral-900/70"
+            >
+              <span className="text-sm font-semibold text-white">My Properties</span>
+              <span className="mt-1 text-sm text-neutral-400">List and manage your properties</span>
+              <span className="mt-2 text-sm font-medium text-[#818cf8]">View properties →</span>
+            </Link>
+          </div>
+        </section>
+      )}
+
+      {/* Tenant dashboard */}
+      {isTenant && (
+        <section className="mt-6 space-y-4">
+          <h2 className="text-xl font-semibold text-white">Tenant dashboard</h2>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {tenantFinancials?.tenancy != null && (
+              <div className="rounded-xl border border-white/10 bg-neutral-900/50 p-5">
+                <span className="text-sm font-semibold text-white">Your home</span>
+                <p className="mt-1 text-sm text-neutral-400">
+                  {(tenantFinancials.tenancy as { property?: { title?: string } })?.property?.title ?? "Current tenancy"}
+                </p>
+                <p className="mt-1 text-sm text-white">
+                  Rent: £{Number((tenantFinancials.tenancy as { rentAmount?: string | number })?.rentAmount ?? 0).toLocaleString()}/month
+                </p>
+              </div>
+            )}
+            {tenantFinancials?.entries != null && (tenantFinancials.entries as unknown[]).length > 0 && (
+              <div className="rounded-xl border border-white/10 bg-neutral-900/50 p-5">
+                <span className="text-sm font-semibold text-white">Rent</span>
+                <p className="mt-1 text-sm text-neutral-400">Upcoming and recent rent entries</p>
+                <p className="mt-2 text-sm text-neutral-500">
+                  {(tenantFinancials.entries as unknown[]).length} entries
+                </p>
+              </div>
+            )}
+            <Link
+              href="/portal/maintenance"
+              className="flex flex-col rounded-xl border border-white/10 bg-neutral-900/50 p-5 transition hover:border-white/20 hover:bg-neutral-900/70"
+            >
+              <span className="text-sm font-semibold text-white">Maintenance requests</span>
+              <span className="mt-1 text-sm text-neutral-400">Submit and track repair requests</span>
+              <span className="mt-2 text-sm font-medium text-[#818cf8]">View requests →</span>
+            </Link>
+            <Link
+              href="/portal/applications"
+              className="flex flex-col rounded-xl border border-white/10 bg-neutral-900/50 p-5 transition hover:border-white/20 hover:bg-neutral-900/70 sm:col-span-2"
+            >
+              <span className="text-sm font-semibold text-white">My applications</span>
+              <span className="mt-1 text-sm text-neutral-400">Track your property applications</span>
+              <span className="mt-2 text-sm font-medium text-[#818cf8]">View applications →</span>
+            </Link>
+          </div>
+        </section>
+      )}
+
       {/* Shared portal link section */}
-      <div className="mt-6 space-y-4 rounded-xl border border-white/10 bg-neutral-900/50 p-6">
+      <div className="mt-8 space-y-4 rounded-xl border border-white/10 bg-neutral-900/50 p-6">
         {PORTAL_URL ? (
           <>
             <p className="text-sm text-neutral-400">
@@ -173,6 +270,46 @@ export default function PortalPage() {
                   <p className="text-sm text-neutral-500">Loading maintenance requests…</p>
                 )}
               </div>
+            </div>
+
+            <div className="rounded-xl border border-white/10 bg-neutral-900/60 p-5 md:col-span-2">
+              <h3 className="text-sm font-semibold text-white">Pending testimonials</h3>
+              {pendingTestimonials?.length === 0 ? (
+                <p className="mt-3 text-sm text-neutral-500">No pending testimonials.</p>
+              ) : (
+                <div className="mt-3 space-y-2">
+                  {pendingTestimonials?.map((t) => (
+                    <div key={t.id} className="flex flex-wrap items-start justify-between gap-2 rounded-lg border border-white/5 bg-black/40 px-3 py-2">
+                      <div>
+                        <p className="text-sm text-neutral-300 line-clamp-2">&ldquo;{t.content}&rdquo;</p>
+                        <p className="mt-1 text-xs text-neutral-500">{t.authorName} · {t.role}</p>
+                      </div>
+                      <div className="flex gap-2">
+                        <button
+                          type="button"
+                          onClick={async () => {
+                            await adminApi.updateTestimonialApproval(t.id, true);
+                            setPendingTestimonials((prev) => prev?.filter((x) => x.id !== t.id) ?? []);
+                          }}
+                          className="rounded bg-green-600 px-2 py-1 text-xs font-medium text-white hover:bg-green-700"
+                        >
+                          Approve
+                        </button>
+                        <button
+                          type="button"
+                          onClick={async () => {
+                            await adminApi.updateTestimonialApproval(t.id, false);
+                            setPendingTestimonials((prev) => prev?.filter((x) => x.id !== t.id) ?? []);
+                          }}
+                          className="rounded border border-white/20 px-2 py-1 text-xs font-medium text-white hover:bg-white/10"
+                        >
+                          Reject
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </section>

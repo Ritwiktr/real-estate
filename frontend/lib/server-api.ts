@@ -1,4 +1,4 @@
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "http://localhost:4000";
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "https://realestate-u3vr.onrender.com";
 const FETCH_TIMEOUT_MS = 8000;
 
 async function fetchWithTimeout(
@@ -53,6 +53,16 @@ export async function getProperty(id: string) {
     return res.json();
   } catch {
     return null;
+  }
+}
+
+export async function getPropertyAvailability(id: string) {
+  try {
+    const res = await fetchWithTimeout(`${API_BASE}/api/properties/${id}/availability`, { next: { revalidate: 60 } });
+    if (!res.ok) return { items: [] };
+    return res.json();
+  } catch {
+    return { items: [] };
   }
 }
 

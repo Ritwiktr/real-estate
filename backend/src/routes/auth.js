@@ -6,7 +6,7 @@ import * as authService from "../services/authService.js";
 const router = Router();
 
 const loginSchema = z.object({
-  email: z.string().email(),
+  email: z.string().min(1),
   password: z.string().min(1),
 });
 
@@ -14,7 +14,7 @@ const registerSchema = z.object({
   email: z.string().email(),
   password: z.string().min(8, "Password must be at least 8 characters"),
   name: z.string().min(1).optional(),
-  role: z.enum(["LANDLORD", "TENANT", "ADMIN"]).optional(),
+  role: z.enum(["LANDLORD", "TENANT"]).optional(),
 });
 
 router.post("/login", async (req, res, next) => {

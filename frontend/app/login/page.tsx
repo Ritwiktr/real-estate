@@ -18,8 +18,8 @@ export default function LoginPage() {
     setError("");
     setLoading(true);
     try {
-      await login(email, password);
-      router.push("/portal");
+      const user = await login(email, password);
+      router.push(user.role === "ADMIN" ? "/admin" : "/portal");
       router.refresh();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Login failed");
@@ -39,12 +39,12 @@ export default function LoginPage() {
           <label htmlFor="email" className="block text-sm font-medium text-white">Email</label>
           <input
             id="email"
-            type="email"
+            type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
             className="mt-1 w-full rounded-lg border border-white/20 bg-white/5 px-3 py-2 text-sm text-white placeholder-neutral-500 focus:border-white/40 focus:outline-none"
-            placeholder="you@example.com"
+            placeholder="you@example.com or admin"
           />
         </div>
         <div>
