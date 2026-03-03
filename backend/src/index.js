@@ -23,7 +23,10 @@ const PORT = env.PORT || 4000;
 const explicitOrigins = process.env.FRONTEND_ORIGIN
   ? process.env.FRONTEND_ORIGIN.split(",").map((o) => o.trim()).filter(Boolean)
   : [];
-const defaultOrigins = ["http://localhost:3000", "http://localhost:3007", "http://127.0.0.1:3000", "http://127.0.0.1:3007"];
+const defaultOrigins = [
+  "http://localhost:3000", "http://localhost:3007", "http://127.0.0.1:3000", "http://127.0.0.1:3007",
+  "https://realestate-frontend-h4u3.onrender.com",
+];
 const allowedOrigins = explicitOrigins.length ? explicitOrigins : defaultOrigins;
 const isLocalhost = (origin) => /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin);
 app.use(cors({
