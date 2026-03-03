@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { adminApi, type AdminAnalytics } from "@/lib/api";
 
@@ -23,14 +23,22 @@ export default function AdminPage() {
     }
   }, [user, loading, router]);
 
+  const loadAnalytics = useCallback(() => {
+    setError(null);
+    adminApi
+      .getAnalytics()
+      .then((data) => {
+        setStats(data);
+        setError(null);
+      })
+      .catch((err) => setError(err?.message || "Could not load dashboard data. Please try again later."));
+  }, []);
+
   useEffect(() => {
     if (!loading && user?.role === "ADMIN") {
-      adminApi
-        .getAnalytics()
-        .then(setStats)
-        .catch(() => setError("Could not load dashboard data. Please try again later."));
+      loadAnalytics();
     }
-  }, [loading, user?.role]);
+  }, [loading, user?.role, loadAnalytics]);
 
   if (loading) {
     return (
@@ -77,7 +85,18 @@ export default function AdminPage() {
         </div>
       </div>
 
-      {error && <p className="mt-4 text-sm text-red-400">{error}</p>}
+      {error && (
+        <div className="mt-4 flex flex-wrap items-center gap-3">
+          <p className="text-sm text-red-400">{error}</p>
+          <button
+            type="button"
+            onClick={loadAnalytics}
+            className="rounded-lg border border-white/20 px-4 py-2 text-sm font-medium text-white hover:bg-white/10"
+          >
+            Retry
+          </button>
+        </div>
+      )}
 
       {stats && (
         <div className="mt-8 space-y-8">
