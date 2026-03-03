@@ -20,10 +20,20 @@ import adminRoutes from "./routes/admin.js";
 const app = express();
 const PORT = env.PORT || 4000;
 
-const allowedOrigins = process.env.FRONTEND_ORIGIN
+const explicitOrigins = process.env.FRONTEND_ORIGIN
   ? process.env.FRONTEND_ORIGIN.split(",").map((o) => o.trim()).filter(Boolean)
-  : ["http://localhost:3000", "http://localhost:3007", "http://127.0.0.1:3000", "http://127.0.0.1:3007"];
-app.use(cors({ origin: allowedOrigins, credentials: true }));
+  : [];
+const defaultOrigins = ["http://localhost:3000", "http://localhost:3007", "http://127.0.0.1:3000", "http://127.0.0.1:3007"];
+const allowedOrigins = explicitOrigins.length ? explicitOrigins : defaultOrigins;
+const isLocalhost = (origin) => /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin);
+app.use(cors({
+  origin: (origin, cb) => {
+    if (!origin) return cb(null, true);
+    if (allowedOrigins.includes(origin) || isLocalhost(origin)) return cb(null, true);
+    cb(null, false);
+  },
+  credentials: true,
+}));
 app.use(express.json());
 
 app.get("/api/health", (_req, res) => {
