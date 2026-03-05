@@ -26,6 +26,8 @@ If you see a TLS "bad certificate format" error, either:
 - Run commands with `NODE_TLS_REJECT_UNAUTHORIZED=0` (dev only), or  
 - Download the CA certificate from your Aiven project and configure your environment to use it.
 
+**Deployment (Render, etc.):** Add `&connection_limit=5` to your `DATABASE_URL` to avoid "too many clients" errors. Aiven free tier has ~20 connections; limiting Prisma prevents exhausting the pool.
+
 ## Run
 
 ```bash

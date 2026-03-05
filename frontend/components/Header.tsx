@@ -88,15 +88,15 @@ export default function Header({ variant = "sticky" }: HeaderProps) {
                   </button>
                   {servicesOpen && item.children && (
                     <div className="absolute left-0 top-full pt-1">
-                      <div className="min-w-[220px] rounded-lg border border-white/10 bg-black/95 py-2 shadow-xl shadow-black/40 backdrop-blur-xl">
+                      <div className="min-w-[220px] rounded-lg border border-white/10 bg-neutral-900/95 py-2 shadow-xl shadow-black/40 backdrop-blur-xl">
                         {item.children.map((c) => (
                           <Link
                             key={c.href}
                             href={c.href}
-                            className={`block px-4 py-2.5 text-sm ${
+                            className={`block px-4 py-2.5 text-sm transition ${
                               pathname === c.href
-                                ? "font-medium text-white"
-                                : "text-white/80 hover:text-white"
+                                ? "bg-red-600/95 font-medium text-white"
+                                : "text-white/80 hover:bg-white/10 hover:text-white"
                             }`}
                             onClick={() => setServicesOpen(false)}
                           >
@@ -219,7 +219,11 @@ export default function Header({ variant = "sticky" }: HeaderProps) {
                           <li key={c.href}>
                             <Link
                               href={c.href}
-                              className={`block py-2 text-sm ${pathname === c.href ? "text-white" : "text-white/80"}`}
+                              className={`block py-2 text-sm ${
+                                pathname === c.href
+                                  ? "bg-red-600/85 -ml-4 pl-4 font-medium text-white"
+                                  : "text-white/80 hover:text-white"
+                              }`}
                               onClick={() => setMobileOpen(false)}
                             >
                               {c.label}
