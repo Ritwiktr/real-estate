@@ -31,7 +31,7 @@ const APPLICATION_STEPS = [
 
 export default function TenantsPage() {
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-surface">
       {/* Hero with apartment interior */}
       <section className="relative flex min-h-[40vh] flex-col justify-end overflow-hidden">
         <div
@@ -59,7 +59,7 @@ export default function TenantsPage() {
       </section>
 
       {/* Content */}
-      <section className="border-t border-white/5 bg-black">
+      <section className="border-t border-white/5 bg-surface">
         <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:py-16">
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
             {/* Steps + guidance */}
@@ -69,12 +69,12 @@ export default function TenantsPage() {
                 <ol className="mt-4 space-y-4">
                   {APPLICATION_STEPS.map(({ step, title, text }) => (
                     <li key={step} className="flex gap-4">
-                      <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[#818cf8] text-xs font-semibold text-black">
+                      <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary text-xs font-semibold text-black">
                         {step}
                       </span>
                       <div>
                         <h3 className="text-sm font-semibold text-white">{title}</h3>
-                        <p className="mt-1 text-sm text-neutral-300">{text}</p>
+                        <p className="mt-1 text-sm text-muted">{text}</p>
                       </div>
                     </li>
                   ))}
@@ -83,13 +83,13 @@ export default function TenantsPage() {
 
               <div>
                 <h3 className="text-base font-semibold text-white">What you&apos;ll need</h3>
-                <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-neutral-300">
+                <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-muted">
                   <li>Proof of identity (e.g. passport or driving licence)</li>
                   <li>Proof of address (e.g. utility bill or bank statement)</li>
                   <li>Employment and income details for referencing</li>
                   <li>Details of your current or previous landlord (if applicable)</li>
                 </ul>
-                <p className="mt-2 text-xs text-neutral-500">
+                <p className="mt-2 text-xs text-muted">
                   We&apos;ll confirm the exact requirements when you apply. Typical turnaround
                   for referencing is a few working days.
                 </p>
@@ -97,15 +97,15 @@ export default function TenantsPage() {
 
               <div>
                 <h2 className="text-xl font-semibold text-white">Tenancy guidance</h2>
-                <p className="mt-3 text-sm text-neutral-300">
+                <p className="mt-3 text-sm text-muted">
                   Your deposit is protected in a government-approved scheme. We carry out
                   repairs within agreed timeframes and follow legal notice periods for
                   inspections and tenancy changes. For more detail, see our{" "}
-                  <Link href="/faqs" className="text-[#818cf8] hover:text-[#a5b4fc]">
+                  <Link href="/faqs" className="text-primary hover:text-primary-light">
                     FAQs
                   </Link>{" "}
                   or{" "}
-                  <Link href="/contact" className="text-[#818cf8] hover:text-[#a5b4fc]">
+                  <Link href="/contact" className="text-primary hover:text-primary-light">
                     contact us
                   </Link>
                   .
@@ -114,14 +114,14 @@ export default function TenantsPage() {
 
               <div>
                 <h2 className="text-xl font-semibold text-white">Your rights</h2>
-                <p className="mt-3 text-sm text-neutral-300">
+                <p className="mt-3 text-sm text-muted">
                   We follow all legal requirements for deposits, notices, and repairs. If
                   you have questions, see our{" "}
-                  <Link href="/faqs" className="text-[#818cf8] hover:text-[#a5b4fc]">
+                  <Link href="/faqs" className="text-primary hover:text-primary-light">
                     FAQs
                   </Link>{" "}
                   or{" "}
-                  <Link href="/contact" className="text-[#818cf8] hover:text-[#a5b4fc]">
+                  <Link href="/contact" className="text-primary hover:text-primary-light">
                     contact us
                   </Link>
                   .
@@ -131,18 +131,18 @@ export default function TenantsPage() {
 
             {/* Portal + maintenance card */}
             <aside className="space-y-6">
-              <div className="rounded-2xl border border-white/10 bg-neutral-900/70 p-6 shadow-[0_18px_45px_rgba(0,0,0,0.65)]">
+              <div className="rounded-2xl border border-white/10 bg-panel/70 p-6 shadow-[0_18px_45px_rgba(0,0,0,0.65)]">
                 <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-white/70">
                   Portal access
                 </h2>
-                <p className="mt-3 text-sm text-neutral-300">
+                <p className="mt-3 text-sm text-muted">
                   Create an account to view rent, documents, and maintenance requests. Sign
                   in if you already have access.
                 </p>
                 <div className="mt-4 flex flex-wrap gap-3">
                   <Link
                     href="/register"
-                    className="inline-flex rounded-lg bg-white px-5 py-2.5 text-sm font-medium text-black transition hover:bg-neutral-200"
+                    className="inline-flex rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-black transition hover:bg-primary-light"
                   >
                     Create an account
                   </Link>
@@ -155,13 +155,13 @@ export default function TenantsPage() {
                 </div>
               </div>
 
-              <div className="rounded-2xl border border-white/10 bg-neutral-900/60 p-5">
+              <div className="rounded-2xl border border-white/10 bg-panel/60 p-5">
                 <h2 className="text-sm font-semibold text-white">Maintenance</h2>
-                <p className="mt-2 text-sm text-neutral-300">
+                <p className="mt-2 text-sm text-muted">
                   Use our{" "}
                   <Link
                     href="/maintenance-request"
-                    className="text-[#818cf8] hover:text-[#a5b4fc]"
+                    className="text-primary hover:text-primary-light"
                   >
                     maintenance request form
                   </Link>{" "}

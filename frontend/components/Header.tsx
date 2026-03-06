@@ -45,10 +45,10 @@ export default function Header({ variant = "sticky" }: HeaderProps) {
   const isStatic = variant === "static";
   const onHero = !isStatic && isHome && !scrolled;
   const headerBg = isStatic
-    ? "bg-black/95 border-white/5 backdrop-blur-md"
+    ? "bg-surface/95 border-white/5 backdrop-blur-md"
     : onHero
       ? "bg-white/[0.06] backdrop-blur-md border-white/10 shadow-[inset_0_-1px_0_0_rgba(255,255,255,0.06)]"
-      : "bg-black/95 backdrop-blur-md border-white/5";
+      : "bg-surface/95 backdrop-blur-md border-white/5";
   const headerPosition = isStatic ? "" : onHero ? "absolute top-0 left-0 right-0" : "sticky top-0";
 
   const isActive = (href: string) => pathname === href;
@@ -66,7 +66,7 @@ export default function Header({ variant = "sticky" }: HeaderProps) {
           className="flex shrink-0 items-center gap-2.5 text-white transition-opacity hover:opacity-90"
           aria-label="Residence – Home"
         >
-          <span className="text-[#818cf8] drop-shadow-sm">◇</span>
+          <span className="text-primary drop-shadow-sm">◇</span>
           <span className="text-lg font-semibold tracking-[0.02em]">RESIDENCE</span>
         </Link>
 
@@ -88,14 +88,14 @@ export default function Header({ variant = "sticky" }: HeaderProps) {
                   </button>
                   {servicesOpen && item.children && (
                     <div className="absolute left-0 top-full pt-1">
-                      <div className="min-w-[220px] rounded-lg border border-white/10 bg-neutral-900/95 py-2 shadow-xl shadow-black/40 backdrop-blur-xl">
+                      <div className="min-w-[220px] rounded-lg border border-white/10 bg-panel/95 py-2 shadow-xl shadow-black/40 backdrop-blur-xl">
                         {item.children.map((c) => (
                           <Link
                             key={c.href}
                             href={c.href}
                             className={`block px-4 py-2.5 text-sm transition ${
                               pathname === c.href
-                                ? "bg-red-600/95 font-medium text-white"
+                                ? "bg-primary/95 font-medium text-black"
                                 : "text-white/80 hover:bg-white/10 hover:text-white"
                             }`}
                             onClick={() => setServicesOpen(false)}
@@ -117,7 +117,7 @@ export default function Header({ variant = "sticky" }: HeaderProps) {
                   >
                     {item.label}
                     {isActive(item.href!) && (
-                      <span className="absolute bottom-0 left-4 right-4 h-0.5 rounded-full bg-[#818cf8]" />
+                      <span className="absolute bottom-0 left-4 right-4 h-0.5 rounded-full bg-primary" />
                     )}
                   </Link>
                 </li>
@@ -149,8 +149,8 @@ export default function Header({ variant = "sticky" }: HeaderProps) {
                     className={`rounded border px-3 py-1.5 text-sm font-medium ${
                       (user.role === "ADMIN" && pathname === "/admin") ||
                       (user.role !== "ADMIN" && pathname === "/portal")
-                        ? "border-[#818cf8] bg-[#818cf8]/20 text-white"
-                        : "border-white/30 text-white/90 hover:bg-white/10"
+                        ? "border-primary bg-primary/20 text-white"
+                        : "border-primary/70 text-white/90 hover:border-primary hover:bg-primary/10"
                     }`}
                   >
                     {user.role === "ADMIN" ? "Admin" : "Portal"}
@@ -159,7 +159,7 @@ export default function Header({ variant = "sticky" }: HeaderProps) {
                   <button
                     type="button"
                     onClick={() => logout()}
-                    className="rounded border border-white/30 px-3 py-1.5 text-sm font-medium text-white/90 hover:bg-white/10"
+                    className="rounded border border-primary/70 px-3 py-1.5 text-sm font-medium text-white/90 hover:border-primary hover:bg-primary/10"
                   >
                     Logout
                   </button>
@@ -167,7 +167,7 @@ export default function Header({ variant = "sticky" }: HeaderProps) {
               ) : (
                 <Link
                   href="/login"
-                  className="rounded border border-white/30 px-3 py-1.5 text-sm font-medium text-white/90 hover:bg-white/10"
+                  className="rounded border border-primary/70 px-3 py-1.5 text-sm font-medium text-white/90 hover:border-primary hover:bg-primary/10"
                 >
                   Login
                 </Link>
@@ -189,7 +189,7 @@ export default function Header({ variant = "sticky" }: HeaderProps) {
 
       {/* Mobile nav */}
       {mobileOpen && (
-        <div className="border-t border-white/10 bg-black lg:hidden">
+        <div className="border-t border-white/10 bg-surface lg:hidden">
           <nav className="mx-auto max-w-7xl px-4 py-4 sm:px-6">
             {user?.role === "ADMIN" && (
               <div className="mb-4 border-b border-white/10 pb-4">
@@ -221,7 +221,7 @@ export default function Header({ variant = "sticky" }: HeaderProps) {
                               href={c.href}
                               className={`block py-2 text-sm ${
                                 pathname === c.href
-                                  ? "bg-red-600/85 -ml-4 pl-4 font-medium text-white"
+                                  ? "bg-primary/85 -ml-4 pl-4 font-medium text-black"
                                   : "text-white/80 hover:text-white"
                               }`}
                               onClick={() => setMobileOpen(false)}

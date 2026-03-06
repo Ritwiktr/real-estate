@@ -31,7 +31,7 @@ const HOW_IT_WORKS = [
 
 export default function OwnersPage() {
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-surface">
       {/* Hero with interior image */}
       <section className="relative flex min-h-[40vh] flex-col justify-end overflow-hidden">
         <div
@@ -59,7 +59,7 @@ export default function OwnersPage() {
       </section>
 
       {/* Content */}
-      <section className="border-t border-white/5 bg-black">
+      <section className="border-t border-white/5 bg-surface">
         <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:py-16">
           <div className="grid gap-10 lg:grid-cols-[1.1fr_minmax(0,0.9fr)]">
             {/* How it works + benefits */}
@@ -69,12 +69,12 @@ export default function OwnersPage() {
                 <ol className="mt-4 space-y-4">
                   {HOW_IT_WORKS.map(({ step, title, text }) => (
                     <li key={step} className="flex gap-4">
-                      <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[#818cf8] text-xs font-semibold text-black">
+                      <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary text-xs font-semibold text-black">
                         {step}
                       </span>
                       <div>
                         <h3 className="text-sm font-semibold text-white">{title}</h3>
-                        <p className="mt-1 text-sm text-neutral-300">{text}</p>
+                        <p className="mt-1 text-sm text-muted">{text}</p>
                       </div>
                     </li>
                   ))}
@@ -83,7 +83,7 @@ export default function OwnersPage() {
 
               <div>
                 <h2 className="text-xl font-semibold text-white">Benefits</h2>
-                <ul className="mt-3 space-y-2 text-sm text-neutral-300">
+                <ul className="mt-3 space-y-2 text-sm text-muted">
                   <li>Full tenant placement and referencing</li>
                   <li>Rent collection and financial reporting</li>
                   <li>Maintenance and inspections handled for you</li>
@@ -93,11 +93,11 @@ export default function OwnersPage() {
 
               <div>
                 <h2 className="text-xl font-semibold text-white">Compliance support</h2>
-                <p className="mt-2 text-sm text-neutral-300">
+                <p className="mt-2 text-sm text-muted">
                   We keep you on the right side of the law: deposit protection, gas
                   safety, EPCs, and right to rent checks.
                 </p>
-                <ul className="mt-3 space-y-1 text-sm text-neutral-300">
+                <ul className="mt-3 space-y-1 text-sm text-muted">
                   <li>Tenancy deposit protection (TDP) and prescribed information</li>
                   <li>Gas safety certificates (where applicable)</li>
                   <li>Energy Performance Certificates (EPCs)</li>
@@ -109,18 +109,18 @@ export default function OwnersPage() {
 
             {/* Portal / CTA card */}
             <aside className="space-y-6">
-              <div className="rounded-2xl border border-white/10 bg-neutral-900/70 p-6 shadow-[0_18px_45px_rgba(0,0,0,0.65)]">
+              <div className="rounded-2xl border border-white/10 bg-panel/70 p-6 shadow-[0_18px_45px_rgba(0,0,0,0.65)]">
                 <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-white/70">
                   Portal access
                 </h2>
-                <p className="mt-3 text-sm text-neutral-300">
+                <p className="mt-3 text-sm text-muted">
                   Register or sign in to view your properties, applications, maintenance,
                   and financial summaries — all in one place.
                 </p>
                 <div className="mt-5 flex flex-wrap gap-3">
                   <Link
                     href="/register"
-                    className="inline-flex rounded-lg bg-white px-5 py-2.5 text-sm font-medium text-black transition hover:bg-neutral-200"
+                    className="inline-flex rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-black transition hover:bg-primary-light"
                   >
                     Register for portal access
                   </Link>
@@ -133,13 +133,13 @@ export default function OwnersPage() {
                 </div>
               </div>
 
-              <div className="rounded-2xl border border-white/10 bg-neutral-900/60 p-5">
-                <p className="text-sm text-neutral-300">
+              <div className="rounded-2xl border border-white/10 bg-panel/60 p-5">
+                <p className="text-sm text-muted">
                   Prefer to talk through your portfolio?
                 </p>
                 <Link
                   href="/contact"
-                  className="mt-2 inline-flex text-sm font-medium text-[#818cf8] hover:text-[#a5b4fc]"
+                  className="mt-2 inline-flex text-sm font-medium text-primary hover:text-primary-light"
                 >
                   Get in touch →
                 </Link>

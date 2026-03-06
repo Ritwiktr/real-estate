@@ -60,20 +60,20 @@ export function NotificationDropdown() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
         </svg>
         {items.length > 0 && (
-          <span className="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#818cf8] px-1 text-[10px] font-medium text-white">
+          <span className="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-primary px-1 text-[10px] font-medium text-black">
             {items.length > 9 ? "9+" : items.length}
           </span>
         )}
       </button>
       {open && (
-        <div className="absolute right-0 top-full z-50 mt-2 w-80 overflow-hidden rounded-lg border border-white/10 bg-black/95 shadow-xl backdrop-blur-xl">
+        <div className="absolute right-0 top-full z-50 mt-2 w-80 overflow-hidden rounded-lg border border-white/10 bg-surface/95 shadow-xl backdrop-blur-xl">
           <div className="border-b border-white/10 px-4 py-3">
             <h3 className="text-sm font-semibold text-white">Notifications</h3>
-            <p className="text-xs text-neutral-400">Maintenance & application updates</p>
+            <p className="text-xs text-muted">Maintenance & application updates</p>
           </div>
           <div className="max-h-80 overflow-y-auto">
             {items.length === 0 ? (
-              <div className="p-6 text-center text-sm text-neutral-500">No notifications yet</div>
+              <div className="p-6 text-center text-sm text-muted">No notifications yet</div>
             ) : (
               <ul className="divide-y divide-white/5">
                 {items.map((n) => (
@@ -84,8 +84,8 @@ export function NotificationDropdown() {
                       className="block px-4 py-3 transition hover:bg-white/5"
                     >
                       <p className="text-sm font-medium text-white">{n.title}</p>
-                      <p className="mt-0.5 text-xs text-neutral-400 line-clamp-2">{n.message}</p>
-                      <p className="mt-1 text-[10px] text-neutral-500">{formatTime(n.updatedAt)}</p>
+                      <p className="mt-0.5 text-xs text-muted line-clamp-2">{n.message}</p>
+                      <p className="mt-1 text-[10px] text-muted">{formatTime(n.updatedAt)}</p>
                     </Link>
                   </li>
                 ))}
@@ -97,7 +97,7 @@ export function NotificationDropdown() {
               <Link
                 href="/portal"
                 onClick={() => setOpen(false)}
-                className="block text-center text-xs font-medium text-[#818cf8] hover:text-[#a5b4fc]"
+                className="block text-center text-xs font-medium text-primary hover:text-primary-light"
               >
                 View portal
               </Link>

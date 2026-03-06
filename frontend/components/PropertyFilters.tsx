@@ -32,9 +32,9 @@ export function PropertyFilters({
     router.push(`/properties?${params.toString()}`);
   }, [search, listingType, areaId, minPrice, maxPrice, beds, router]);
 
-  const inputClass = "rounded-lg border border-white/20 bg-white/5 px-3 py-2.5 text-sm text-white placeholder-neutral-500 focus:border-white/40 focus:outline-none [&>option]:bg-neutral-900";
+  const inputClass = "rounded-lg border border-white/20 bg-white/5 px-3 py-2.5 text-sm text-white placeholder-muted focus:border-white/40 focus:outline-none [&>option]:bg-panel";
   return (
-    <div className="flex flex-wrap items-end gap-3 rounded-xl border border-white/10 bg-neutral-900/50 p-4 sm:gap-4 sm:p-5">
+    <div className="flex flex-wrap items-end gap-3 rounded-xl border border-white/10 bg-panel/50 p-4 sm:gap-4 sm:p-5">
       <input
         type="text"
         placeholder="Search"
@@ -86,7 +86,7 @@ export function PropertyFilters({
       <button
         type="button"
         onClick={apply}
-        className="rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-neutral-200"
+        className="rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-primary-light"
       >
         Search
       </button>

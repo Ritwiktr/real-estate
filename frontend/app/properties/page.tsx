@@ -37,17 +37,17 @@ export default async function PropertiesPage({ searchParams }: { searchParams: S
   const totalPages = Math.max(1, Math.ceil(total / limit));
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-surface">
       {/* Page header */}
       <div className="border-b border-white/10">
         <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6">
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-neutral-400">
+          <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted">
             Listings
           </p>
           <h1 className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Explore exclusive properties
           </h1>
-          <p className="mt-2 text-lg text-neutral-400">
+          <p className="mt-2 text-lg text-muted">
             Showcasing a curated portfolio of exceptional homes
           </p>
         </div>
@@ -93,7 +93,7 @@ export default async function PropertiesPage({ searchParams }: { searchParams: S
 
         {items.length === 0 && (
           <div className="py-16 text-center">
-            <p className="text-neutral-400">No properties match your criteria.</p>
+            <p className="text-muted">No properties match your criteria.</p>
             <Link href="/properties" className="btn-primary mt-4 inline-flex">
               Clear filters
             </Link>
@@ -110,7 +110,7 @@ export default async function PropertiesPage({ searchParams }: { searchParams: S
                 Previous
               </Link>
             )}
-            <span className="px-4 py-2 text-sm text-neutral-400">
+            <span className="px-4 py-2 text-sm text-muted">
               Page {page} of {totalPages}
             </span>
             {page < totalPages && (

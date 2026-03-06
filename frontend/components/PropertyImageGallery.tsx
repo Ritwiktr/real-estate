@@ -18,7 +18,7 @@ export function PropertyImageGallery({
 
   if (displayImages.length === 0) {
     return (
-      <div className="relative aspect-[16/10] bg-neutral-900 flex items-center justify-center text-neutral-500">
+      <div className="relative aspect-[16/10] bg-panel flex items-center justify-center text-muted">
         No images
       </div>
     );
@@ -26,7 +26,7 @@ export function PropertyImageGallery({
 
   return (
     <div className="space-y-3">
-      <div className="relative aspect-[16/10] overflow-hidden rounded-lg bg-neutral-900">
+      <div className="relative aspect-[16/10] overflow-hidden rounded-lg bg-panel">
         <Image
           src={primary.url}
           alt={`${title} — Image ${selected + 1}`}

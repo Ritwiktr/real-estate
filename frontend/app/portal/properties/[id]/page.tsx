@@ -9,7 +9,7 @@ import { AvailabilityForm } from "@/components/forms/AvailabilityForm";
 import { usePolling } from "@/hooks/usePolling";
 
 const inputClass =
-  "mt-1 w-full rounded-lg border border-white/20 bg-white/5 px-3 py-2 text-sm text-white placeholder-neutral-500 focus:border-white/40 focus:outline-none [&>option]:bg-neutral-900";
+  "mt-1 w-full rounded-lg border border-white/20 bg-white/5 px-3 py-2 text-sm text-white placeholder-muted focus:border-white/40 focus:outline-none [&>option]:bg-panel";
 
 type Tab = "overview" | "activity" | "availability" | "analytics" | "tenants" | "maintenance" | "financials";
 
@@ -25,12 +25,12 @@ function ApplicationRow({
   const [loading, setLoading] = useState(false);
   const pending = item.status === "PENDING";
   return (
-    <div className="rounded-lg border border-white/5 bg-black/40 p-4">
+    <div className="rounded-lg border border-white/5 bg-overlay/40 p-4">
       <div className="flex flex-wrap items-start justify-between gap-2">
         <div>
           <p className="font-medium text-white">{item.name}</p>
-          <p className="text-sm text-neutral-400">{item.email}</p>
-          <p className="mt-1 text-xs text-neutral-500">
+          <p className="text-sm text-muted">{item.email}</p>
+          <p className="mt-1 text-xs text-muted">
             {new Date(item.createdAt).toLocaleString()} · {item.status}
           </p>
         </div>
@@ -82,12 +82,12 @@ function MaintenanceRow({
 }) {
   const [updating, setUpdating] = useState(false);
   return (
-    <div className="rounded-lg border border-white/5 bg-black/40 p-4">
+    <div className="rounded-lg border border-white/5 bg-overlay/40 p-4">
       <div className="flex flex-wrap items-start justify-between gap-2">
         <div>
           <p className="font-medium text-white">{item.issueCategory}</p>
-          <p className="text-sm text-neutral-400">{item.tenantName} · {item.propertyAddressOrRef}</p>
-          <p className="mt-1 text-sm text-neutral-500 line-clamp-2">{item.description}</p>
+          <p className="text-sm text-muted">{item.tenantName} · {item.propertyAddressOrRef}</p>
+          <p className="mt-1 text-sm text-muted line-clamp-2">{item.description}</p>
         </div>
         <select
           value={item.status}
@@ -101,14 +101,14 @@ function MaintenanceRow({
             }
           }}
           disabled={updating}
-          className="rounded border border-white/20 bg-white/5 px-2 py-1 text-sm text-white [&>option]:bg-neutral-900"
+          className="rounded border border-white/20 bg-white/5 px-2 py-1 text-sm text-white [&>option]:bg-panel"
         >
           <option value="pending">Pending</option>
           <option value="in_progress">In progress</option>
           <option value="resolved">Resolved</option>
         </select>
       </div>
-      <p className="mt-2 text-xs text-neutral-500">
+      <p className="mt-2 text-xs text-muted">
         {new Date(item.createdAt).toLocaleString()} · Urgency: {item.urgency}
       </p>
     </div>
@@ -270,7 +270,7 @@ export default function PortalPropertyDetailPage() {
   if (loading || !user) {
     return (
       <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6">
-        <p className="text-neutral-400">Loading…</p>
+        <p className="text-muted">Loading…</p>
       </div>
     );
   }
@@ -279,7 +279,7 @@ export default function PortalPropertyDetailPage() {
     return (
       <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6">
         <p className="text-red-400">{error}</p>
-        <Link href="/portal/properties" className="mt-4 inline-block text-[#818cf8] hover:underline">
+        <Link href="/portal/properties" className="mt-4 inline-block text-primary hover:underline">
           ← Back to properties
         </Link>
       </div>
@@ -300,11 +300,11 @@ export default function PortalPropertyDetailPage() {
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6">
-      <Link href="/portal/properties" className="text-sm font-medium text-neutral-400 hover:text-white">
+      <Link href="/portal/properties" className="text-sm font-medium text-muted hover:text-white">
         ← My Properties
       </Link>
       <h1 className="mt-2 text-2xl font-bold text-white">{property.title}</h1>
-      <p className="text-sm text-neutral-400">
+      <p className="text-sm text-muted">
         {property.address}, {property.city} {property.postCode && `· ${property.postCode}`}
       </p>
 
@@ -317,7 +317,7 @@ export default function PortalPropertyDetailPage() {
             className={`border-b-2 px-4 py-2 text-sm font-medium transition ${
               tab === t.id
                 ? "border-white text-white"
-                : "border-transparent text-neutral-400 hover:text-white"
+                : "border-transparent text-muted hover:text-white"
             }`}
           >
             {t.label}
@@ -326,7 +326,7 @@ export default function PortalPropertyDetailPage() {
       </div>
 
       {tab === "overview" && (
-        <form onSubmit={handleSaveOverview} className="mt-6 space-y-5 rounded-xl border border-white/10 bg-neutral-900/50 p-6">
+        <form onSubmit={handleSaveOverview} className="mt-6 space-y-5 rounded-xl border border-white/10 bg-panel/50 p-6">
           <div>
             <label className="block text-sm font-medium text-white">Title *</label>
             <input
@@ -492,7 +492,7 @@ export default function PortalPropertyDetailPage() {
                 <button
                   type="button"
                   onClick={() => setForm((f) => ({ ...f, imageUrls: [...((f.imageUrls as string[]) ?? []), ""] }))}
-                  className="rounded-lg border border-dashed border-white/30 px-3 py-2 text-sm text-neutral-400 hover:border-white/50 hover:text-white"
+                  className="rounded-lg border border-dashed border-white/30 px-3 py-2 text-sm text-muted hover:border-white/50 hover:text-white"
                 >
                   + Add image
                 </button>
@@ -503,7 +503,7 @@ export default function PortalPropertyDetailPage() {
           <button
             type="submit"
             disabled={saving}
-            className="rounded-lg bg-white px-5 py-2.5 text-sm font-medium text-black hover:bg-neutral-200 disabled:opacity-50"
+            className="rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-black hover:bg-primary-light disabled:opacity-50"
           >
             {saving ? "Saving…" : "Save changes"}
           </button>
@@ -511,53 +511,53 @@ export default function PortalPropertyDetailPage() {
       )}
 
       {tab === "activity" && (
-        <div className="mt-6 rounded-xl border border-white/10 bg-neutral-900/50 p-6">
+        <div className="mt-6 rounded-xl border border-white/10 bg-panel/50 p-6">
           <h3 className="text-lg font-semibold text-white">Tenant activity</h3>
-          <p className="mt-1 text-sm text-neutral-400">Views, maintenance requests, and applications for this property.</p>
+          <p className="mt-1 text-sm text-muted">Views, maintenance requests, and applications for this property.</p>
           {activityData === null ? (
-            <p className="mt-4 text-neutral-400">Loading…</p>
+            <p className="mt-4 text-muted">Loading…</p>
           ) : (
             <div className="mt-6 space-y-8">
               <div>
-                <h4 className="text-sm font-medium text-neutral-400 uppercase tracking-wider">Recent views</h4>
+                <h4 className="text-sm font-medium text-muted uppercase tracking-wider">Recent views</h4>
                 {activityData.views.length === 0 ? (
-                  <p className="mt-2 text-sm text-neutral-500">No views yet.</p>
+                  <p className="mt-2 text-sm text-muted">No views yet.</p>
                 ) : (
                   <ul className="mt-2 space-y-2">
                     {activityData.views.map((v) => (
                       <li key={v.id} className="flex justify-between text-sm">
                         <span className="text-white">{v.user ? (v.user.name || v.user.email) : "Anonymous"}</span>
-                        <span className="text-neutral-500">{new Date(v.viewedAt).toLocaleString()}</span>
+                        <span className="text-muted">{new Date(v.viewedAt).toLocaleString()}</span>
                       </li>
                     ))}
                   </ul>
                 )}
               </div>
               <div>
-                <h4 className="text-sm font-medium text-neutral-400 uppercase tracking-wider">Maintenance requests</h4>
+                <h4 className="text-sm font-medium text-muted uppercase tracking-wider">Maintenance requests</h4>
                 {activityData.maintenanceRequests.length === 0 ? (
-                  <p className="mt-2 text-sm text-neutral-500">No maintenance requests.</p>
+                  <p className="mt-2 text-sm text-muted">No maintenance requests.</p>
                 ) : (
                   <ul className="mt-2 space-y-2">
                     {activityData.maintenanceRequests.map((m) => (
                       <li key={m.id} className="flex justify-between text-sm">
                         <span className="text-white">{(m as MaintenanceRequestDetail & { tenant?: { name: string | null; email: string } }).tenant?.name ?? (m as MaintenanceRequestDetail & { tenant?: { name: string | null; email: string } }).tenant?.email ?? m.tenantName}</span>
-                        <span className="text-neutral-500">{m.issueCategory} · {new Date(m.createdAt).toLocaleString()}</span>
+                        <span className="text-muted">{m.issueCategory} · {new Date(m.createdAt).toLocaleString()}</span>
                       </li>
                     ))}
                   </ul>
                 )}
               </div>
               <div>
-                <h4 className="text-sm font-medium text-neutral-400 uppercase tracking-wider">Applications</h4>
+                <h4 className="text-sm font-medium text-muted uppercase tracking-wider">Applications</h4>
                 {activityData.applications.length === 0 ? (
-                  <p className="mt-2 text-sm text-neutral-500">No applications.</p>
+                  <p className="mt-2 text-sm text-muted">No applications.</p>
                 ) : (
                   <ul className="mt-2 space-y-2">
                     {activityData.applications.map((a) => (
                       <li key={a.id} className="flex justify-between text-sm">
                         <span className="text-white">{(a as TenancyApplicationItem & { applicant?: { name: string | null; email: string } }).applicant?.name ?? (a as TenancyApplicationItem & { applicant?: { name: string | null; email: string } }).applicant?.email ?? a.name}</span>
-                        <span className="text-neutral-500">{a.status} · {new Date(a.createdAt).toLocaleString()}</span>
+                        <span className="text-muted">{a.status} · {new Date(a.createdAt).toLocaleString()}</span>
                       </li>
                     ))}
                   </ul>
@@ -569,9 +569,9 @@ export default function PortalPropertyDetailPage() {
       )}
 
       {tab === "availability" && (
-        <div className="mt-6 rounded-xl border border-white/10 bg-neutral-900/50 p-6">
+        <div className="mt-6 rounded-xl border border-white/10 bg-panel/50 p-6">
           <h3 className="text-lg font-semibold text-white">Availability</h3>
-          <p className="mt-1 text-sm text-neutral-400">Mark when your property is free for tenants to book.</p>
+          <p className="mt-1 text-sm text-muted">Mark when your property is free for tenants to book.</p>
           <AvailabilityForm
             propertyId={property.id}
             items={availabilityItems}
@@ -582,43 +582,43 @@ export default function PortalPropertyDetailPage() {
       )}
 
       {tab === "analytics" && (
-        <div className="mt-6 rounded-xl border border-white/10 bg-neutral-900/50 p-6">
+        <div className="mt-6 rounded-xl border border-white/10 bg-panel/50 p-6">
           <h3 className="text-lg font-semibold text-white">Analytics</h3>
-          <p className="mt-1 text-sm text-neutral-400">Per-property overview.</p>
+          <p className="mt-1 text-sm text-muted">Per-property overview.</p>
           {analyticsData === null ? (
-            <p className="mt-4 text-neutral-400">Loading…</p>
+            <p className="mt-4 text-muted">Loading…</p>
           ) : (
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              <div className="rounded-lg border border-white/5 bg-black/40 p-4">
-                <p className="text-xs font-medium uppercase tracking-wider text-neutral-500">Views (7d)</p>
+              <div className="rounded-lg border border-white/5 bg-overlay/40 p-4">
+                <p className="text-xs font-medium uppercase tracking-wider text-muted">Views (7d)</p>
                 <p className="mt-1 text-2xl font-bold text-white">{analyticsData.views.last7d}</p>
               </div>
-              <div className="rounded-lg border border-white/5 bg-black/40 p-4">
-                <p className="text-xs font-medium uppercase tracking-wider text-neutral-500">Views (30d)</p>
+              <div className="rounded-lg border border-white/5 bg-overlay/40 p-4">
+                <p className="text-xs font-medium uppercase tracking-wider text-muted">Views (30d)</p>
                 <p className="mt-1 text-2xl font-bold text-white">{analyticsData.views.last30d}</p>
               </div>
-              <div className="rounded-lg border border-white/5 bg-black/40 p-4">
-                <p className="text-xs font-medium uppercase tracking-wider text-neutral-500">Views (all)</p>
+              <div className="rounded-lg border border-white/5 bg-overlay/40 p-4">
+                <p className="text-xs font-medium uppercase tracking-wider text-muted">Views (all)</p>
                 <p className="mt-1 text-2xl font-bold text-white">{analyticsData.views.allTime}</p>
               </div>
-              <div className="rounded-lg border border-white/5 bg-black/40 p-4">
-                <p className="text-xs font-medium uppercase tracking-wider text-neutral-500">Favorites</p>
+              <div className="rounded-lg border border-white/5 bg-overlay/40 p-4">
+                <p className="text-xs font-medium uppercase tracking-wider text-muted">Favorites</p>
                 <p className="mt-1 text-2xl font-bold text-white">{analyticsData.favoritesCount}</p>
               </div>
-              <div className="rounded-lg border border-white/5 bg-black/40 p-4">
-                <p className="text-xs font-medium uppercase tracking-wider text-neutral-500">Maintenance (open)</p>
+              <div className="rounded-lg border border-white/5 bg-overlay/40 p-4">
+                <p className="text-xs font-medium uppercase tracking-wider text-muted">Maintenance (open)</p>
                 <p className="mt-1 text-2xl font-bold text-white">{analyticsData.maintenance.open}</p>
               </div>
-              <div className="rounded-lg border border-white/5 bg-black/40 p-4">
-                <p className="text-xs font-medium uppercase tracking-wider text-neutral-500">Maintenance (resolved)</p>
+              <div className="rounded-lg border border-white/5 bg-overlay/40 p-4">
+                <p className="text-xs font-medium uppercase tracking-wider text-muted">Maintenance (resolved)</p>
                 <p className="mt-1 text-2xl font-bold text-white">{analyticsData.maintenance.resolved}</p>
               </div>
-              <div className="rounded-lg border border-white/5 bg-black/40 p-4">
-                <p className="text-xs font-medium uppercase tracking-wider text-neutral-500">Applications (pending)</p>
+              <div className="rounded-lg border border-white/5 bg-overlay/40 p-4">
+                <p className="text-xs font-medium uppercase tracking-wider text-muted">Applications (pending)</p>
                 <p className="mt-1 text-2xl font-bold text-white">{analyticsData.applications.pending}</p>
               </div>
-              <div className="rounded-lg border border-white/5 bg-black/40 p-4">
-                <p className="text-xs font-medium uppercase tracking-wider text-neutral-500">Applications (approved)</p>
+              <div className="rounded-lg border border-white/5 bg-overlay/40 p-4">
+                <p className="text-xs font-medium uppercase tracking-wider text-muted">Applications (approved)</p>
                 <p className="mt-1 text-2xl font-bold text-white">{analyticsData.applications.approved}</p>
               </div>
             </div>
@@ -627,12 +627,12 @@ export default function PortalPropertyDetailPage() {
       )}
 
       {tab === "tenants" && (
-        <div className="mt-6 rounded-xl border border-white/10 bg-neutral-900/50 p-6">
+        <div className="mt-6 rounded-xl border border-white/10 bg-panel/50 p-6">
           <h3 className="text-lg font-semibold text-white">Tenant applications</h3>
           {applicationItems === null ? (
-            <p className="mt-4 text-neutral-400">Loading…</p>
+            <p className="mt-4 text-muted">Loading…</p>
           ) : applicationItems.length === 0 ? (
-            <p className="mt-4 text-neutral-400">No applications for this property.</p>
+            <p className="mt-4 text-muted">No applications for this property.</p>
           ) : (
             <div className="mt-4 space-y-3">
               {applicationItems.map((a) => (
@@ -659,12 +659,12 @@ export default function PortalPropertyDetailPage() {
       )}
 
       {tab === "maintenance" && (
-        <div className="mt-6 rounded-xl border border-white/10 bg-neutral-900/50 p-6">
+        <div className="mt-6 rounded-xl border border-white/10 bg-panel/50 p-6">
           <h3 className="text-lg font-semibold text-white">Maintenance requests</h3>
           {maintenanceItems === null ? (
-            <p className="mt-4 text-neutral-400">Loading…</p>
+            <p className="mt-4 text-muted">Loading…</p>
           ) : maintenanceItems.length === 0 ? (
-            <p className="mt-4 text-neutral-400">No maintenance requests for this property.</p>
+            <p className="mt-4 text-muted">No maintenance requests for this property.</p>
           ) : (
             <div className="mt-4 space-y-3">
               {maintenanceItems.map((m) => (
@@ -685,21 +685,21 @@ export default function PortalPropertyDetailPage() {
       )}
 
       {tab === "financials" && (
-        <div className="mt-6 rounded-xl border border-white/10 bg-neutral-900/50 p-6">
+        <div className="mt-6 rounded-xl border border-white/10 bg-panel/50 p-6">
           <h3 className="text-lg font-semibold text-white">Financials</h3>
           {financialsData === null ? (
-            <p className="mt-4 text-neutral-400">Loading…</p>
+            <p className="mt-4 text-muted">Loading…</p>
           ) : !financialsData.tenancies?.length ? (
-            <p className="mt-4 text-neutral-400">No active tenancies. Rent and ledger entries will appear here.</p>
+            <p className="mt-4 text-muted">No active tenancies. Rent and ledger entries will appear here.</p>
           ) : (
             <div className="mt-4 space-y-6">
               {financialsData.tenancies.map((t) => (
-                <div key={t.id} className="rounded-lg border border-white/5 bg-black/40 p-4">
+                <div key={t.id} className="rounded-lg border border-white/5 bg-overlay/40 p-4">
                   <p className="font-medium text-white">{t.tenant?.name ?? t.tenant?.email ?? "Tenant"}</p>
                   <div className="mt-3 space-y-2">
                     {t.rentLedgerEntries?.map((e, i) => (
                       <div key={i} className="flex justify-between text-sm">
-                        <span className="text-neutral-400">
+                        <span className="text-muted">
                           {new Date(e.dueDate).toLocaleDateString()} · {e.type}
                         </span>
                         <span className={e.status === "PAID" ? "text-green-400" : "text-white"}>

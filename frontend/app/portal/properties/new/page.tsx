@@ -7,7 +7,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { landlordApi, areasApi, type Area } from "@/lib/api";
 
 const inputClass =
-  "mt-1 w-full rounded-lg border border-white/20 bg-white/5 px-3 py-2 text-sm text-white placeholder-neutral-500 focus:border-white/40 focus:outline-none [&>option]:bg-neutral-900";
+  "mt-1 w-full rounded-lg border border-white/20 bg-white/5 px-3 py-2 text-sm text-white placeholder-muted focus:border-white/40 focus:outline-none [&>option]:bg-panel";
 
 export default function NewPropertyPage() {
   const { user, loading } = useAuth();
@@ -83,20 +83,20 @@ export default function NewPropertyPage() {
   if (loading || !user) {
     return (
       <div className="mx-auto max-w-2xl px-4 py-12 sm:px-6">
-        <p className="text-neutral-400">Loading…</p>
+        <p className="text-muted">Loading…</p>
       </div>
     );
   }
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-12 sm:px-6">
-      <Link href="/portal/properties" className="text-sm font-medium text-neutral-400 hover:text-white">
+      <Link href="/portal/properties" className="text-sm font-medium text-muted hover:text-white">
         ← My Properties
       </Link>
       <h1 className="mt-2 text-2xl font-bold text-white">Add property</h1>
-      <p className="mt-1 text-sm text-neutral-400">New listings are created as draft. You can publish when ready.</p>
+      <p className="mt-1 text-sm text-muted">New listings are created as draft. You can publish when ready.</p>
 
-      <form onSubmit={handleSubmit} className="mt-6 space-y-5 rounded-xl border border-white/10 bg-neutral-900/50 p-6">
+      <form onSubmit={handleSubmit} className="mt-6 space-y-5 rounded-xl border border-white/10 bg-panel/50 p-6">
         <div>
           <label htmlFor="title" className="block text-sm font-medium text-white">Title *</label>
           <input
@@ -227,7 +227,7 @@ export default function NewPropertyPage() {
         </div>
         <div>
           <label className="block text-sm font-medium text-white">Images (5–10 required) *</label>
-          <p className="mt-0.5 text-xs text-neutral-500">Add between 5 and 10 image URLs.</p>
+          <p className="mt-0.5 text-xs text-muted">Add between 5 and 10 image URLs.</p>
           <div className="mt-2 space-y-2">
             {form.imageUrls.map((url, i) => (
               <div key={i} className="flex gap-2">
@@ -263,7 +263,7 @@ export default function NewPropertyPage() {
               <button
                 type="button"
                 onClick={() => setForm((f) => ({ ...f, imageUrls: [...f.imageUrls, ""] }))}
-                className="rounded-lg border border-dashed border-white/30 px-3 py-2 text-sm text-neutral-400 hover:border-white/50 hover:text-white"
+                className="rounded-lg border border-dashed border-white/30 px-3 py-2 text-sm text-muted hover:border-white/50 hover:text-white"
               >
                 + Add image
               </button>
@@ -275,7 +275,7 @@ export default function NewPropertyPage() {
           <button
             type="submit"
             disabled={submitting}
-            className="rounded-lg bg-white px-5 py-2.5 text-sm font-medium text-black transition hover:bg-neutral-200 disabled:opacity-50"
+            className="rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-black transition hover:bg-primary-light disabled:opacity-50"
           >
             {submitting ? "Creating…" : "Create property"}
           </button>

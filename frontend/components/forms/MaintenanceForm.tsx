@@ -53,7 +53,7 @@ export function MaintenanceForm({ defaultAddress = "", propertyId }: { defaultAd
         value={tenantName}
         onChange={(e) => setTenantName(e.target.value)}
         required
-        className="w-full rounded-lg border border-white/15 bg-black/40 px-3 py-2 text-sm text-white placeholder-neutral-500 focus:border-white/40 focus:outline-none"
+        className="w-full rounded-lg border border-white/15 bg-overlay/40 px-3 py-2 text-sm text-white placeholder-muted focus:border-white/40 focus:outline-none"
       />
       <input
         type="email"
@@ -61,7 +61,7 @@ export function MaintenanceForm({ defaultAddress = "", propertyId }: { defaultAd
         value={tenantEmail}
         onChange={(e) => setTenantEmail(e.target.value)}
         required
-        className="w-full rounded-lg border border-white/15 bg-black/40 px-3 py-2 text-sm text-white placeholder-neutral-500 focus:border-white/40 focus:outline-none"
+        className="w-full rounded-lg border border-white/15 bg-overlay/40 px-3 py-2 text-sm text-white placeholder-muted focus:border-white/40 focus:outline-none"
       />
       <input
         type="text"
@@ -69,7 +69,7 @@ export function MaintenanceForm({ defaultAddress = "", propertyId }: { defaultAd
         value={propertyAddressOrRef}
         onChange={(e) => setPropertyAddressOrRef(e.target.value)}
         required
-        className="w-full rounded-lg border border-white/15 bg-black/40 px-3 py-2 text-sm text-white placeholder-neutral-500 focus:border-white/40 focus:outline-none"
+        className="w-full rounded-lg border border-white/15 bg-overlay/40 px-3 py-2 text-sm text-white placeholder-muted focus:border-white/40 focus:outline-none"
       />
       <input
         type="text"
@@ -77,7 +77,7 @@ export function MaintenanceForm({ defaultAddress = "", propertyId }: { defaultAd
         value={issueCategory}
         onChange={(e) => setIssueCategory(e.target.value)}
         required
-        className="w-full rounded-lg border border-white/15 bg-black/40 px-3 py-2 text-sm text-white placeholder-neutral-500 focus:border-white/40 focus:outline-none"
+        className="w-full rounded-lg border border-white/15 bg-overlay/40 px-3 py-2 text-sm text-white placeholder-muted focus:border-white/40 focus:outline-none"
       />
       <textarea
         placeholder="Description *"
@@ -85,20 +85,20 @@ export function MaintenanceForm({ defaultAddress = "", propertyId }: { defaultAd
         onChange={(e) => setDescription(e.target.value)}
         required
         rows={3}
-        className="w-full rounded-lg border border-white/15 bg-black/40 px-3 py-2 text-sm text-white placeholder-neutral-500 focus:border-white/40 focus:outline-none"
+        className="w-full rounded-lg border border-white/15 bg-overlay/40 px-3 py-2 text-sm text-white placeholder-muted focus:border-white/40 focus:outline-none"
       />
       <select
         value={urgency}
         onChange={(e) => setUrgency(e.target.value)}
-        className="w-full rounded-lg border border-white/15 bg-black/40 px-3 py-2 text-sm text-white focus:border-white/40 focus:outline-none [&>option]:bg-neutral-900"
+        className="w-full rounded-lg border border-white/15 bg-overlay/40 px-3 py-2 text-sm text-white focus:border-white/40 focus:outline-none [&>option]:bg-panel"
       >
         <option value="LOW">Low</option>
         <option value="MEDIUM">Medium</option>
         <option value="HIGH">High</option>
       </select>
-      {status === "success" && <p className="text-sm text-green-600">Request submitted. We&apos;ll be in touch.</p>}
-      {status === "error" && <p className="text-sm text-red-600">{errorMsg}</p>}
-      <button type="submit" disabled={status === "loading"} className="rounded bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-primary-light disabled:opacity-50">
+      {status === "success" && <p className="text-sm text-green-400">Request submitted. We&apos;ll be in touch.</p>}
+      {status === "error" && <p className="text-sm text-red-400">{errorMsg}</p>}
+      <button type="submit" disabled={status === "loading"} className="rounded bg-primary px-4 py-2 text-sm font-medium text-black hover:bg-primary-light disabled:opacity-50">
         {status === "loading" ? "Submitting…" : "Submit"}
       </button>
     </form>

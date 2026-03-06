@@ -33,17 +33,17 @@ export default function RegisterPage() {
   return (
     <div className="mx-auto max-w-md px-4 py-12 sm:px-6">
       <h1 className="text-3xl font-bold text-white">Create Account</h1>
-      <p className="mt-2 text-neutral-300">
+      <p className="mt-2 text-muted">
         Portal for owners and tenants. Choose your role to get started.
       </p>
-      <form onSubmit={handleSubmit} className="mt-8 space-y-4 rounded-xl border border-white/10 bg-neutral-900/50 p-6">
+      <form onSubmit={handleSubmit} className="mt-8 space-y-4 rounded-xl border border-white/10 bg-panel/50 p-6">
         <div>
           <label htmlFor="role" className="block text-sm font-medium text-white">I am a</label>
           <select
             id="role"
             value={role}
             onChange={(e) => setRole(e.target.value as "LANDLORD" | "TENANT")}
-            className="mt-1 w-full rounded-lg border border-white/20 bg-white/5 px-3 py-2 text-sm text-white focus:border-white/40 focus:outline-none [&>option]:bg-neutral-900"
+            className="mt-1 w-full rounded-lg border border-white/20 bg-white/5 px-3 py-2 text-sm text-white focus:border-white/40 focus:outline-none [&>option]:bg-panel"
           >
             <option value="TENANT">Tenant</option>
             <option value="LANDLORD">Landlord</option>
@@ -56,7 +56,7 @@ export default function RegisterPage() {
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="mt-1 w-full rounded-lg border border-white/20 bg-white/5 px-3 py-2 text-sm text-white placeholder-neutral-500 focus:border-white/40 focus:outline-none"
+            className="mt-1 w-full rounded-lg border border-white/20 bg-white/5 px-3 py-2 text-sm text-white placeholder-muted focus:border-white/40 focus:outline-none"
             placeholder="Your name"
           />
         </div>
@@ -68,7 +68,7 @@ export default function RegisterPage() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="mt-1 w-full rounded-lg border border-white/20 bg-white/5 px-3 py-2 text-sm text-white placeholder-neutral-500 focus:border-white/40 focus:outline-none"
+            className="mt-1 w-full rounded-lg border border-white/20 bg-white/5 px-3 py-2 text-sm text-white placeholder-muted focus:border-white/40 focus:outline-none"
             placeholder="you@example.com"
           />
         </div>
@@ -81,7 +81,7 @@ export default function RegisterPage() {
             onChange={(e) => setPassword(e.target.value)}
             required
             minLength={8}
-            className="mt-1 w-full rounded-lg border border-white/20 bg-white/5 px-3 py-2 text-sm text-white placeholder-neutral-500 focus:border-white/40 focus:outline-none"
+            className="mt-1 w-full rounded-lg border border-white/20 bg-white/5 px-3 py-2 text-sm text-white placeholder-muted focus:border-white/40 focus:outline-none"
             placeholder="Min 8 characters"
           />
         </div>
@@ -89,13 +89,13 @@ export default function RegisterPage() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full rounded-lg bg-white py-2.5 font-medium text-black transition hover:bg-neutral-200 disabled:opacity-50"
+          className="w-full rounded-lg bg-primary py-2.5 font-medium text-black transition hover:bg-primary-light disabled:opacity-50"
         >
           {loading ? "Creating account…" : "Create account"}
         </button>
       </form>
-      <p className="mt-4 text-center text-sm text-neutral-400">
-        Already have an account? <Link href="/login" className="text-[#818cf8] hover:underline">Sign in</Link>
+      <p className="mt-4 text-center text-sm text-muted">
+        Already have an account? <Link href="/login" className="text-primary hover:underline">Sign in</Link>
       </p>
     </div>
   );

@@ -8,8 +8,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: { DEFAULT: "#0f172a", light: "#1e293b" },
-        accent: { DEFAULT: "#0ea5e9", hover: "#0284c7" },
+        primary: { DEFAULT: "#CBA38C", light: "#C39C86" },
+        secondary: "#C39C86",
+        surface: "#0F0E0E",
+        panel: "#141313",
+        muted: "#C4C4C4",
+        overlay: "#0A0A0A",
       },
       fontFamily: {
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],

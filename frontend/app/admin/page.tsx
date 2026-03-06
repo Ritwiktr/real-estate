@@ -43,7 +43,7 @@ export default function AdminPage() {
   if (loading) {
     return (
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
-        <p className="text-neutral-400">Loading…</p>
+        <p className="text-muted">Loading…</p>
       </div>
     );
   }
@@ -62,12 +62,12 @@ export default function AdminPage() {
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold text-white">Admin Portal</h1>
-          <p className="mt-1 text-neutral-400">Dashboard overview and analytics</p>
+          <p className="mt-1 text-muted">Dashboard overview and analytics</p>
         </div>
         <div className="flex items-center gap-3">
           <Link
             href="/portal"
-            className="text-sm font-medium text-neutral-400 hover:text-white"
+            className="text-sm font-medium text-muted hover:text-white"
           >
             Portal
           </Link>
@@ -104,20 +104,20 @@ export default function AdminPage() {
           <section>
             <h2 className="text-lg font-semibold text-white">Overview</h2>
             <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              <div className="rounded-xl border border-white/10 bg-neutral-900/50 p-4">
-                <p className="text-xs uppercase tracking-wider text-neutral-500">Property owners</p>
+              <div className="rounded-xl border border-white/10 bg-panel/50 p-4">
+                <p className="text-xs uppercase tracking-wider text-muted">Property owners</p>
                 <p className="mt-1 text-2xl font-bold text-white">{stats.landlordsCount}</p>
               </div>
-              <div className="rounded-xl border border-white/10 bg-neutral-900/50 p-4">
-                <p className="text-xs uppercase tracking-wider text-neutral-500">Tenants</p>
+              <div className="rounded-xl border border-white/10 bg-panel/50 p-4">
+                <p className="text-xs uppercase tracking-wider text-muted">Tenants</p>
                 <p className="mt-1 text-2xl font-bold text-white">{stats.tenantsCount}</p>
               </div>
-              <div className="rounded-xl border border-white/10 bg-neutral-900/50 p-4">
-                <p className="text-xs uppercase tracking-wider text-neutral-500">Properties</p>
+              <div className="rounded-xl border border-white/10 bg-panel/50 p-4">
+                <p className="text-xs uppercase tracking-wider text-muted">Properties</p>
                 <p className="mt-1 text-2xl font-bold text-white">{stats.propertiesCount}</p>
               </div>
-              <div className="rounded-xl border border-white/10 bg-neutral-900/50 p-4">
-                <p className="text-xs uppercase tracking-wider text-neutral-500">Enquiries</p>
+              <div className="rounded-xl border border-white/10 bg-panel/50 p-4">
+                <p className="text-xs uppercase tracking-wider text-muted">Enquiries</p>
                 <p className="mt-1 text-2xl font-bold text-white">{stats.enquiriesCount}</p>
               </div>
             </div>
@@ -145,17 +145,17 @@ export default function AdminPage() {
                     style={{ width: `${maintenanceProgress}%` }}
                   />
                 </div>
-                <p className="mt-1 text-xs text-neutral-500">{maintenanceProgress}% resolved</p>
+                <p className="mt-1 text-xs text-muted">{maintenanceProgress}% resolved</p>
               </div>
             )}
             {stats.recentMaintenance.length > 0 && (
-              <div className="mt-4 rounded-xl border border-white/10 bg-neutral-900/50 p-4">
+              <div className="mt-4 rounded-xl border border-white/10 bg-panel/50 p-4">
                 <h3 className="text-sm font-semibold text-white">Recent</h3>
                 <div className="mt-3 space-y-2">
                   {stats.recentMaintenance.map((m) => (
                     <div
                       key={m.id}
-                      className="rounded-lg border border-white/5 bg-black/40 px-3 py-2"
+                      className="rounded-lg border border-white/5 bg-overlay/40 px-3 py-2"
                     >
                       <p className="text-sm font-medium text-white">
                         {m.issueCategory}{" "}
@@ -163,10 +163,10 @@ export default function AdminPage() {
                           {m.urgency}
                         </span>
                       </p>
-                      <p className="text-xs text-neutral-400">
+                      <p className="text-xs text-muted">
                         {m.tenantName} · {m.property?.title ?? m.propertyAddressOrRef}
                       </p>
-                      <p className="mt-1 text-[11px] text-neutral-500">
+                      <p className="mt-1 text-[11px] text-muted">
                         Status: {m.status} ·{" "}
                         {new Date(m.createdAt).toLocaleString(undefined, {
                           dateStyle: "short",
@@ -195,19 +195,19 @@ export default function AdminPage() {
               </span>
             </div>
             {stats.recentApplications.length > 0 && (
-              <div className="mt-4 rounded-xl border border-white/10 bg-neutral-900/50 p-4">
+              <div className="mt-4 rounded-xl border border-white/10 bg-panel/50 p-4">
                 <h3 className="text-sm font-semibold text-white">Recent</h3>
                 <div className="mt-3 space-y-2">
                   {stats.recentApplications.map((a) => (
                     <div
                       key={a.id}
-                      className="rounded-lg border border-white/5 bg-black/40 px-3 py-2"
+                      className="rounded-lg border border-white/5 bg-overlay/40 px-3 py-2"
                     >
                       <p className="text-sm font-medium text-white">{a.name}</p>
-                      <p className="text-xs text-neutral-400">
+                      <p className="text-xs text-muted">
                         {a.email} · {a.property?.title ?? a.propertyId}
                       </p>
-                      <p className="mt-1 text-[11px] text-neutral-500">
+                      <p className="mt-1 text-[11px] text-muted">
                         {a.status} ·{" "}
                         {new Date(a.createdAt).toLocaleString(undefined, {
                           dateStyle: "short",
@@ -224,23 +224,23 @@ export default function AdminPage() {
           {/* Enquiries */}
           <section>
             <h2 className="text-lg font-semibold text-white">Enquiries</h2>
-            <p className="mt-1 text-sm text-neutral-400">Total: {stats.enquiriesCount}</p>
+            <p className="mt-1 text-sm text-muted">Total: {stats.enquiriesCount}</p>
             {stats.recentEnquiries.length > 0 && (
-              <div className="mt-4 rounded-xl border border-white/10 bg-neutral-900/50 p-4">
+              <div className="mt-4 rounded-xl border border-white/10 bg-panel/50 p-4">
                 <h3 className="text-sm font-semibold text-white">Recent</h3>
                 <div className="mt-3 space-y-2">
                   {stats.recentEnquiries.map((e) => (
                     <div
                       key={e.id}
-                      className="rounded-lg border border-white/5 bg-black/40 px-3 py-2"
+                      className="rounded-lg border border-white/5 bg-overlay/40 px-3 py-2"
                     >
                       <p className="text-sm font-medium text-white">
                         {e.subject || "General enquiry"}
                       </p>
-                      <p className="text-xs text-neutral-400">
+                      <p className="text-xs text-muted">
                         {e.name} · {e.email}
                       </p>
-                      <p className="mt-1 text-[11px] text-neutral-500">
+                      <p className="mt-1 text-[11px] text-muted">
                         Source: {e.source} ·{" "}
                         {new Date(e.createdAt).toLocaleString(undefined, {
                           dateStyle: "short",

@@ -82,7 +82,7 @@ export function EnquiryForm({ variant = "light" }: { variant?: "light" | "dark" 
       <button
         type="submit"
         disabled={status === "loading"}
-        className={dark ? "w-full rounded border-2 border-black bg-white py-2.5 text-sm font-medium text-black hover:bg-black hover:text-white disabled:opacity-50" : "w-full rounded border-2 border-black bg-black py-2.5 text-sm font-medium text-white hover:bg-white hover:text-black disabled:opacity-50 focus:outline-none"}
+        className={dark ? "w-full rounded border-2 border-primary bg-primary py-2.5 text-sm font-medium text-black transition hover:bg-primary-light disabled:opacity-50" : "w-full rounded border-2 border-black bg-black py-2.5 text-sm font-medium text-white hover:bg-white hover:text-black disabled:opacity-50 focus:outline-none"}
       >
         {status === "loading" ? "Sending…" : "Submit"}
       </button>

@@ -11,11 +11,11 @@ export function PropertyMap({ address }: { address: string }) {
   const embedKey = typeof process !== "undefined" ? process.env.NEXT_PUBLIC_GOOGLE_MAPS_EMBED_KEY : undefined;
 
   return (
-    <section className="mt-8 overflow-hidden rounded-2xl border border-white/10 bg-neutral-900/50">
+    <section className="mt-8 overflow-hidden rounded-2xl border border-white/10 bg-panel/50">
       <h2 className="border-b border-white/10 px-6 py-4 text-lg font-semibold text-white">
         Location
       </h2>
-      <div className="relative aspect-[16/9] w-full min-h-[200px] bg-neutral-800">
+      <div className="relative aspect-[16/9] w-full min-h-[200px] bg-panel">
         {embedKey ? (
           <iframe
             title="Property location map"
@@ -30,7 +30,7 @@ export function PropertyMap({ address }: { address: string }) {
             href={mapsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex h-full w-full flex-col items-center justify-center gap-3 bg-neutral-800/90 p-6 text-center transition hover:bg-neutral-700/90"
+            className="flex h-full w-full flex-col items-center justify-center gap-3 bg-panel/90 p-6 text-center transition hover:bg-panel/80"
           >
             <span className="text-4xl" aria-hidden>
               📍
@@ -38,7 +38,7 @@ export function PropertyMap({ address }: { address: string }) {
             <span className="text-sm font-medium text-white">
               View on Google Maps
             </span>
-            <span className="max-w-md truncate text-xs text-neutral-400">
+            <span className="max-w-md truncate text-xs text-muted">
               {address}
             </span>
           </a>

@@ -19,7 +19,7 @@ export default function ContactPage() {
       </div>
 
       <div className="mt-10 grid gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-10">
-        <section className="rounded-2xl border border-white/10 bg-neutral-900/60 p-6 shadow-[0_18px_45px_rgba(0,0,0,0.55)] sm:p-8">
+        <section className="rounded-2xl border border-white/10 bg-panel/60 p-6 shadow-[0_18px_45px_rgba(0,0,0,0.55)] sm:p-8">
           <div className="flex items-baseline justify-between gap-4">
             <div>
               <h2 className="text-lg font-semibold text-white">Send an enquiry</h2>
@@ -38,7 +38,7 @@ export default function ContactPage() {
         </section>
 
         <aside className="space-y-5 lg:space-y-6">
-          <div className="rounded-2xl border border-white/10 bg-neutral-950/70 p-6 sm:p-7">
+          <div className="rounded-2xl border border-white/10 bg-panel/70 p-6 sm:p-7">
             <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-white/80">
               Office
             </h2>
@@ -79,7 +79,7 @@ export default function ContactPage() {
             </dl>
           </div>
 
-          <div className="rounded-2xl border border-dashed border-white/15 bg-neutral-900/40 p-5 sm:p-6">
+          <div className="rounded-2xl border border-dashed border-white/15 bg-panel/40 p-5 sm:p-6">
             <h3 className="text-sm font-semibold text-white">Best for quick questions</h3>
             <p className="mt-2 text-sm text-elegant-muted">
               Use the form for detailed enquiries such as:

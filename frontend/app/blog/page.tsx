@@ -36,7 +36,7 @@ export default async function BlogPage() {
   const { items } = await getBlogPosts(1, 20);
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-surface">
       {/* Hero */}
       <section className="relative flex min-h-[40vh] flex-col justify-end overflow-hidden">
         <div
@@ -61,16 +61,16 @@ export default async function BlogPage() {
       <section className="border-t border-white/5">
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:py-20">
           {items.length === 0 ? (
-            <p className="py-16 text-center text-neutral-400">No posts yet.</p>
+            <p className="py-16 text-center text-muted">No posts yet.</p>
           ) : (
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {items.map((post: { id: string; slug: string; title: string; excerpt: string | null; publishedAt: string | null; author: string | null }) => (
                 <Link
                   key={post.id}
                   href={`/blog/${post.slug}`}
-                  className="group relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-neutral-900/30 transition-all duration-300 hover:border-white/20 hover:shadow-xl hover:shadow-black/40"
+                  className="group relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-panel/30 transition-all duration-300 hover:border-white/20 hover:shadow-xl hover:shadow-black/40"
                 >
-                  <div className="relative aspect-[16/10] overflow-hidden bg-neutral-800">
+                  <div className="relative aspect-[16/10] overflow-hidden bg-panel">
                     <img
                       src={getPostImage(post.slug)}
                       alt=""
@@ -84,18 +84,18 @@ export default async function BlogPage() {
                     </div>
                   </div>
                   <div className="flex flex-1 flex-col p-5 sm:p-6">
-                    <h2 className="text-lg font-semibold leading-snug text-white group-hover:text-[#818cf8] sm:text-xl">
+                    <h2 className="text-lg font-semibold leading-snug text-white group-hover:text-primary sm:text-xl">
                       {post.title}
                     </h2>
                     {post.excerpt && (
-                      <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-neutral-400">
+                      <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted">
                         {post.excerpt}
                       </p>
                     )}
                     {post.author && (
-                      <p className="mt-3 text-xs text-neutral-500">By {post.author}</p>
+                      <p className="mt-3 text-xs text-muted">By {post.author}</p>
                     )}
-                    <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-[#818cf8]">
+                    <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-primary">
                       Read article
                       <svg className="h-4 w-4 transition group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />

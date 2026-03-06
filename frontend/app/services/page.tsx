@@ -35,7 +35,7 @@ const services = [
 
 export default function ServicesPage() {
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-surface">
       {/* Hero with background image */}
       <section className="relative flex min-h-[50vh] flex-col justify-end overflow-hidden">
         <div
@@ -52,7 +52,7 @@ export default function ServicesPage() {
           <h1 className="mt-4 text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
             Property Management
             <br />
-            <span className="text-[#818cf8]">Reimagined</span>
+            <span className="text-primary">Reimagined</span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/85">
             Full-service property management for landlords and a clear, compliant experience for tenants. From placement to maintenance to finances — we handle it all.
@@ -68,7 +68,7 @@ export default function ServicesPage() {
               <Link
                 key={s.href}
                 href={s.href}
-                className="group relative block overflow-hidden rounded-2xl border border-white/10 transition-all duration-500 hover:border-white/20 hover:shadow-2xl hover:shadow-[#818cf8]/10"
+                className="group relative block overflow-hidden rounded-2xl border border-white/10 transition-all duration-500 hover:border-white/20 hover:shadow-2xl hover:shadow-primary/10"
               >
                 {/* Background image */}
                 <div
@@ -76,18 +76,18 @@ export default function ServicesPage() {
                   style={{ backgroundImage: `url(${s.image})` }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-black/60" />
-                <div className="absolute inset-0 bg-[#818cf8]/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                <div className="absolute inset-0 bg-primary/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
                 <div className="relative flex min-h-[280px] flex-col justify-between p-8 sm:p-10 lg:flex-row lg:items-end lg:justify-between lg:p-12">
                   <div className="max-w-2xl">
-                    <span className="inline-block text-2xl text-[#818cf8]">{s.icon}</span>
+                    <span className="inline-block text-2xl text-primary">{s.icon}</span>
                     <h2 className="mt-4 text-2xl font-bold tracking-tight text-white sm:text-3xl lg:text-4xl">
                       {s.title}
                     </h2>
                     <p className="mt-3 text-base leading-relaxed text-white/80 sm:text-lg">
                       {s.desc}
                     </p>
-                    <span className="mt-6 inline-flex items-center gap-2 font-semibold text-[#818cf8] transition-transform group-hover:translate-x-1">
+                    <span className="mt-6 inline-flex items-center gap-2 font-semibold text-primary transition-transform group-hover:translate-x-1">
                       Read more
                       <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -110,7 +110,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Stats / Trust bar */}
-      <section className="border-t border-white/5 bg-black">
+      <section className="border-t border-white/5 bg-surface">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-20">
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {[
@@ -120,7 +120,7 @@ export default function ServicesPage() {
               { value: "24/7", label: "Support Available" },
             ].map((stat) => (
               <div key={stat.label} className="text-center">
-                <p className="text-3xl font-bold text-[#818cf8] sm:text-4xl">{stat.value}</p>
+                <p className="text-3xl font-bold text-primary sm:text-4xl">{stat.value}</p>
                 <p className="mt-1 text-sm font-medium uppercase tracking-wider text-white/60">
                   {stat.label}
                 </p>

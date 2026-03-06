@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default async function TestimonialsPage() {
   const testimonials = await getTestimonials();
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-surface">
       {/* Hero with subtle background */}
       <section className="relative flex min-h-[35vh] flex-col justify-end overflow-hidden">
         <div
@@ -39,7 +39,7 @@ export default async function TestimonialsPage() {
       </section>
 
       {/* Testimonials + form */}
-      <section className="border-t border-white/5 bg-black">
+      <section className="border-t border-white/5 bg-surface">
         <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:py-16">
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
             <div>
@@ -55,21 +55,21 @@ export default async function TestimonialsPage() {
                   }) => (
                     <blockquote
                       key={t.id}
-                      className="rounded-2xl border border-white/10 bg-neutral-900/70 p-5 shadow-[0_18px_45px_rgba(0,0,0,0.6)]"
+                      className="rounded-2xl border border-white/10 bg-panel/70 p-5 shadow-[0_18px_45px_rgba(0,0,0,0.6)]"
                     >
-                      <p className="text-sm text-neutral-200">&ldquo;{t.content}&rdquo;</p>
+                      <p className="text-sm text-muted">&ldquo;{t.content}&rdquo;</p>
                       <footer className="mt-3 flex items-center justify-between">
                         <cite className="text-sm font-semibold not-italic text-white">
                           {t.authorName}
                         </cite>
-                        <span className="text-xs uppercase tracking-[0.16em] text-neutral-400">
+                        <span className="text-xs uppercase tracking-[0.16em] text-muted">
                           {t.role}
                         </span>
                       </footer>
                       {t.rating != null && (
                         <p className="mt-1 text-xs text-amber-400">
                           {"★".repeat(t.rating)}{" "}
-                          <span className="align-middle text-[10px] text-neutral-400">
+                          <span className="align-middle text-[10px] text-muted">
                             Rated
                           </span>
                         </p>
@@ -78,14 +78,14 @@ export default async function TestimonialsPage() {
                   ),
                 )}
                 {testimonials.length === 0 && (
-                  <p className="py-8 text-sm text-neutral-400">No testimonials yet.</p>
+                  <p className="py-8 text-sm text-muted">No testimonials yet.</p>
                 )}
               </div>
             </div>
 
-            <aside className="rounded-2xl border border-white/10 bg-neutral-900/70 p-6 shadow-[0_18px_45px_rgba(0,0,0,0.6)]">
+            <aside className="rounded-2xl border border-white/10 bg-panel/70 p-6 shadow-[0_18px_45px_rgba(0,0,0,0.6)]">
               <h2 className="text-lg font-semibold text-white">Submit your feedback</h2>
-              <p className="mt-1 text-sm text-neutral-300">
+              <p className="mt-1 text-sm text-muted">
                 Whether you&apos;re a tenant or a landlord, we&apos;d love to hear how we did.
                 Your feedback is reviewed before publishing.
               </p>

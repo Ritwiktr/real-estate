@@ -35,7 +35,7 @@ export function ApplicationForm({ propertyId }: { propertyId: string }) {
     }
   }
 
-  const inputClass = "w-full rounded-lg border border-white/15 bg-black/40 px-3 py-2 text-sm text-white placeholder-neutral-500 focus:border-white/40 focus:outline-none";
+  const inputClass = "w-full rounded-lg border border-white/15 bg-overlay/40 px-3 py-2 text-sm text-white placeholder-muted focus:border-white/40 focus:outline-none";
 
   return (
     <form onSubmit={handleSubmit} className="mt-4 space-y-3">
@@ -77,8 +77,8 @@ export function ApplicationForm({ propertyId }: { propertyId: string }) {
         className={inputClass}
       />
       {!user && (
-        <p className="text-xs text-neutral-500">
-          <Link href="/login" className="text-[#818cf8] hover:underline">Sign in</Link> to link your application to your account and track its status.
+        <p className="text-xs text-muted">
+          <Link href="/login" className="text-primary hover:underline">Sign in</Link> to link your application to your account and track its status.
         </p>
       )}
       {status === "success" && <p className="text-sm text-green-400">Application submitted. We&apos;ll be in touch.</p>}
@@ -86,7 +86,7 @@ export function ApplicationForm({ propertyId }: { propertyId: string }) {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="rounded-lg bg-white px-4 py-2.5 text-sm font-medium text-black hover:bg-neutral-200 disabled:opacity-50"
+        className="rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-black hover:bg-primary-light disabled:opacity-50"
       >
         {status === "loading" ? "Submitting…" : "Submit application"}
       </button>

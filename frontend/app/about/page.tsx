@@ -40,7 +40,7 @@ const VALUES = [
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-surface">
       {/* Hero with London skyline */}
       <section className="relative flex min-h-[40vh] flex-col justify-end overflow-hidden">
         <div
@@ -68,13 +68,13 @@ export default function AboutPage() {
       </section>
 
       {/* Content */}
-      <section className="border-t border-white/5 bg-black">
+      <section className="border-t border-white/5 bg-surface">
         <div className="mx-auto flex max-w-5xl flex-col gap-12 px-4 py-12 sm:px-6 lg:flex-row lg:py-16">
           {/* Mission / Values */}
           <div className="flex-1 space-y-10">
             <div>
               <h2 className="text-xl font-semibold text-white">Our mission</h2>
-              <p className="mt-3 text-sm leading-relaxed text-neutral-300">
+              <p className="mt-3 text-sm leading-relaxed text-muted">
                 To deliver professional, compliant, and transparent property management
                 services that give landlords peace of mind and tenants a smooth
                 experience — from first viewing to move-out.
@@ -85,9 +85,9 @@ export default function AboutPage() {
               <h2 className="text-xl font-semibold text-white">Our values</h2>
               <ul className="mt-4 space-y-4">
                 {VALUES.map((v) => (
-                  <li key={v.title} className="rounded-xl border border-white/5 bg-neutral-900/60 p-4">
+                  <li key={v.title} className="rounded-xl border border-white/5 bg-panel/60 p-4">
                     <h3 className="text-sm font-semibold text-white">{v.title}</h3>
-                    <p className="mt-1 text-sm text-neutral-300">{v.text}</p>
+                    <p className="mt-1 text-sm text-muted">{v.text}</p>
                   </li>
                 ))}
               </ul>
@@ -97,7 +97,7 @@ export default function AboutPage() {
           {/* Team */}
           <div className="flex-1">
             <h2 className="text-xl font-semibold text-white">Our team</h2>
-            <p className="mt-3 text-sm text-neutral-300">
+            <p className="mt-3 text-sm text-muted">
               Our experienced team combines London market knowledge with a focus on
               service. We look after placements, inspections, maintenance and financial
               reporting so you can focus on the bigger picture.
@@ -106,13 +106,13 @@ export default function AboutPage() {
               {TEAM.map((m) => (
                 <div
                   key={m.name}
-                  className="rounded-xl border border-white/10 bg-neutral-900/70 p-4 shadow-[0_18px_45px_rgba(0,0,0,0.65)]"
+                  className="rounded-xl border border-white/10 bg-panel/70 p-4 shadow-[0_18px_45px_rgba(0,0,0,0.65)]"
                 >
                   <h3 className="text-sm font-semibold text-white">{m.name}</h3>
-                  <p className="mt-0.5 text-xs font-medium uppercase tracking-[0.18em] text-[#818cf8]">
+                  <p className="mt-0.5 text-xs font-medium uppercase tracking-[0.18em] text-primary">
                     {m.role}
                   </p>
-                  <p className="mt-2 text-xs text-neutral-300">{m.bio}</p>
+                  <p className="mt-2 text-xs text-muted">{m.bio}</p>
                 </div>
               ))}
             </div>

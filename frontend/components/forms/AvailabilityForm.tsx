@@ -58,7 +58,7 @@ export function AvailabilityForm({
   }
 
   const inputClass =
-    "mt-1 w-full rounded-lg border border-white/20 bg-white/5 px-3 py-2 text-sm text-white placeholder-neutral-500 focus:border-white/40 focus:outline-none";
+    "mt-1 w-full rounded-lg border border-white/20 bg-white/5 px-3 py-2 text-sm text-white placeholder-muted focus:border-white/40 focus:outline-none";
 
   return (
     <div className="mt-6 space-y-6">
@@ -84,20 +84,20 @@ export function AvailabilityForm({
         <button
           type="submit"
           disabled={loading}
-          className="rounded-lg bg-white px-4 py-2.5 text-sm font-medium text-black hover:bg-neutral-200 disabled:opacity-50"
+          className="rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-black hover:bg-primary-light disabled:opacity-50"
         >
           {loading ? "Adding…" : "Add availability"}
         </button>
       </form>
       {error && <p className="text-sm text-red-400">{error}</p>}
       <div>
-        <h4 className="text-sm font-medium text-neutral-400">Current availability</h4>
+        <h4 className="text-sm font-medium text-muted">Current availability</h4>
         {items.length === 0 ? (
-          <p className="mt-2 text-sm text-neutral-500">No availability blocks. Add dates above.</p>
+          <p className="mt-2 text-sm text-muted">No availability blocks. Add dates above.</p>
         ) : (
           <ul className="mt-2 space-y-2">
             {items.map((item) => (
-              <li key={item.id} className="flex items-center justify-between rounded-lg border border-white/5 bg-black/40 px-4 py-2">
+              <li key={item.id} className="flex items-center justify-between rounded-lg border border-white/5 bg-overlay/40 px-4 py-2">
                 <span className="text-white">
                   {new Date(item.startDate).toLocaleDateString()} – {new Date(item.endDate).toLocaleDateString()}
                 </span>

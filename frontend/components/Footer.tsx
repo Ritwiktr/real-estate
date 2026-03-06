@@ -2,12 +2,12 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="mt-auto border-t border-white/5 bg-black text-white/80">
+    <footer className="mt-auto border-t border-white/5 bg-surface text-white/80">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <p className="flex items-center gap-2 text-base font-semibold text-white">
-              <span className="text-[#6366f1]">◇</span> RESIDENCE
+              <span className="text-primary">◇</span> RESIDENCE
             </p>
             <p className="mt-2 text-sm text-white/60">
               Curated properties. A seamless experience.

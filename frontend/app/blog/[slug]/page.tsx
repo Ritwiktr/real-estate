@@ -44,7 +44,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
   const imageUrl = getPostImage(params.slug);
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-surface">
       {/* Hero with cover image */}
       <section className="relative flex min-h-[50vh] flex-col justify-end overflow-hidden">
         <div
@@ -55,7 +55,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
         <div className="relative mx-auto w-full max-w-4xl px-4 pb-12 pt-28 sm:px-6 lg:pb-16">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-sm font-medium text-white/80 hover:text-[#818cf8]"
+            className="inline-flex items-center gap-2 text-sm font-medium text-white/80 hover:text-primary"
           >
             <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -75,15 +75,15 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
       {/* Article body */}
       <article className="border-t border-white/5">
         <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:py-16">
-          <div className="prose prose-invert max-w-none prose-p:text-neutral-300 prose-p:leading-relaxed prose-headings:text-white">
-            <p className="whitespace-pre-wrap text-lg leading-relaxed text-neutral-300">
+          <div className="prose prose-invert max-w-none prose-p:text-muted prose-p:leading-relaxed prose-headings:text-white">
+            <p className="whitespace-pre-wrap text-lg leading-relaxed text-muted">
               {post.body}
             </p>
           </div>
           <div className="mt-12 border-t border-white/10 pt-8">
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-[#818cf8] hover:underline"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
             >
               ← All posts
             </Link>

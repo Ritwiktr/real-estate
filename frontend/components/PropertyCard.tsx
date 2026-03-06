@@ -34,9 +34,9 @@ export function PropertyCard({
   return (
     <Link
       href={`/properties/${hrefSlug}`}
-      className="group block overflow-hidden rounded-2xl border border-white/[0.08] bg-black shadow-xl shadow-black/50 transition-all duration-300 hover:border-white/15 hover:shadow-2xl hover:shadow-black/60"
+      className="group block overflow-hidden rounded-2xl border border-white/[0.08] bg-surface shadow-xl shadow-black/50 transition-all duration-300 hover:border-white/15 hover:shadow-2xl hover:shadow-black/60"
     >
-      <div className="relative aspect-[4/3] overflow-hidden bg-neutral-900">
+      <div className="relative aspect-[4/3] overflow-hidden bg-panel">
         {imageUrl ? (
           <>
             <img
@@ -51,26 +51,26 @@ export function PropertyCard({
             />
           </>
         ) : (
-          <div className="flex h-full items-center justify-center text-neutral-500 text-sm">No image</div>
+          <div className="flex h-full items-center justify-center text-muted text-sm">No image</div>
         )}
         <div className="absolute left-4 top-4 flex flex-wrap gap-2">
           {isFeatured && (
-            <span className="rounded-md bg-white/95 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-widest text-black">
+            <span className="rounded-md bg-primary px-2.5 py-1 text-[10px] font-semibold uppercase tracking-widest text-black">
               Featured
             </span>
           )}
-          <span className="rounded-md border border-white/20 bg-black/70 px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider text-white backdrop-blur-sm">
+          <span className="rounded-md border border-white/20 bg-overlay/70 px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider text-white backdrop-blur-sm">
             {typeLabel}
           </span>
         </div>
       </div>
       <div className="border-t border-white/[0.06] p-5">
         <h3 className="text-lg font-semibold tracking-tight text-white group-hover:text-white">{title}</h3>
-        <p className="mt-1 text-sm text-neutral-400">
+        <p className="mt-1 text-sm text-muted">
           {address}, {city}
         </p>
         {(beds != null || baths != null || areaSqFt != null) && (
-          <p className="mt-2 text-xs text-neutral-500">
+          <p className="mt-2 text-xs text-muted">
             {beds != null && `${beds} bed`}
             {baths != null && ` · ${baths} bath`}
             {areaSqFt != null && ` · ${areaSqFt.toLocaleString()} sq ft`}
@@ -78,7 +78,7 @@ export function PropertyCard({
         )}
         <p className="mt-4 text-lg font-semibold text-white">
           £{Number(pricePerMonth).toLocaleString()}
-          <span className="text-sm font-normal text-neutral-400">/mo</span>
+          <span className="text-sm font-normal text-muted">/mo</span>
         </p>
       </div>
     </Link>

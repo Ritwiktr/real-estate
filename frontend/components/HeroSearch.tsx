@@ -27,10 +27,10 @@ export function HeroSearch({ areas = [] }: { areas?: Area[] }) {
   }
 
   const inputClass =
-    "rounded border border-white/20 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/50 focus:border-white/40 focus:outline-none [&>option]:bg-neutral-900";
+    "rounded border border-white/20 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/50 focus:border-white/40 focus:outline-none [&>option]:bg-panel";
 
   return (
-    <div className="rounded-xl border border-white/10 bg-black/50 p-4 shadow-2xl shadow-black/30 backdrop-blur-md sm:p-5">
+    <div className="rounded-xl border border-white/10 bg-overlay/50 p-4 shadow-2xl shadow-black/30 backdrop-blur-md sm:p-5">
       <div className="flex flex-wrap items-center gap-2 sm:gap-3">
         <input
           type="text"
@@ -84,7 +84,7 @@ export function HeroSearch({ areas = [] }: { areas?: Area[] }) {
         <button
           type="button"
           onClick={handleSearch}
-          className="rounded border border-white bg-white px-5 py-2.5 text-sm font-medium text-black transition hover:bg-black hover:text-white hover:border-white"
+          className="rounded border border-primary bg-primary px-5 py-2.5 text-sm font-medium text-black transition hover:bg-primary-light hover:border-primary-light"
         >
           Search
         </button>

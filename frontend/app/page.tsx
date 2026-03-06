@@ -24,7 +24,7 @@ export default async function HomePage() {
   return (
     <div className="h-full overflow-y-auto snap-y snap-mandatory">
       {/* 1. Hero + Search (one full-viewport section) */}
-      <section className={`relative ${snapSection} flex flex-col overflow-hidden bg-black`}>
+      <section className={`relative ${snapSection} flex flex-col overflow-hidden bg-surface`}>
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-55"
           style={{
@@ -52,7 +52,7 @@ export default async function HomePage() {
       </section>
 
       {/* 2. Featured / Explore properties */}
-      <section className={`${snapSection} flex flex-col bg-black`}>
+      <section className={`${snapSection} flex flex-col bg-surface`}>
         <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col px-4 py-10 sm:px-6">
           <p className="section-label">Properties</p>
           <h2 className="section-heading mt-2">
@@ -102,7 +102,7 @@ export default async function HomePage() {
               </div>
           </>
         ) : (
-          <div className="mt-6 flex flex-1 flex-col justify-center rounded-2xl border border-white/10 bg-neutral-900/50 p-8 text-center">
+          <div className="mt-6 flex flex-1 flex-col justify-center rounded-2xl border border-white/10 bg-panel/50 p-8 text-center">
             <p className="text-elegant-muted">No properties loaded. This usually means the API isn’t responding.</p>
               <ul className="mx-auto mt-3 max-w-md list-inside list-disc text-left text-sm text-elegant-muted">
               <li>Start the backend: <code className="rounded bg-white/10 px-1 py-0.5 font-mono text-xs">cd backend && npm run dev</code></li>
@@ -118,7 +118,7 @@ export default async function HomePage() {
       </section>
 
       {/* 3. Explore areas (always render for 5 sections) */}
-      <section className={`${snapSection} flex flex-col bg-neutral-950`}>
+      <section className={`${snapSection} flex flex-col bg-surface`}>
         <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-4 py-10 sm:px-6">
           <p className="section-label">Areas</p>
           <h2 className="section-heading mt-2">Explore neighbourhoods</h2>
@@ -154,7 +154,7 @@ export default async function HomePage() {
       </section>
 
       {/* 4. Get In Touch */}
-      <section className={`${snapSection} flex flex-col bg-black`}>
+      <section className={`${snapSection} flex flex-col bg-surface`}>
         <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-4 py-10 sm:px-6">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
             <div>
@@ -164,7 +164,7 @@ export default async function HomePage() {
                 Send an enquiry and we&apos;ll respond shortly.
               </p>
             </div>
-            <div className="rounded-2xl border border-white/10 bg-neutral-900/50 p-6 sm:p-8">
+            <div className="rounded-2xl border border-white/10 bg-panel/50 p-6 sm:p-8">
               <EnquiryForm variant="dark" />
             </div>
           </div>
@@ -172,7 +172,7 @@ export default async function HomePage() {
       </section>
 
       {/* 5. Achievements – premium bg with refined overlay */}
-      <section className={`${snapSection} relative flex flex-col overflow-hidden bg-neutral-950`}>
+      <section className={`${snapSection} relative flex flex-col overflow-hidden bg-surface`}>
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
@@ -206,7 +206,7 @@ export default async function HomePage() {
       </section>
 
       {/* Footer after 5 sections (in scroll container so it’s reachable) */}
-      <section className={`${snapSection} flex flex-col justify-center bg-black`}>
+      <section className={`${snapSection} flex flex-col justify-center bg-surface`}>
         <Footer />
       </section>
     </div>

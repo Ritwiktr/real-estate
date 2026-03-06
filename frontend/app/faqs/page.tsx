@@ -16,15 +16,15 @@ const faqs = [
 export default function FAQsPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
-      <h1 className="text-3xl font-bold text-slate-900">Frequently Asked Questions</h1>
-      <p className="mt-4 text-slate-600">
+      <h1 className="section-heading">Frequently Asked Questions</h1>
+      <p className="section-subheading mt-4">
         Common questions from landlords and tenants.
       </p>
       <dl className="mt-8 space-y-6">
         {faqs.map((faq, i) => (
-          <div key={i} className="rounded-lg border border-slate-200 bg-white p-6">
-            <dt className="font-semibold text-slate-900">{faq.q}</dt>
-            <dd className="mt-2 text-slate-600">{faq.a}</dd>
+          <div key={i} className="rounded-lg border border-white/10 bg-panel p-6">
+            <dt className="font-semibold text-white">{faq.q}</dt>
+            <dd className="mt-2 text-elegant-muted">{faq.a}</dd>
           </div>
         ))}
       </dl>

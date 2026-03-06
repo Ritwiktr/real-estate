@@ -59,7 +59,7 @@ export default function PortalPage() {
   if (loading) {
     return (
       <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6">
-        <p className="text-neutral-400">Loading…</p>
+        <p className="text-muted">Loading…</p>
       </div>
     );
   }
@@ -76,7 +76,7 @@ export default function PortalPage() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6">
       <h1 className="text-3xl font-bold text-white">Portal</h1>
-      <p className="mt-2 text-neutral-300">
+      <p className="mt-2 text-muted">
         Welcome back{user.name ? `, ${user.name}` : ""}. You are signed in as a {roleLabel}.
       </p>
 
@@ -87,27 +87,27 @@ export default function PortalPage() {
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {financialSummary && (
               <>
-                <div className="rounded-xl border border-white/10 bg-neutral-900/50 p-4">
-                  <p className="text-xs uppercase tracking-wider text-neutral-500">Rent due this month</p>
+                <div className="rounded-xl border border-white/10 bg-panel/50 p-4">
+                  <p className="text-xs uppercase tracking-wider text-muted">Rent due this month</p>
                   <p className="mt-1 text-xl font-bold text-white">£{financialSummary.dueThisMonth.toLocaleString()}</p>
                 </div>
-                <div className="rounded-xl border border-white/10 bg-neutral-900/50 p-4">
-                  <p className="text-xs uppercase tracking-wider text-neutral-500">Collected</p>
+                <div className="rounded-xl border border-white/10 bg-panel/50 p-4">
+                  <p className="text-xs uppercase tracking-wider text-muted">Collected</p>
                   <p className="mt-1 text-xl font-bold text-green-400">£{financialSummary.collected.toLocaleString()}</p>
                 </div>
-                <div className="rounded-xl border border-white/10 bg-neutral-900/50 p-4">
-                  <p className="text-xs uppercase tracking-wider text-neutral-500">Overdue</p>
+                <div className="rounded-xl border border-white/10 bg-panel/50 p-4">
+                  <p className="text-xs uppercase tracking-wider text-muted">Overdue</p>
                   <p className="mt-1 text-xl font-bold text-amber-400">£{financialSummary.overdue.toLocaleString()}</p>
                 </div>
               </>
             )}
             <Link
               href="/portal/properties"
-              className="flex flex-col rounded-xl border border-white/10 bg-neutral-900/50 p-5 transition hover:border-white/20 hover:bg-neutral-900/70"
+              className="flex flex-col rounded-xl border border-white/10 bg-panel/50 p-5 transition hover:border-white/20 hover:bg-panel/70"
             >
               <span className="text-sm font-semibold text-white">My Properties</span>
-              <span className="mt-1 text-sm text-neutral-400">List and manage your properties</span>
-              <span className="mt-2 text-sm font-medium text-[#818cf8]">View properties →</span>
+              <span className="mt-1 text-sm text-muted">List and manage your properties</span>
+              <span className="mt-2 text-sm font-medium text-primary">View properties →</span>
             </Link>
           </div>
         </section>
@@ -119,9 +119,9 @@ export default function PortalPage() {
           <h2 className="text-xl font-semibold text-white">Tenant dashboard</h2>
           <div className="grid gap-4 sm:grid-cols-2">
             {tenantFinancials?.tenancy != null && (
-              <div className="rounded-xl border border-white/10 bg-neutral-900/50 p-5">
+              <div className="rounded-xl border border-white/10 bg-panel/50 p-5">
                 <span className="text-sm font-semibold text-white">Your home</span>
-                <p className="mt-1 text-sm text-neutral-400">
+                <p className="mt-1 text-sm text-muted">
                   {(tenantFinancials.tenancy as { property?: { title?: string } })?.property?.title ?? "Current tenancy"}
                 </p>
                 <p className="mt-1 text-sm text-white">
@@ -130,67 +130,67 @@ export default function PortalPage() {
               </div>
             )}
             {tenantFinancials?.entries != null && (tenantFinancials.entries as unknown[]).length > 0 && (
-              <div className="rounded-xl border border-white/10 bg-neutral-900/50 p-5">
+              <div className="rounded-xl border border-white/10 bg-panel/50 p-5">
                 <span className="text-sm font-semibold text-white">Rent</span>
-                <p className="mt-1 text-sm text-neutral-400">Upcoming and recent rent entries</p>
-                <p className="mt-2 text-sm text-neutral-500">
+                <p className="mt-1 text-sm text-muted">Upcoming and recent rent entries</p>
+                <p className="mt-2 text-sm text-muted">
                   {(tenantFinancials.entries as unknown[]).length} entries
                 </p>
               </div>
             )}
             <Link
               href="/portal/maintenance"
-              className="flex flex-col rounded-xl border border-white/10 bg-neutral-900/50 p-5 transition hover:border-white/20 hover:bg-neutral-900/70"
+              className="flex flex-col rounded-xl border border-white/10 bg-panel/50 p-5 transition hover:border-white/20 hover:bg-panel/70"
             >
               <span className="text-sm font-semibold text-white">Maintenance requests</span>
-              <span className="mt-1 text-sm text-neutral-400">Submit and track repair requests</span>
-              <span className="mt-2 text-sm font-medium text-[#818cf8]">View requests →</span>
+              <span className="mt-1 text-sm text-muted">Submit and track repair requests</span>
+              <span className="mt-2 text-sm font-medium text-primary">View requests →</span>
             </Link>
             <Link
               href="/portal/applications"
-              className="flex flex-col rounded-xl border border-white/10 bg-neutral-900/50 p-5 transition hover:border-white/20 hover:bg-neutral-900/70 sm:col-span-2"
+              className="flex flex-col rounded-xl border border-white/10 bg-panel/50 p-5 transition hover:border-white/20 hover:bg-panel/70 sm:col-span-2"
             >
               <span className="text-sm font-semibold text-white">My applications</span>
-              <span className="mt-1 text-sm text-neutral-400">Track your property applications</span>
-              <span className="mt-2 text-sm font-medium text-[#818cf8]">View applications →</span>
+              <span className="mt-1 text-sm text-muted">Track your property applications</span>
+              <span className="mt-2 text-sm font-medium text-primary">View applications →</span>
             </Link>
           </div>
         </section>
       )}
 
       {/* Shared portal link section */}
-      <div className="mt-8 space-y-4 rounded-xl border border-white/10 bg-neutral-900/50 p-6">
+      <div className="mt-8 space-y-4 rounded-xl border border-white/10 bg-panel/50 p-6">
         {PORTAL_URL ? (
           <>
-            <p className="text-sm text-neutral-400">
+            <p className="text-sm text-muted">
               Use the client portal for documents, rent, maintenance updates, and more.
             </p>
             <a
               href={PORTAL_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex rounded-lg bg-white px-5 py-2.5 text-sm font-medium text-black transition hover:bg-neutral-200"
+              className="inline-flex rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-black transition hover:bg-primary-light"
             >
               Open client portal →
             </a>
           </>
         ) : (
-          <p className="text-sm text-neutral-400">
+          <p className="text-sm text-muted">
             Portal access is managed by your property manager. Contact us for documents, rent, or maintenance updates.
           </p>
         )}
 
         {!isAdmin && (
           <div className="border-t border-white/10 pt-4">
-            <p className="text-xs uppercase tracking-[0.16em] text-neutral-500">Quick links</p>
+            <p className="text-xs uppercase tracking-[0.16em] text-muted">Quick links</p>
             <div className="mt-2 space-x-3">
-              <Link href="/properties" className="text-sm font-medium text-[#818cf8] hover:underline">
+              <Link href="/properties" className="text-sm font-medium text-primary hover:underline">
                 Browse properties
               </Link>
-              <span className="text-neutral-500">·</span>
+              <span className="text-muted">·</span>
               <Link
                 href="/maintenance-request"
-                className="text-sm font-medium text-[#818cf8] hover:underline"
+                className="text-sm font-medium text-primary hover:underline"
               >
                 Submit maintenance request
               </Link>
@@ -205,24 +205,24 @@ export default function PortalPage() {
           <h2 className="text-xl font-semibold text-white">Management dashboard</h2>
           {adminError && <p className="text-sm text-red-400">{adminError}</p>}
           <div className="grid gap-4 md:grid-cols-2">
-            <div className="rounded-xl border border-white/10 bg-neutral-900/60 p-5">
+            <div className="rounded-xl border border-white/10 bg-panel/60 p-5">
               <div className="flex items-center justify-between">
                 <h3 className="text-sm font-semibold text-white">Recent enquiries</h3>
-                <span className="text-xs text-neutral-500">Latest 5</span>
+                <span className="text-xs text-muted">Latest 5</span>
               </div>
               <div className="mt-3 space-y-2">
                 {enquiries && enquiries.length === 0 && (
-                  <p className="text-sm text-neutral-500">No enquiries yet.</p>
+                  <p className="text-sm text-muted">No enquiries yet.</p>
                 )}
                 {enquiries?.map((e) => (
-                  <div key={e.id} className="rounded-lg border border-white/5 bg-black/40 px-3 py-2">
+                  <div key={e.id} className="rounded-lg border border-white/5 bg-overlay/40 px-3 py-2">
                     <p className="text-sm font-medium text-white">
                       {e.subject || "General enquiry"}
                     </p>
-                    <p className="text-xs text-neutral-400">
+                    <p className="text-xs text-muted">
                       {e.name} · {e.email}
                     </p>
-                    <p className="mt-1 text-[11px] text-neutral-500">
+                    <p className="mt-1 text-[11px] text-muted">
                       Source: {e.source} ·{" "}
                       {new Date(e.createdAt).toLocaleString(undefined, {
                         dateStyle: "short",
@@ -232,32 +232,32 @@ export default function PortalPage() {
                   </div>
                 ))}
                 {!enquiries && (
-                  <p className="text-sm text-neutral-500">Loading enquiries…</p>
+                  <p className="text-sm text-muted">Loading enquiries…</p>
                 )}
               </div>
             </div>
 
-            <div className="rounded-xl border border-white/10 bg-neutral-900/60 p-5">
+            <div className="rounded-xl border border-white/10 bg-panel/60 p-5">
               <div className="flex items-center justify-between">
                 <h3 className="text-sm font-semibold text-white">Recent maintenance requests</h3>
-                <span className="text-xs text-neutral-500">Latest 5</span>
+                <span className="text-xs text-muted">Latest 5</span>
               </div>
               <div className="mt-3 space-y-2">
                 {maintenance && maintenance.length === 0 && (
-                  <p className="text-sm text-neutral-500">No maintenance requests yet.</p>
+                  <p className="text-sm text-muted">No maintenance requests yet.</p>
                 )}
                 {maintenance?.map((m) => (
-                  <div key={m.id} className="rounded-lg border border-white/5 bg-black/40 px-3 py-2">
+                  <div key={m.id} className="rounded-lg border border-white/5 bg-overlay/40 px-3 py-2">
                     <p className="text-sm font-medium text-white">
                       {m.issueCategory}{" "}
                       <span className="ml-2 inline-flex items-center rounded-full bg-white/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white">
                         {m.urgency}
                       </span>
                     </p>
-                    <p className="text-xs text-neutral-400">
+                    <p className="text-xs text-muted">
                       {m.tenantName} · {m.propertyAddressOrRef}
                     </p>
-                    <p className="mt-1 text-[11px] text-neutral-500">
+                    <p className="mt-1 text-[11px] text-muted">
                       Status: {m.status} ·{" "}
                       {new Date(m.createdAt).toLocaleString(undefined, {
                         dateStyle: "short",
@@ -267,22 +267,22 @@ export default function PortalPage() {
                   </div>
                 ))}
                 {!maintenance && (
-                  <p className="text-sm text-neutral-500">Loading maintenance requests…</p>
+                  <p className="text-sm text-muted">Loading maintenance requests…</p>
                 )}
               </div>
             </div>
 
-            <div className="rounded-xl border border-white/10 bg-neutral-900/60 p-5 md:col-span-2">
+            <div className="rounded-xl border border-white/10 bg-panel/60 p-5 md:col-span-2">
               <h3 className="text-sm font-semibold text-white">Pending testimonials</h3>
               {pendingTestimonials?.length === 0 ? (
-                <p className="mt-3 text-sm text-neutral-500">No pending testimonials.</p>
+                <p className="mt-3 text-sm text-muted">No pending testimonials.</p>
               ) : (
                 <div className="mt-3 space-y-2">
                   {pendingTestimonials?.map((t) => (
-                    <div key={t.id} className="flex flex-wrap items-start justify-between gap-2 rounded-lg border border-white/5 bg-black/40 px-3 py-2">
+                    <div key={t.id} className="flex flex-wrap items-start justify-between gap-2 rounded-lg border border-white/5 bg-overlay/40 px-3 py-2">
                       <div>
-                        <p className="text-sm text-neutral-300 line-clamp-2">&ldquo;{t.content}&rdquo;</p>
-                        <p className="mt-1 text-xs text-neutral-500">{t.authorName} · {t.role}</p>
+                        <p className="text-sm text-muted line-clamp-2">&ldquo;{t.content}&rdquo;</p>
+                        <p className="mt-1 text-xs text-muted">{t.authorName} · {t.role}</p>
                       </div>
                       <div className="flex gap-2">
                         <button

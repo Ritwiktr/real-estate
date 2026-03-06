@@ -31,7 +31,7 @@ export function TestimonialForm() {
   }
 
   const inputClass =
-    "w-full rounded-lg border border-white/15 bg-black/50 px-4 py-2.5 text-sm text-white placeholder-neutral-500 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20 transition";
+    "w-full rounded-lg border border-white/15 bg-overlay/50 px-4 py-2.5 text-sm text-white placeholder-muted focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20 transition";
 
   return (
     <form onSubmit={handleSubmit} className="mt-4 space-y-4">
@@ -46,7 +46,7 @@ export function TestimonialForm() {
       <select
         value={role}
         onChange={(e) => setRole(e.target.value)}
-        className={`${inputClass} [&>option]:bg-neutral-900 [&>option]:text-white`}
+        className={`${inputClass} [&>option]:bg-panel [&>option]:text-white`}
       >
         <option value="Tenant">Tenant</option>
         <option value="Landlord">Landlord</option>
@@ -59,7 +59,7 @@ export function TestimonialForm() {
         rows={4}
         className={inputClass}
       />
-      <label className="block text-sm text-neutral-400">
+      <label className="block text-sm text-muted">
         Rating (optional){" "}
         <input
           type="number"
@@ -67,7 +67,7 @@ export function TestimonialForm() {
           max={5}
           value={rating}
           onChange={(e) => setRating(e.target.value === "" ? "" : Number(e.target.value))}
-          className="ml-2 w-14 rounded-lg border border-white/15 bg-black/50 px-2 py-1 text-sm text-white focus:border-white/30 focus:outline-none"
+          className="ml-2 w-14 rounded-lg border border-white/15 bg-overlay/50 px-2 py-1 text-sm text-white focus:border-white/30 focus:outline-none"
         />
       </label>
       {status === "success" && (
@@ -77,7 +77,7 @@ export function TestimonialForm() {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="rounded-lg border border-white/20 bg-white px-4 py-2.5 text-sm font-medium text-black transition hover:bg-neutral-200 disabled:opacity-50"
+        className="rounded-lg border border-primary bg-primary px-4 py-2.5 text-sm font-medium text-black transition hover:bg-primary-light disabled:opacity-50"
       >
         Submit
       </button>
