@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "bash scripts/dev.sh",
+    "dev:3020": "next dev -p 3020",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

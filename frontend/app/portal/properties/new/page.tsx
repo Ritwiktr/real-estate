@@ -8,6 +8,8 @@ import { landlordApi, areasApi, type Area } from "@/lib/api";
 
 const inputClass =
   "mt-1 w-full rounded-lg border border-white/20 bg-white/5 px-3 py-2 text-sm text-white placeholder-muted focus:border-white/40 focus:outline-none [&>option]:bg-panel";
+const selectClass =
+  "mt-1 w-full appearance-none rounded-none border border-white/20 bg-white/5 px-3 py-2 text-sm text-white focus:border-white/40 focus:outline-none [&>option]:bg-panel";
 
 export default function NewPropertyPage() {
   const { user, loading } = useAuth();
@@ -144,7 +146,7 @@ export default function NewPropertyPage() {
           <label htmlFor="areaId" className="block text-sm font-medium text-white">Area</label>
           <select
             id="areaId"
-            className={inputClass}
+            className={selectClass}
             value={form.areaId}
             onChange={(e) => setForm((f) => ({ ...f, areaId: e.target.value }))}
           >
@@ -169,7 +171,7 @@ export default function NewPropertyPage() {
             <label htmlFor="listingType" className="block text-sm font-medium text-white">Type</label>
             <select
               id="listingType"
-              className={inputClass}
+              className={selectClass}
               value={form.listingType}
               onChange={(e) => setForm((f) => ({ ...f, listingType: e.target.value as "RENTAL" | "HOLIDAY_LET" }))}
             >

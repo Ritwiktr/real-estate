@@ -40,6 +40,14 @@ body {
   min-height: 100vh;
 }
 
+/* Force sharp 90-degree corners on all select dropdowns (trigger element) */
+select {
+  border-radius: 0 !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
 @layer components {
   .snap-container {
     height: 100%;

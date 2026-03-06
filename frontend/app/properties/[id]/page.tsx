@@ -15,9 +15,9 @@ export async function generateMetadata({
   params: { id: string };
 }): Promise<Metadata> {
   const p = await getProperty(params.id);
-  if (!p) return { title: "Property | Residence" };
+  if (!p) return { title: "Property | ASTA Property Management" };
   return {
-    title: `${p.title} | Residence`,
+    title: `${p.title} | ASTA Property Management`,
     description: p.description ?? undefined,
   };
 }

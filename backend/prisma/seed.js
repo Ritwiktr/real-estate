@@ -74,7 +74,7 @@ async function main() {
       title: "Tenant Screening Best Practices in 2025",
       excerpt: "How to find and vet quality tenants while staying compliant with UK regulations.",
       body: "Tenant screening has evolved significantly. Modern referencing combines credit checks, employment verification, and right-to-rent compliance. We walk through our process and why thorough vetting protects your investment while giving tenants a fair assessment.",
-      author: "Residence Editorial",
+      author: "ASTA Editorial",
     },
     {
       slug: "property-maintenance-tips",
@@ -88,7 +88,7 @@ async function main() {
       title: "Rental Market Outlook for 2025",
       excerpt: "Key trends shaping the private rental sector and what they mean for landlords.",
       body: "The private rental sector continues to adapt to regulatory changes, interest rates, and demand patterns. We analyse current trends and offer our outlook for rental yields, tenant demand, and areas of growth across London and regional markets.",
-      author: "Residence Research",
+      author: "ASTA Research",
     },
     {
       slug: "holiday-let-vs-long-term-rental",
@@ -102,7 +102,7 @@ async function main() {
       title: "Understanding Deposit Protection Schemes",
       excerpt: "Your obligations as a landlord and how to stay compliant with deposit regulations.",
       body: "Deposit protection is mandatory for assured shorthold tenancies in England and Wales. We explain the three government-approved schemes, registration timelines, and the prescribed information you must provide to tenants within the required timeframe.",
-      author: "Residence Legal",
+      author: "ASTA Legal",
     },
   ];
 

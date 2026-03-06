@@ -33,6 +33,7 @@ export function PropertyFilters({
   }, [search, listingType, areaId, minPrice, maxPrice, beds, router]);
 
   const inputClass = "rounded-lg border border-white/20 bg-white/5 px-3 py-2.5 text-sm text-white placeholder-muted focus:border-white/40 focus:outline-none [&>option]:bg-panel";
+  const selectClass = "!rounded-none appearance-none border border-white/20 bg-white/5 px-3 py-2.5 text-sm text-white focus:border-white/40 focus:outline-none [&>option]:bg-panel";
   return (
     <div className="flex flex-wrap items-end gap-3 rounded-xl border border-white/10 bg-panel/50 p-4 sm:gap-4 sm:p-5">
       <input
@@ -45,7 +46,7 @@ export function PropertyFilters({
       <select
         value={listingType}
         onChange={(e) => setListingType(e.target.value)}
-        className={inputClass}
+        className={selectClass}
       >
         <option value="">All types</option>
         <option value="RENTAL">Rental</option>
@@ -54,7 +55,7 @@ export function PropertyFilters({
       <select
         value={areaId}
         onChange={(e) => setAreaId(e.target.value)}
-        className={inputClass}
+        className={selectClass}
       >
         <option value="">All areas</option>
         {areas.map((a) => (

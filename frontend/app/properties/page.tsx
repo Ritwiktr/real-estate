@@ -6,7 +6,7 @@ import { PropertyCard } from "@/components/PropertyCard";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
-  title: "Property Listings | Residence",
+  title: "Property Listings | ASTA Property Management",
   description: "Explore our curated portfolio of rental and holiday properties.",
 };
 

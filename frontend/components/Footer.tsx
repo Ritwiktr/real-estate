@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -6,9 +7,17 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <p className="flex items-center gap-2 text-base font-semibold text-white">
-              <span className="text-primary">◇</span> RESIDENCE
-            </p>
+            <Link href="/" className="inline-block bg-transparent">
+              <Image
+                src="/asta-logo.png"
+                alt="ASTA Property Management"
+                width={140}
+                height={42}
+                className="h-12 w-auto object-contain object-left bg-transparent"
+                style={{ background: "transparent" }}
+                unoptimized
+              />
+            </Link>
             <p className="mt-2 text-sm text-white/60">
               Curated properties. A seamless experience.
             </p>
@@ -41,7 +50,7 @@ export default function Footer() {
           </div>
         </div>
         <p className="mt-12 border-t border-white/10 pt-8 text-center text-xs text-white/50">
-          © {new Date().getFullYear()} Residence
+          © {new Date().getFullYear()} ASTA Property Management
         </p>
       </div>
     </footer>

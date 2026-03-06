@@ -4,7 +4,7 @@ import { getBlogPosts } from "@/lib/server-api";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
-  title: "Blog | Residence",
+  title: "Blog | ASTA Property Management",
   description: "Market insights, regulatory updates, and tips for landlords and tenants.",
 };
 

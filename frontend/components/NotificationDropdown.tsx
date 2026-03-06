@@ -66,7 +66,7 @@ export function NotificationDropdown() {
         )}
       </button>
       {open && (
-        <div className="absolute right-0 top-full z-50 mt-2 w-80 overflow-hidden rounded-lg border border-white/10 bg-surface/95 shadow-xl backdrop-blur-xl">
+        <div className="absolute right-0 top-full z-50 mt-2 w-80 overflow-hidden rounded-none border border-white/10 bg-surface/95 shadow-xl backdrop-blur-xl">
           <div className="border-b border-white/10 px-4 py-3">
             <h3 className="text-sm font-semibold text-white">Notifications</h3>
             <p className="text-xs text-muted">Maintenance & application updates</p>

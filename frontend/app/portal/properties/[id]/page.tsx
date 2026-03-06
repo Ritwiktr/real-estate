@@ -10,6 +10,8 @@ import { usePolling } from "@/hooks/usePolling";
 
 const inputClass =
   "mt-1 w-full rounded-lg border border-white/20 bg-white/5 px-3 py-2 text-sm text-white placeholder-muted focus:border-white/40 focus:outline-none [&>option]:bg-panel";
+const selectClass =
+  "mt-1 w-full appearance-none rounded-none border border-white/20 bg-white/5 px-3 py-2 text-sm text-white focus:border-white/40 focus:outline-none [&>option]:bg-panel";
 
 type Tab = "overview" | "activity" | "availability" | "analytics" | "tenants" | "maintenance" | "financials";
 
@@ -101,7 +103,7 @@ function MaintenanceRow({
             }
           }}
           disabled={updating}
-          className="rounded border border-white/20 bg-white/5 px-2 py-1 text-sm text-white [&>option]:bg-panel"
+          className="appearance-none rounded-none border border-white/20 bg-white/5 px-2 py-1 text-sm text-white [&>option]:bg-panel"
         >
           <option value="pending">Pending</option>
           <option value="in_progress">In progress</option>
@@ -367,7 +369,7 @@ export default function PortalPropertyDetailPage() {
           <div>
             <label className="block text-sm font-medium text-white">Area</label>
             <select
-              className={inputClass}
+              className={selectClass}
               value={(form.areaId as string) ?? ""}
               onChange={(e) => setForm((f) => ({ ...f, areaId: e.target.value }))}
             >
@@ -390,7 +392,7 @@ export default function PortalPropertyDetailPage() {
             <div>
               <label className="block text-sm font-medium text-white">Type</label>
               <select
-                className={inputClass}
+                className={selectClass}
                 value={(form.listingType as string) ?? "RENTAL"}
                 onChange={(e) => setForm((f) => ({ ...f, listingType: e.target.value }))}
               >
@@ -421,7 +423,7 @@ export default function PortalPropertyDetailPage() {
             <div>
               <label className="block text-sm font-medium text-white">Status</label>
               <select
-                className={inputClass}
+                className={selectClass}
                 value={(form.status as string) ?? "DRAFT"}
                 onChange={(e) => setForm((f) => ({ ...f, status: e.target.value }))}
               >

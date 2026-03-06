@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Services | Residence",
+  title: "Services | ASTA Property Management",
   description: "Full-service property management for landlords. Tenant placement, maintenance, and financial oversight.",
 };
 

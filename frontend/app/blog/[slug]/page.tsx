@@ -30,9 +30,9 @@ function formatDate(dateStr: string | null) {
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const post = await getBlogPost(params.slug);
-  if (!post) return { title: "Blog | Residence" };
+  if (!post) return { title: "Blog | ASTA Property Management" };
   return {
-    title: `${post.title} | Residence`,
+    title: `${post.title} | ASTA Property Management`,
     description: post.excerpt ?? undefined,
   };
 }

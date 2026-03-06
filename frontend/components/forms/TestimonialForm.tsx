@@ -46,7 +46,7 @@ export function TestimonialForm() {
       <select
         value={role}
         onChange={(e) => setRole(e.target.value)}
-        className={`${inputClass} [&>option]:bg-panel [&>option]:text-white`}
+        className={`${inputClass} appearance-none rounded-none [&>option]:bg-panel [&>option]:text-white`}
       >
         <option value="Tenant">Tenant</option>
         <option value="Landlord">Landlord</option>

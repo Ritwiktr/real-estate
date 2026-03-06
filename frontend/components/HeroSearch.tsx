@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { CustomSelect } from "./ui/CustomSelect";
 
 type Area = { id: string; name: string; slug: string };
 
@@ -29,6 +30,16 @@ export function HeroSearch({ areas = [] }: { areas?: Area[] }) {
   const inputClass =
     "rounded border border-white/20 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/50 focus:border-white/40 focus:outline-none [&>option]:bg-panel";
 
+  const typeOptions = [
+    { value: "RENTAL", label: "Rental" },
+    { value: "HOLIDAY_LET", label: "Holiday Let" },
+  ];
+  const areaOptions = areas.map((a) => ({ value: a.id, label: a.name }));
+  const bedsOptions = [1, 2, 3, 4, 5].map((n) => ({
+    value: String(n),
+    label: `${n}+`,
+  }));
+
   return (
     <div className="rounded-xl border border-white/10 bg-overlay/50 p-4 shadow-2xl shadow-black/30 backdrop-blur-md sm:p-5">
       <div className="flex flex-wrap items-center gap-2 sm:gap-3">
@@ -40,27 +51,21 @@ export function HeroSearch({ areas = [] }: { areas?: Area[] }) {
           className={`min-w-[140px] flex-1 ${inputClass}`}
           aria-label="Search location"
         />
-        <select
+        <CustomSelect
           value={listingType}
-          onChange={(e) => setListingType(e.target.value)}
-          className={inputClass}
-        >
-          <option value="">Type</option>
-          <option value="RENTAL">Rental</option>
-          <option value="HOLIDAY_LET">Holiday Let</option>
-        </select>
-        <select
+          onChange={setListingType}
+          options={typeOptions}
+          placeholder="Type"
+          aria-label="Listing type"
+        />
+        <CustomSelect
           value={areaId}
-          onChange={(e) => setAreaId(e.target.value)}
-          className={inputClass}
-        >
-          <option value="">Area</option>
-          {areas.map((a) => (
-            <option key={a.id} value={a.id}>
-              {a.name}
-            </option>
-          ))}
-        </select>
+          onChange={setAreaId}
+          options={areaOptions}
+          placeholder="Area"
+          aria-label="Area"
+          className="min-w-[160px]"
+        />
         <input
           type="number"
           placeholder="Min. price"
@@ -69,18 +74,14 @@ export function HeroSearch({ areas = [] }: { areas?: Area[] }) {
           min={0}
           className={`w-24 ${inputClass}`}
         />
-        <select
+        <CustomSelect
           value={beds}
-          onChange={(e) => setBeds(e.target.value)}
-          className={inputClass}
-        >
-          <option value="">Beds</option>
-          {[1, 2, 3, 4, 5].map((n) => (
-            <option key={n} value={String(n)}>
-              {n}+
-            </option>
-          ))}
-        </select>
+          onChange={setBeds}
+          options={bedsOptions}
+          placeholder="Beds"
+          aria-label="Number of beds"
+          className="min-w-[140px]"
+        />
         <button
           type="button"
           onClick={handleSearch}

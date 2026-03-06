@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 import { useState, useEffect } from "react";
@@ -60,14 +61,40 @@ export default function Header({ variant = "sticky" }: HeaderProps) {
       className={`${headerPosition} z-50 w-full shrink-0 border-b text-white transition-all duration-300 ${headerBg}`}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-4 sm:px-6 lg:px-8">
-        {/* Logo – left */}
+        {/* Logo + brand name – left */}
         <Link
           href="/"
-          className="flex shrink-0 items-center gap-2.5 text-white transition-opacity hover:opacity-90"
-          aria-label="Residence – Home"
+          className="flex shrink-0 items-center gap-3 bg-transparent transition-opacity hover:opacity-90"
+          aria-label="ASTA Property Management – Home"
         >
-          <span className="text-primary drop-shadow-sm">◇</span>
-          <span className="text-lg font-semibold tracking-[0.02em]">RESIDENCE</span>
+          <Image
+            src="/asta-logo.png"
+            alt=""
+            width={160}
+            height={48}
+            className="h-12 w-auto object-contain object-left bg-transparent"
+            style={{ background: "transparent" }}
+            priority
+            unoptimized
+          />
+          <div className="hidden flex-col sm:flex sm:flex-col gap-0.5">
+            <Image
+              src="/asta-text.png"
+              alt="ASTA"
+              width={80}
+              height={24}
+              className="h-7 w-auto object-contain object-left bg-transparent"
+              unoptimized
+            />
+            <Image
+              src="/asta-word.png"
+              alt="Property Management"
+              width={120}
+              height={16}
+              className="h-4 w-auto object-contain object-left bg-transparent"
+              unoptimized
+            />
+          </div>
         </Link>
 
         {/* Centered nav – desktop */}
@@ -88,7 +115,7 @@ export default function Header({ variant = "sticky" }: HeaderProps) {
                   </button>
                   {servicesOpen && item.children && (
                     <div className="absolute left-0 top-full pt-1">
-                      <div className="min-w-[220px] rounded-lg border border-white/10 bg-panel/95 py-2 shadow-xl shadow-black/40 backdrop-blur-xl">
+                      <div className="min-w-[220px] rounded-none border border-white/10 bg-panel/95 py-2 shadow-xl shadow-black/40 backdrop-blur-xl">
                         {item.children.map((c) => (
                           <Link
                             key={c.href}

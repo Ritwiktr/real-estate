@@ -90,7 +90,7 @@ export function MaintenanceForm({ defaultAddress = "", propertyId }: { defaultAd
       <select
         value={urgency}
         onChange={(e) => setUrgency(e.target.value)}
-        className="w-full rounded-lg border border-white/15 bg-overlay/40 px-3 py-2 text-sm text-white focus:border-white/40 focus:outline-none [&>option]:bg-panel"
+        className="w-full appearance-none rounded-none border border-white/15 bg-overlay/40 px-3 py-2 text-sm text-white focus:border-white/40 focus:outline-none [&>option]:bg-panel"
       >
         <option value="LOW">Low</option>
         <option value="MEDIUM">Medium</option>
