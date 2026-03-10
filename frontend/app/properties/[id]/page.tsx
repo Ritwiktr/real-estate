@@ -42,7 +42,7 @@ export default async function PropertyDetailPage({
     <div className="min-h-screen bg-surface">
       <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6">
         <Link
-          href="/properties"
+          href="/property-listings"
           className="inline-flex items-center text-sm font-medium text-muted hover:text-white"
         >
           ← Back to listings

@@ -5,10 +5,19 @@ import * as testimonialService from "../services/testimonialService.js";
 const router = Router();
 
 const submitSchema = z.object({
-  authorName: z.string().min(1, "Name is required"),
-  role: z.string().min(1, "Role is required"),
-  content: z.string().min(1, "Content is required"),
+  authorName: z.string().min(1, "Full Name is required"),
+  role: z.string().min(1, "Client type is required"), // e.g. Landlord, Tenant, Holiday let client
+  content: z.string().min(1, "Your Testimonial is required"),
   rating: z.number().min(1).max(5).optional(),
+  emailForVerification: z
+    .string()
+    .email("Please provide a valid email address")
+    .optional(),
+  includeNameLocation: z.boolean(),
+  consent: z
+    .boolean()
+    .refine((v) => v === true, "You must agree to the testimonial consent statement"),
+  photoData: z.string().optional(),
 });
 
 router.get("/", async (_req, res, next) => {

@@ -3,31 +3,9 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Owners / Landlords",
-  description: "Information for landlords: benefits and compliance support.",
+  description:
+    "At ASTA Property Management, we understand that your property is more than a building — it’s a long-term investment and an important part of your financial future.",
 };
-
-const HOW_IT_WORKS = [
-  {
-    step: 1,
-    title: "Contact us",
-    text: "Get in touch to discuss your portfolio and requirements. We'll outline our services and fees.",
-  },
-  {
-    step: 2,
-    title: "Onboarding",
-    text: "We onboard your properties, set up tenant placement and management processes, and ensure compliance documentation is in order.",
-  },
-  {
-    step: 3,
-    title: "We manage",
-    text: "We handle tenant placement, rent collection, maintenance, and inspections. You receive regular updates and financial summaries.",
-  },
-  {
-    step: 4,
-    title: "Portal access",
-    text: "Log in to the client portal to view your properties, maintenance requests, applications, and financial overview—anytime.",
-  },
-];
 
 export default function OwnersPage() {
   return (
@@ -44,16 +22,14 @@ export default function OwnersPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/85 to-black" />
         <div className="relative mx-auto w-full max-w-5xl px-4 pb-14 pt-28 sm:px-6 lg:pb-20">
           <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/70">
-            Owners & landlords
+            Owners / landlords
           </p>
           <h1 className="mt-4 text-4xl font-bold tracking-tight text-white sm:text-5xl">
-            Portfolio-grade
-            <br />
-            property management
+            Owners / Landlords
           </h1>
           <p className="mt-5 max-w-2xl text-sm sm:text-base text-white/80">
-            Hands-on management, clear reporting, and a modern portal for complete
-            visibility across your London properties.
+            At ASTA Property Management, we understand that your property is more than a building —
+            it’s a long-term investment and an important part of your financial future.
           </p>
         </div>
       </section>
@@ -61,90 +37,112 @@ export default function OwnersPage() {
       {/* Content */}
       <section className="border-t border-white/5 bg-surface">
         <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:py-16">
-          <div className="grid gap-10 lg:grid-cols-[1.1fr_minmax(0,0.9fr)]">
-            {/* How it works + benefits */}
-            <div className="space-y-10">
-              <div>
-                <h2 className="text-xl font-semibold text-white">How it works</h2>
-                <ol className="mt-4 space-y-4">
-                  {HOW_IT_WORKS.map(({ step, title, text }) => (
-                    <li key={step} className="flex gap-4">
-                      <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary text-xs font-semibold text-black">
-                        {step}
-                      </span>
-                      <div>
-                        <h3 className="text-sm font-semibold text-white">{title}</h3>
-                        <p className="mt-1 text-sm text-muted">{text}</p>
-                      </div>
-                    </li>
-                  ))}
-                </ol>
-              </div>
+          <div className="space-y-8 text-sm text-muted sm:text-base">
+            <p>
+              Our dedicated landlord services are designed to protect your assets, increase your
+              returns, and remove the day-to-day burdens of tenancy management.
+            </p>
+            <p>
+              Whether you’re a first-time landlord with a single flat or a seasoned investor
+              managing a growing portfolio, ASTA provides intelligent, hands-on support tailored to
+              your objectives and obligations.
+            </p>
 
-              <div>
-                <h2 className="text-xl font-semibold text-white">Benefits</h2>
-                <ul className="mt-3 space-y-2 text-sm text-muted">
-                  <li>Full tenant placement and referencing</li>
-                  <li>Rent collection and financial reporting</li>
-                  <li>Maintenance and inspections handled for you</li>
-                  <li>Compliance with legal and safety requirements</li>
-                </ul>
-              </div>
+            <div className="space-y-3">
+              <h2 className="text-xl font-semibold text-white">Why Landlords Choose ASTA</h2>
+              <ul className="mt-1 space-y-1">
+                <li>✓ Complete Property Management – From marketing and tenant sourcing to inspections and financial reporting</li>
+                <li>✓ Legal Compliance &amp; Risk Mitigation – We ensure your tenancy is always aligned with the latest UK and London-specific legislation</li>
+                <li>✓ Maximised Rental Yield – With intelligent pricing, dynamic marketing, and rent reviews based on current market data</li>
+                <li>✓ Transparent Financial Reporting – Full monthly breakdowns and annual statements, accessible through our secure online portal</li>
+                <li>✓ Maintenance Oversight – Reliable, cost-effective service management from vetted contractors</li>
+                <li>✓ Holiday Let and HMO Services – Licensing, turnover, and guest management included</li>
+              </ul>
+            </div>
 
-              <div>
-                <h2 className="text-xl font-semibold text-white">Compliance support</h2>
-                <p className="mt-2 text-sm text-muted">
-                  We keep you on the right side of the law: deposit protection, gas
-                  safety, EPCs, and right to rent checks.
-                </p>
-                <ul className="mt-3 space-y-1 text-sm text-muted">
-                  <li>Tenancy deposit protection (TDP) and prescribed information</li>
-                  <li>Gas safety certificates (where applicable)</li>
-                  <li>Energy Performance Certificates (EPCs)</li>
-                  <li>Right to rent checks</li>
-                  <li>Licensing and HMO requirements where they apply</li>
-                </ul>
+            <div className="space-y-3">
+              <h2 className="text-xl font-semibold text-white">Compliance You Can Rely On</h2>
+              <p>
+                Navigating the modern legal landscape can be overwhelming. We manage:
+              </p>
+              <ul className="space-y-1">
+                <li>• Right to Rent checks</li>
+                <li>• Deposit protection and dispute resolution</li>
+                <li>• Tenancy agreement preparation (including NRLA templates)</li>
+                <li>• Licensing support (selective, additional, or HMO)</li>
+                <li>• Energy and safety certification (EPC, EICR, gas safety)</li>
+                <li>• Notices and enforcement support (including Section 8 and Section 21, where applicable)</li>
+              </ul>
+              <p>
+                We are proud members of the National Residential Landlords Association (NRLA) and
+                prioritise compliance at every stage of your lettings journey.
+              </p>
+            </div>
+
+            <div className="space-y-3">
+              <h2 className="text-xl font-semibold text-white">Marketing and Lettings</h2>
+              <p>
+                Your property is marketed with precision and purpose. Every listing includes:
+              </p>
+              <ul className="space-y-1">
+                <li>• SEO-friendly descriptions written by property professionals</li>
+                <li>• Beautiful high-resolution photography</li>
+                <li>• Social media promotion</li>
+                <li>• Syndicated listings across Rightmove, Zoopla, OnTheMarket and Airbnb (where applicable)</li>
+                <li>• Strategic targeting for short-lets, professionals, families, and more</li>
+              </ul>
+              <p>
+                Our goal is to secure you the best possible tenant, in the shortest possible time, at
+                the optimal rate — while ensuring peace of mind.
+              </p>
+            </div>
+
+            <div className="space-y-3">
+              <h2 className="text-xl font-semibold text-white">Support, Strategy, Success</h2>
+              <p>
+                At ASTA, we build long-term relationships with our landlords. You’ll always work with a
+                real person — someone who understands your goals, monitors your property, and keeps
+                you fully informed.
+              </p>
+              <p>
+                You’ll benefit from the insight of our team, including Director Theresia Petersen,
+                senior property managers Misha and Mariia, and compliance specialist Anton Berg, all
+                of whom are committed to your success.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-white/10 bg-panel/70 p-6 shadow-[0_18px_45px_rgba(0,0,0,0.65)]">
+              <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-white/70">
+                Owners Portal
+              </h2>
+              <p className="mt-3 text-sm text-muted">
+                Landlords can access tailored resources via our Owners Portal. Register or sign in to
+                view your properties, maintenance requests, applications, and financial summaries —
+                all in one place.
+              </p>
+              <div className="mt-5 flex flex-wrap gap-3">
+                <Link
+                  href="/register"
+                  className="inline-flex rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-black transition hover:bg-primary-light"
+                >
+                  Register for portal access
+                </Link>
+                <Link
+                  href="/login"
+                  className="inline-flex rounded-lg border border-white/25 px-5 py-2.5 text-sm font-medium text-white hover:bg-white/10"
+                >
+                  Sign in to portal
+                </Link>
               </div>
             </div>
 
-            {/* Portal / CTA card */}
-            <aside className="space-y-6">
-              <div className="rounded-2xl border border-white/10 bg-panel/70 p-6 shadow-[0_18px_45px_rgba(0,0,0,0.65)]">
-                <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-white/70">
-                  Portal access
-                </h2>
-                <p className="mt-3 text-sm text-muted">
-                  Register or sign in to view your properties, applications, maintenance,
-                  and financial summaries — all in one place.
-                </p>
-                <div className="mt-5 flex flex-wrap gap-3">
-                  <Link
-                    href="/register"
-                    className="inline-flex rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-black transition hover:bg-primary-light"
-                  >
-                    Register for portal access
-                  </Link>
-                  <Link
-                    href="/login"
-                    className="inline-flex rounded-lg border border-white/25 px-5 py-2.5 text-sm font-medium text-white hover:bg-white/10"
-                  >
-                    Sign in to portal
-                  </Link>
-                </div>
-              </div>
-
-              <div className="rounded-2xl border border-white/10 bg-panel/60 p-5">
-                <p className="text-sm text-muted">
-                  Prefer to talk through your portfolio?
-                </p>
-                <Link
-                  href="/contact"
-                  className="mt-2 inline-flex text-sm font-medium text-primary hover:text-primary-light"
-                >
-                  Get in touch →
-                </Link>
-              </div>
-            </aside>
+            <p className="text-sm text-muted">
+              Prefer to talk through your portfolio?{" "}
+              <Link href="/contact-us" className="text-primary hover:text-primary-light">
+                Contact us
+              </Link>{" "}
+              to arrange a consultation.
+            </p>
           </div>
         </div>
       </section>

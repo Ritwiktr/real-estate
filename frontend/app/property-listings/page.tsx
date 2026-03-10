@@ -20,7 +20,7 @@ type SearchParams = {
   beds?: string;
 };
 
-export default async function PropertiesPage({ searchParams }: { searchParams: SearchParams }) {
+export default async function PropertyListingsPage({ searchParams }: { searchParams: SearchParams }) {
   const page = Number(searchParams.page) || 1;
   const params: Record<string, string> = { page: String(page), limit: "12" };
   if (searchParams.search) params.search = searchParams.search;
@@ -94,7 +94,7 @@ export default async function PropertiesPage({ searchParams }: { searchParams: S
         {items.length === 0 && (
           <div className="py-16 text-center">
             <p className="text-muted">No properties match your criteria.</p>
-            <Link href="/properties" className="btn-primary mt-4 inline-flex">
+            <Link href="/property-listings" className="btn-primary mt-4 inline-flex">
               Clear filters
             </Link>
           </div>
@@ -104,7 +104,9 @@ export default async function PropertiesPage({ searchParams }: { searchParams: S
           <div className="mt-12 flex flex-wrap items-center justify-center gap-2">
             {page > 1 && (
               <Link
-                href={`/properties?${new URLSearchParams({ ...searchParams, page: String(page - 1) } as Record<string, string>).toString()}`}
+                href={`/property-listings?${new URLSearchParams(
+                  { ...searchParams, page: String(page - 1) } as Record<string, string>
+                ).toString()}`}
                 className="rounded-lg border border-white/20 bg-white/5 px-4 py-2 text-sm font-medium text-white hover:bg-white/10"
               >
                 Previous
@@ -115,7 +117,9 @@ export default async function PropertiesPage({ searchParams }: { searchParams: S
             </span>
             {page < totalPages && (
               <Link
-                href={`/properties?${new URLSearchParams({ ...searchParams, page: String(page + 1) } as Record<string, string>).toString()}`}
+                href={`/property-listings?${new URLSearchParams(
+                  { ...searchParams, page: String(page + 1) } as Record<string, string>
+                ).toString()}`}
                 className="rounded-lg border border-white/20 bg-white/5 px-4 py-2 text-sm font-medium text-white hover:bg-white/10"
               >
                 Next
@@ -127,3 +131,4 @@ export default async function PropertiesPage({ searchParams }: { searchParams: S
     </div>
   );
 }
+

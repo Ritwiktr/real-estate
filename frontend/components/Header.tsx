@@ -9,19 +9,27 @@ import { NotificationDropdown } from "./NotificationDropdown";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/properties", label: "Properties" },
-  { href: "/about", label: "About" },
+  { href: "/property-listings", label: "Properties" },
+  { href: "/about-us", label: "About" },
   {
     label: "Services",
     children: [
       { href: "/services", label: "Overview" },
-      { href: "/services/tenant-placement", label: "Tenant Placement" },
-      { href: "/services/maintenance-inspections", label: "Maintenance & Inspections" },
+      { href: "/services/tenant-placement-screening", label: "Tenant Placement" },
+      { href: "/services/property-maintenance-inspections", label: "Maintenance & Inspections" },
       { href: "/services/financial-management", label: "Financial Management" },
     ],
   },
+  {
+    label: "Portal",
+    children: [
+      { href: "/login-portal", label: "Portal Overview" },
+      { href: "/login", label: "Login" },
+      { href: "/login-portal-help", label: "Help & FAQ" },
+    ],
+  },
   { href: "/blog", label: "Blog" },
-  { href: "/contact", label: "Contact" },
+  { href: "/contact-us", label: "Contact" },
 ];
 
 type HeaderProps = {
@@ -34,6 +42,7 @@ export default function Header({ variant = "sticky" }: HeaderProps) {
   const { user, logout, loading } = useAuth();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [portalOpen, setPortalOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const isHome = pathname === "/";
 
@@ -105,7 +114,15 @@ export default function Header({ variant = "sticky" }: HeaderProps) {
                 <li key={item.label} className="relative">
                   <button
                     type="button"
-                    onClick={() => setServicesOpen((o) => !o)}
+                    onClick={() => {
+                      if (item.label === "Services") {
+                        setServicesOpen((o) => !o);
+                        setPortalOpen(false);
+                      } else if (item.label === "Portal") {
+                        setPortalOpen((o) => !o);
+                        setServicesOpen(false);
+                      }
+                    }}
                     className={`flex items-center gap-1 px-4 py-2 text-sm font-medium transition hover:text-white ${
                       isActiveParent(item) ? "text-white" : "text-white/80"
                     }`}
@@ -113,7 +130,7 @@ export default function Header({ variant = "sticky" }: HeaderProps) {
                     {item.label}
                     <span className="text-[10px] opacity-80">▾</span>
                   </button>
-                  {servicesOpen && item.children && (
+                  {((item.label === "Services" && servicesOpen) || (item.label === "Portal" && portalOpen)) && item.children && (
                     <div className="absolute left-0 top-full pt-1">
                       <div className="min-w-[220px] rounded-none border border-white/10 bg-panel/95 py-2 shadow-xl shadow-black/40 backdrop-blur-xl">
                         {item.children.map((c) => (
@@ -125,7 +142,10 @@ export default function Header({ variant = "sticky" }: HeaderProps) {
                                 ? "bg-primary/95 font-medium text-black"
                                 : "text-white/80 hover:bg-white/10 hover:text-white"
                             }`}
-                            onClick={() => setServicesOpen(false)}
+                            onClick={() => {
+                              setServicesOpen(false);
+                              setPortalOpen(false);
+                            }}
                           >
                             {c.label}
                           </Link>
@@ -226,12 +246,20 @@ export default function Header({ variant = "sticky" }: HeaderProps) {
                   <li key={item.label}>
                     <button
                       type="button"
-                      onClick={() => setServicesOpen((o) => !o)}
+                      onClick={() => {
+                        if (item.label === "Services") {
+                          setServicesOpen((o) => !o);
+                          setPortalOpen(false);
+                        } else if (item.label === "Portal") {
+                          setPortalOpen((o) => !o);
+                          setServicesOpen(false);
+                        }
+                      }}
                       className="flex w-full items-center justify-between py-2.5 text-sm font-medium text-white/90"
                     >
                       {item.label} ▾
                     </button>
-                    {servicesOpen && item.children && (
+                    {((item.label === "Services" && servicesOpen) || (item.label === "Portal" && portalOpen)) && item.children && (
                       <ul className="border-l border-white/10 pl-4">
                         {item.children.map((c) => (
                           <li key={c.href}>

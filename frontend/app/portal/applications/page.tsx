@@ -43,7 +43,7 @@ export default function PortalApplicationsPage() {
       <p className="mt-1 text-sm text-muted">Track your property applications</p>
 
       <Link
-        href="/properties"
+        href="/property-listings"
         className="mt-4 inline-block text-sm font-medium text-primary hover:underline"
       >
         Browse properties →
@@ -54,7 +54,7 @@ export default function PortalApplicationsPage() {
       <div className="mt-6 space-y-3">
         {items?.length === 0 && (
           <p className="rounded-xl border border-white/10 bg-panel/50 p-8 text-center text-muted">
-            No applications yet. <Link href="/properties" className="text-primary hover:underline">Browse properties</Link> to apply.
+            No applications yet. <Link href="/property-listings" className="text-primary hover:underline">Browse properties</Link> to apply.
           </p>
         )}
         {items?.map((a) => (

@@ -3,22 +3,23 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Services | ASTA Property Management",
-  description: "Full-service property management for landlords. Tenant placement, maintenance, and financial oversight.",
+  description:
+    "An integrated suite of professional services for landlords, tenants, and investors — from tenant placement and maintenance to financial management, holiday lets, and compliance support.",
 };
 
 const services = [
   {
-    href: "/services/tenant-placement",
+    href: "/services/tenant-placement-screening",
     title: "Tenant Placement and Screening",
-    desc: "Advertising, referencing, and onboarding — we find the right tenant for your property.",
+    desc: "Professional marketing, thorough vetting, and compliant onboarding to secure the right tenant for every tenancy.",
     image: "https://images.unsplash.com/photo-1560185127-6a1896ab1348?w=800",
     icon: "◇",
     stats: ["500+", "Tenants Placed"],
   },
   {
-    href: "/services/maintenance-inspections",
+    href: "/services/property-maintenance-inspections",
     title: "Property Maintenance and Inspections",
-    desc: "Maintenance coordination, inspections, and contractor management — kept in exemplary condition.",
+    desc: "Proactive and responsive maintenance, regular inspections, and digital logs that protect your asset.",
     image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800",
     icon: "◆",
     stats: ["24/7", "Support"],
@@ -26,10 +27,26 @@ const services = [
   {
     href: "/services/financial-management",
     title: "Financial Management and Reporting",
-    desc: "Rent collection, financial reporting, and landlord oversight — complete transparency.",
+    desc: "Transparent rent collection, arrears tracking, and clear, export-ready financial reporting for your portfolio.",
     image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800",
     icon: "◈",
     stats: ["100%", "On-Time"],
+  },
+  {
+    href: "/services/holiday-lettings",
+    title: "Holiday Let Management",
+    desc: "Licensing, dynamic pricing, guest experience, and compliance for holiday homes in West Mersea and beyond.",
+    image: "https://images.unsplash.com/photo-1469796466635-455ede028aca?w=800",
+    icon: "❖",
+    stats: ["5★", "Guest Focus"],
+  },
+  {
+    href: "/services/client-services",
+    title: "Client Services and Compliance",
+    desc: "Licensing, legal documentation, and NRLA-aligned tenancy support to keep you ahead of regulation.",
+    image: "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=800",
+    icon: "▣",
+    stats: ["NRLA", "Aligned"],
   },
 ];
 
@@ -50,12 +67,14 @@ export default function ServicesPage() {
             What we do
           </p>
           <h1 className="mt-4 text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
-            Property Management
+            Property management,
             <br />
-            <span className="text-primary">Reimagined</span>
+            tailored to every tenancy
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/85">
-            Full-service property management for landlords and a clear, compliant experience for tenants. From placement to maintenance to finances — we handle it all.
+            At ASTA Property Management, we deliver an integrated suite of services — from tenant
+            placement and day-to-day management to holiday lets and regulatory support — designed
+            to make every tenancy smooth, compliant, and rewarding.
           </p>
         </div>
       </section>
@@ -147,11 +166,11 @@ export default function ServicesPage() {
             Get in touch and discover how we can help you maximise your investment.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Link href="/contact" className="btn-hero">
+            <Link href="/contact-us" className="btn-hero">
               Get in touch
             </Link>
             <Link
-              href="/properties"
+              href="/property-listings"
               className="inline-flex items-center justify-center rounded-md border-2 border-white/40 bg-transparent px-6 py-3 text-sm font-medium text-white transition hover:border-white hover:bg-white/10"
             >
               View properties

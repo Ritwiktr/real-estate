@@ -2,43 +2,49 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "About Us",
-  description: "Company overview, mission, values, and team.",
+  description:
+    "Learn about ASTA Property Management’s mission, values, and team delivering intelligent, compliant, human‑centred property management across London.",
 };
 
 const TEAM = [
   {
-    name: "Sarah Mitchell",
+    name: "Theresia Petersen",
     role: "Director",
-    bio: "15+ years in property management. Focus on compliance, landlord relations, and tenant satisfaction.",
+    bio: "Founder and Director of ASTA Property Management, bringing decades of industry knowledge with a focus on integrity, precision, and long-term client relationships.",
   },
   {
-    name: "James Chen",
-    role: "Operations Manager",
-    bio: "Oversees maintenance coordination, contractor network, and inspection scheduling.",
+    name: "Misha",
+    role: "Senior Property Manager",
+    bio: "Oversees day-to-day tenancy management, inspections, and maintenance coordination across London boroughs.",
   },
   {
-    name: "Emma Foster",
-    role: "Tenant Liaison",
-    bio: "Supports tenants from application through tenancy with clear communication and prompt issue resolution.",
+    name: "Mariia",
+    role: "Senior Property Manager",
+    bio: "Specialises in complex portfolios, compliance-led processes, and high-standard tenant experiences.",
+  },
+  {
+    name: "Anton",
+    role: "Client & Compliance Specialist",
+    bio: "Supports landlords with legal documentation, regulatory updates, and clear, proactive client communication.",
   },
 ];
 
 const VALUES = [
   {
-    title: "Integrity and compliance",
-    text: "We follow the law and best practices. Deposit protection, safety checks, and transparent processes are non-negotiable.",
+    title: "Transparency in every interaction",
+    text: "We prioritise clear communication, straightforward documentation, and honest advice for both landlords and tenants.",
   },
   {
-    title: "Clear communication",
-    text: "Landlords and tenants get timely updates. No surprises—just straightforward, professional service.",
+    title: "Proactive, compliant solutions",
+    text: "From tenancy agreements to safety certificates, our processes are designed to stay ahead of legal reform and best practice.",
   },
   {
-    title: "Efficiency and reliability",
-    text: "Rent collected on time, maintenance handled quickly, and inspections done to schedule. We deliver what we promise.",
+    title: "Exceptional customer care",
+    text: "We blend modern digital tools with genuinely personal service, building long-term partnerships based on trust.",
   },
 ];
 
-export default function AboutPage() {
+export default function AboutUsPage() {
   return (
     <div className="min-h-screen bg-surface">
       {/* Hero with London skyline */}
@@ -56,13 +62,14 @@ export default function AboutPage() {
             About
           </p>
           <h1 className="mt-4 text-4xl font-bold tracking-tight text-white sm:text-5xl">
-            A modern London
+            Redefining London
             <br />
-            property partner
+            property management
           </h1>
           <p className="mt-5 max-w-2xl text-sm sm:text-base text-white/80">
-            We manage premium rentals and holiday lets across London — combining boutique
-            service with rigorous compliance for both landlords and tenants.
+            We are not simply caretakers — we are strategic partners helping landlords optimise
+            their investments and tenants enjoy secure, well-managed homes across London and
+            beyond.
           </p>
         </div>
       </section>
@@ -75,9 +82,8 @@ export default function AboutPage() {
             <div>
               <h2 className="text-xl font-semibold text-white">Our mission</h2>
               <p className="mt-3 text-sm leading-relaxed text-muted">
-                To deliver professional, compliant, and transparent property management
-                services that give landlords peace of mind and tenants a smooth
-                experience — from first viewing to move-out.
+                To deliver intelligent, compliant, and human-centred property management across
+                London, helping clients maximise returns while minimising risk and stress.
               </p>
             </div>
 
@@ -98,9 +104,9 @@ export default function AboutPage() {
           <div className="flex-1">
             <h2 className="text-xl font-semibold text-white">Our team</h2>
             <p className="mt-3 text-sm text-muted">
-              Our experienced team combines London market knowledge with a focus on
-              service. We look after placements, inspections, maintenance and financial
-              reporting so you can focus on the bigger picture.
+              Our experienced team combines London market knowledge with a focus on service. We
+              look after placements, inspections, maintenance and financial reporting so you can
+              focus on the bigger picture.
             </p>
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
               {TEAM.map((m) => (
@@ -122,3 +128,4 @@ export default function AboutPage() {
     </div>
   );
 }
+

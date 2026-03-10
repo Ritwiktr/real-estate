@@ -20,7 +20,15 @@ export type Property = {
 };
 export type Area = { id: string; name: string; slug: string; imageUrl: string | null; description: string | null };
 export type BlogPost = { id: string; title: string; slug: string; excerpt: string | null; publishedAt: string | null; author: string | null };
-export type Testimonial = { id: string; authorName: string; role: string; content: string; rating: number | null };
+export type Testimonial = {
+  id: string;
+  authorName: string;
+  role: string;
+  content: string;
+  rating: number | null;
+  includeNameLocation?: boolean;
+  photoData?: string | null;
+};
 export type EnquirySummary = { id: string; name: string; email: string; subject: string | null; source: string; createdAt: string };
 export type MaintenanceSummary = {
   id: string;
@@ -100,7 +108,16 @@ export const blogApi = {
 
 export const testimonialsApi = {
   list: () => api<Testimonial[]>("/api/testimonials"),
-  submit: (body: { authorName: string; role: string; content: string; rating?: number }) =>
+  submit: (body: {
+    authorName: string;
+    role: string;
+    content: string;
+    rating?: number;
+    emailForVerification?: string;
+    includeNameLocation: boolean;
+    consent: boolean;
+    photoData?: string | null;
+  }) =>
     api<{ id: string }>("/api/testimonials", { method: "POST", body: JSON.stringify(body) }),
 };
 

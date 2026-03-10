@@ -3,18 +3,19 @@ import { EnquiryForm } from "@/components/forms/EnquiryForm";
 
 export const metadata: Metadata = {
   title: "Contact Us",
-  description: "Contact information and enquiry form.",
+  description:
+    "Contact ASTA Property Management for landlord services, tenant support, and holiday let management across London and beyond.",
 };
 
-export default function ContactPage() {
+export default function ContactUsPage() {
   return (
     <div className="mx-auto w-full max-w-5xl px-4 py-10 sm:px-6 lg:py-14">
       <div className="max-w-2xl">
         <p className="section-label">Contact</p>
         <h1 className="section-heading mt-2">Contact us</h1>
         <p className="section-subheading mt-3">
-          Get in touch for property management, viewings, or general enquiries. We&apos;ll usually respond
-          within one working day.
+          Whether you're a landlord ready to optimise your portfolio or a tenant seeking responsive
+          support, we’re here to help. We usually respond within one working day.
         </p>
       </div>
 
@@ -24,7 +25,8 @@ export default function ContactPage() {
             <div>
               <h2 className="text-lg font-semibold text-white">Send an enquiry</h2>
               <p className="mt-1 text-sm text-elegant-muted">
-                Tell us a little about what you&apos;re looking for and we&apos;ll follow up with options.
+                From full-service property management to holiday lets and tenant support, tell us
+                what you need and we&apos;ll follow up with tailored options.
               </p>
             </div>
           </div>
@@ -32,8 +34,8 @@ export default function ContactPage() {
           <EnquiryForm variant="dark" />
 
           <p className="mt-4 text-xs text-elegant-muted">
-            By submitting, you agree to us contacting you about this enquiry. For more details, see our privacy
-            policy.
+            By submitting, you agree to us contacting you about this enquiry. For more details, see
+            our privacy policy.
           </p>
         </section>
 
@@ -43,8 +45,13 @@ export default function ContactPage() {
               Office
             </h2>
             <p className="mt-3 text-sm text-elegant-muted">
-              123 Example Street<br />
-              London, SW1A 1AA
+              ASTA Property Management
+              <br />
+              36 Northumberland Avenue
+              <br />
+              London, E12 5HD
+              <br />
+              United Kingdom
             </p>
 
             <dl className="mt-5 space-y-3 text-sm">
@@ -54,12 +61,12 @@ export default function ContactPage() {
                 </dt>
                 <dd>
                   <a
-                    href="tel:08001234567"
+                    href="tel:+447452766766"
                     className="text-sm font-medium text-white hover:text-white/80"
                   >
-                    0800 123 4567
+                    07452 766766
                   </a>
-                  <p className="text-xs text-elegant-muted">Mon–Fri, 9:00 – 18:00</p>
+                  <p className="text-xs text-elegant-muted">Monday – Friday: 9:00 – 17:30</p>
                 </dd>
               </div>
               <div className="flex gap-3">
@@ -68,12 +75,14 @@ export default function ContactPage() {
                 </dt>
                 <dd>
                   <a
-                    href="mailto:info@example.com"
+                    href="mailto:hello@astaone.co.uk"
                     className="text-sm font-medium text-white hover:text-white/80"
                   >
-                    info@example.com
+                    hello@astaone.co.uk
                   </a>
-                  <p className="text-xs text-elegant-muted">We aim to respond by the next business day.</p>
+                  <p className="text-xs text-elegant-muted">
+                    For legal or policy matters, email info@astapm.co.uk.
+                  </p>
                 </dd>
               </div>
             </dl>
@@ -96,3 +105,4 @@ export default function ContactPage() {
     </div>
   );
 }
+

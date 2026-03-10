@@ -3,7 +3,8 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Financial Management and Reporting",
-  description: "Rent collection, financial reporting, and landlord oversight.",
+  description:
+    "Transparent rent collection, income and expenditure reporting, and yield optimisation for your property portfolio.",
 };
 
 export default function FinancialManagementPage() {
@@ -11,37 +12,32 @@ export default function FinancialManagementPage() {
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
       <h1 className="text-3xl font-bold text-white">Financial Management and Reporting</h1>
       <p className="mt-4 text-muted">
-        We collect rent, manage deposits, and provide clear financial reporting so you have full oversight of your property portfolio.
+        Your property portfolio is an investment — and we treat it as such. ASTA’s financial
+        management services are designed for transparency, accuracy, and convenience.
       </p>
 
       <h2 className="mt-8 text-xl font-semibold text-white">Rent collection</h2>
       <p className="mt-2 text-muted">
-        We collect rent directly from tenants, issue reminders before due dates, and follow a clear arrears process if payments are missed. You receive regular updates and can view rent due, collected, and overdue in the portal.
+        We collect rent directly from tenants and ensure secure transfers to your nominated
+        account. Automated reminders and a structured arrears process keep payments on track.
       </p>
 
-      <h2 className="mt-8 text-xl font-semibold text-white">Deposit protection</h2>
+      <h2 className="mt-8 text-xl font-semibold text-white">Income and expenditure</h2>
       <p className="mt-2 text-muted">
-        All tenant deposits are placed in a government-approved scheme. We handle prescribed information and end-of-tenancy deductions in line with regulations.
+        Digital income and expenditure reports provide clear oversight of your portfolio
+        performance. You can easily export data for your accountant or personal records.
       </p>
 
       <h2 className="mt-8 text-xl font-semibold text-white">Statements and reporting</h2>
       <p className="mt-2 text-muted">
-        Landlords receive regular statements showing rent collected, fees, and any adjustments. We can provide export-ready data for your accountant.
+        We provide monthly statements, year-end summaries for tax reporting, and clear breakdowns
+        of rents, fees, and authorised works.
       </p>
 
-      <h2 className="mt-8 text-xl font-semibold text-white">Landlord payouts</h2>
+      <h2 className="mt-8 text-xl font-semibold text-white">Deposit handling & arrears</h2>
       <p className="mt-2 text-muted">
-        Net rent (after management fees and deductions) is paid to your nominated account on agreed dates. We keep transparent records of all transactions.
-      </p>
-
-      <h2 className="mt-8 text-xl font-semibold text-white">Arrears process</h2>
-      <p className="mt-2 text-muted">
-        If rent falls overdue, we follow a structured process: reminders, formal notices, and, where necessary, liaison with legal support. We aim to resolve issues early while protecting your interests.
-      </p>
-
-      <h2 className="mt-8 text-xl font-semibold text-white">Accounting support</h2>
-      <p className="mt-2 text-muted">
-        We provide clear documentation for tax purposes and can work with your accountant. All income and expenses are recorded and traceable.
+        Deposits are managed in line with government regulations, and automated arrears tracking
+        helps us act quickly on missed payments with clear, documented follow-up.
       </p>
 
       <div className="mt-10 rounded-xl border border-white/10 bg-white/5 p-6">

@@ -135,13 +135,17 @@ model BlogPost {
 }
 
 model Testimonial {
-  id         String   @id @default(uuid())
-  authorName String
-  role       String
-  content    String   @db.Text
-  rating     Int?
-  isApproved Boolean  @default(false)
-  createdAt  DateTime @default(now())
+  id                   String   @id @default(uuid())
+  authorName           String
+  role                 String
+  content              String   @db.Text
+  rating               Int?
+  emailForVerification String?
+  includeNameLocation  Boolean  @default(true)
+  photoData            String?  @db.Text
+  consent              Boolean  @default(false)
+  isApproved           Boolean  @default(false)
+  createdAt            DateTime @default(now())
 }
 
 enum TenancyApplicationStatus {

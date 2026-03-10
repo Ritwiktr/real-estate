@@ -158,41 +158,75 @@ export default function PortalPage() {
         </section>
       )}
 
-      {/* Shared portal link section */}
+      {/* Portal Information & Links */}
       <div className="mt-8 space-y-4 rounded-xl border border-white/10 bg-panel/50 p-6">
+        <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-white/70">
+          Portal Features & Support
+        </h3>
+        
         {PORTAL_URL ? (
           <>
             <p className="text-sm text-muted">
-              Use the client portal for documents, rent, maintenance updates, and more.
+              Access comprehensive property management tools including documents, rent tracking, 
+              maintenance updates, financial reports, and secure communication with our team.
             </p>
-            <a
-              href={PORTAL_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-black transition hover:bg-primary-light"
-            >
-              Open client portal →
-            </a>
+            <div className="flex flex-wrap gap-3">
+              <a
+                href={PORTAL_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-black transition hover:bg-primary-light"
+              >
+                Open Full Portal
+                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+              <Link
+                href="/login-portal"
+                className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/5 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-white/10"
+              >
+                Portal Features
+              </Link>
+            </div>
           </>
         ) : (
-          <p className="text-sm text-muted">
-            Portal access is managed by your property manager. Contact us for documents, rent, or maintenance updates.
-          </p>
+          <>
+            <p className="text-sm text-muted">
+              Your portal provides 24/7 access to property management tools, documents, 
+              rent tracking, and secure communication. Contact us for full portal access.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <Link
+                href="/login-portal"
+                className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-black transition hover:bg-primary-light"
+              >
+                Learn About Portal Features
+              </Link>
+              <Link
+                href="/contact-us"
+                className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/5 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-white/10"
+              >
+                Contact Support
+              </Link>
+            </div>
+          </>
         )}
 
         {!isAdmin && (
           <div className="border-t border-white/10 pt-4">
             <p className="text-xs uppercase tracking-[0.16em] text-muted">Quick links</p>
-            <div className="mt-2 space-x-3">
-              <Link href="/properties" className="text-sm font-medium text-primary hover:underline">
+            <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-sm">
+              <Link href="/property-listings" className="font-medium text-primary hover:underline">
                 Browse properties
               </Link>
               <span className="text-muted">·</span>
-              <Link
-                href="/maintenance-request"
-                className="text-sm font-medium text-primary hover:underline"
-              >
+              <Link href="/maintenance-request" className="font-medium text-primary hover:underline">
                 Submit maintenance request
+              </Link>
+              <span className="text-muted">·</span>
+              <Link href="/login-portal-help" className="font-medium text-primary hover:underline">
+                Portal help & FAQ
               </Link>
             </div>
           </div>

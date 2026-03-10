@@ -25,13 +25,13 @@ export default function Footer() {
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.2em] text-white/50">Explore</p>
             <ul className="mt-3 space-y-2 text-sm">
-              <li><Link href="/properties" className="hover:text-white">Properties</Link></li>
-              <li><Link href="/about" className="hover:text-white">About Us</Link></li>
               <li><Link href="/owners" className="hover:text-white">For Owners</Link></li>
               <li><Link href="/tenants" className="hover:text-white">For Tenants</Link></li>
               <li><Link href="/blog" className="hover:text-white">Blog</Link></li>
               <li><Link href="/testimonials" className="hover:text-white">Testimonials</Link></li>
-              <li><Link href="/contact" className="hover:text-white">Contact</Link></li>
+              <li><Link href="/property-listings" className="hover:text-white">Properties</Link></li>
+              <li><Link href="/about-us" className="hover:text-white">About Us</Link></li>
+              <li><Link href="/contact-us" className="hover:text-white">Contact</Link></li>
             </ul>
           </div>
           <div>
@@ -39,6 +39,8 @@ export default function Footer() {
             <ul className="mt-3 space-y-2 text-sm">
               <li><Link href="/faqs" className="block hover:text-white">FAQs</Link></li>
               <li><Link href="/maintenance-request" className="block hover:text-white">Maintenance Request</Link></li>
+              <li><Link href="/login-portal" className="block hover:text-white">Client Portal</Link></li>
+              <li><Link href="/login-portal-help" className="block hover:text-white">Portal Help</Link></li>
             </ul>
           </div>
           <div>

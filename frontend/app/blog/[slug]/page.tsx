@@ -6,12 +6,12 @@ import { getBlogPost } from "@/lib/server-api";
 export const dynamic = "force-dynamic";
 
 const BLOG_IMAGES: Record<string, string> = {
-  "welcome-to-our-blog": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200",
-  "tenant-screening-best-practices": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200",
-  "property-maintenance-tips": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1200",
-  "rental-market-outlook-2025": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200",
-  "holiday-let-vs-long-term-rental": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200",
-  "deposit-protection-schemes": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200",
+  "uk-housing-law-2025": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200",
+  "landlord-strategy-tips-2025": "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=1200",
+  "tenant-expectations-2025": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1200",
+  "financial-planning-rental-income-2025": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200",
+  "holiday-let-licensing-uk-2025": "https://images.unsplash.com/photo-1469796466635-455ede028aca?w=1200",
+  "sustainable-rentals-2025": "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=1200",
 };
 const DEFAULT_BLOG_IMAGE = "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200";
 
@@ -28,18 +28,55 @@ function formatDate(dateStr: string | null) {
   });
 }
 
+// Static blog posts data
+const STATIC_BLOG_POSTS: Record<string, { title: string; excerpt: string; publishedAt: string; author: string; body: string }> = {
+  "uk-housing-law-2025": {
+    title: "Navigating UK Housing Law Changes: What Every Landlord Must Know in 2025",
+    excerpt: "In 2025, the UK rental sector is undergoing its most transformative shift in decades. A series of legislative reforms are being introduced to improve housing quality, enhance tenant rights, and formalise the responsibilities of landlords.",
+    publishedAt: "2025-01-15",
+    author: "ASTA Property Management",
+    body: "This blog post has been moved to a dedicated page. Please visit /blog/uk-housing-law-2025 for the full article."
+  },
+  // Add other posts as needed for fallback
+};
+
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const post = await getBlogPost(params.slug);
-  if (!post) return { title: "Blog | ASTA Property Management" };
-  return {
-    title: `${post.title} | ASTA Property Management`,
-    description: post.excerpt ?? undefined,
-  };
+  const staticPost = STATIC_BLOG_POSTS[params.slug];
+  if (staticPost) {
+    return {
+      title: `${staticPost.title} | ASTA Property Management`,
+      description: staticPost.excerpt,
+    };
+  }
+  
+  try {
+    const post = await getBlogPost(params.slug);
+    if (!post) return { title: "Blog | ASTA Property Management" };
+    return {
+      title: `${post.title} | ASTA Property Management`,
+      description: post.excerpt ?? undefined,
+    };
+  } catch {
+    return { title: "Blog | ASTA Property Management" };
+  }
 }
 
 export default async function BlogPostPage({ params }: { params: { slug: string } }) {
+  // Check if this is one of our new static blog posts
+  const staticPost = STATIC_BLOG_POSTS[params.slug];
+  if (staticPost) {
+    // Redirect to the static page
+    notFound(); // This will show 404, but the static pages exist at the correct URLs
+  }
+  
+  try {
+    const post = await getBlogPost(params.slug);
+    if (!post) notFound();
+  } catch {
+    notFound();
+  }
+  
   const post = await getBlogPost(params.slug);
-  if (!post) notFound();
 
   const imageUrl = getPostImage(params.slug);
 
