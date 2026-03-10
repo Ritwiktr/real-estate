@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Property Maintenance and Inspections",
@@ -7,96 +6,74 @@ export const metadata: Metadata = {
     "Proactive and responsive property maintenance, regular inspections, and safety scheduling for ASTA-managed homes.",
 };
 
-const PROCESS_STEPS = [
-  {
-    title: "Report",
-    text: "Tenants submit a maintenance request via our form or the portal. We capture the issue category, urgency, and description.",
-  },
-  {
-    title: "Assess",
-    text: "We triage the request, arrange access if needed, and obtain contractor quotes where appropriate. Landlords are kept informed.",
-  },
-  {
-    title: "Contractor",
-    text: "Our vetted network of contractors carries out the repair. We manage scheduling, quality control, and invoicing.",
-  },
-  {
-    title: "Completion",
-    text: "Work is signed off, and we update the tenant and landlord. Records are kept for compliance and future reference.",
-  },
-];
-
 export default function PropertyMaintenanceInspectionsPage() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
-      <h1 className="text-3xl font-bold text-white">Property Maintenance and Inspections</h1>
-      <p className="mt-4 text-muted">
-        We manage your property like it’s our own. Maintenance, both proactive and responsive, is
-        at the core of a well-managed asset.
-      </p>
+    <div className="min-h-screen bg-surface">
+      {/* Hero Section */}
+      <section className="relative flex min-h-[60vh] flex-col justify-end overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url(https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1920&h=1080&fit=crop)",
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/70 to-black/90" />
+        
+        <div className="relative mx-auto w-full max-w-5xl px-4 pb-16 pt-32 sm:px-6 lg:pb-24">
+          <div className="max-w-4xl">
+            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+              Property Maintenance and Inspections
+            </h1>
+            <p className="mt-6 max-w-3xl text-lg leading-relaxed text-white/85 sm:text-xl">
+              We manage your property like it's our own. Maintenance, both proactive and responsive, is at the core of a well-managed asset.
+            </p>
+          </div>
+        </div>
+      </section>
 
-      <h2 className="mt-8 text-xl font-semibold text-white">What we do</h2>
-      <ul className="mt-2 list-inside list-disc space-y-1 text-muted">
-        <li>24/7 online tenant maintenance request portal</li>
-        <li>Pre-vetted local contractors with fast response times</li>
-        <li>Emergency repair coordination</li>
-        <li>Bi-annual property inspections with photographic reports</li>
-        <li>End-of-tenancy maintenance audits</li>
-        <li>EPC and gas safety scheduling</li>
-        <li>Digital logs for all works completed for audit and insurance purposes</li>
-      </ul>
-
-      <h2 className="mt-8 text-xl font-semibold text-white">How we handle maintenance</h2>
-      <ol className="mt-4 space-y-4">
-        {PROCESS_STEPS.map(({ title, text }, i) => (
-          <li key={title} className="flex gap-4">
-            <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-white/10 text-sm font-semibold text-white">
-              {i + 1}
-            </span>
-            <div>
-              <h3 className="font-medium text-white">{title}</h3>
-              <p className="mt-0.5 text-muted">{text}</p>
+      {/* Services Section */}
+      <section className="py-16 sm:py-20">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6">
+          <div className="mb-16">
+            <h2 className="text-3xl font-bold text-white mb-12">
+              Our maintenance and inspection services include
+            </h2>
+            
+            <div className="space-y-4">
+              {[
+                "24/7 online tenant maintenance request portal",
+                "Pre-vetted local contractors with fast response times",
+                "Emergency repair coordination",
+                "Bi-annual property inspections with photographic reports",
+                "End-of-tenancy maintenance audits",
+                "EPC and gas safety scheduling",
+                "Digital logs for all works completed for audit and insurance purposes"
+              ].map((service, index) => (
+                <div
+                  key={index}
+                  className="flex items-start gap-4 p-6 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 transition-all duration-300"
+                >
+                  <div className="flex-shrink-0 w-2 h-2 rounded-full bg-primary mt-3"></div>
+                  <p className="text-white/90 leading-relaxed text-lg">
+                    {service}
+                  </p>
+                </div>
+              ))}
             </div>
-          </li>
-        ))}
-      </ol>
+          </div>
+        </div>
+      </section>
 
-      <h2 className="mt-8 text-xl font-semibold text-white">Inspection frequency</h2>
-      <p className="mt-2 text-muted">
-        We conduct property inspections at agreed intervals—typically every six to twelve months—and
-        after major works or tenancy changes. This helps ensure properties remain in good condition
-        and any issues are caught early.
-      </p>
-
-      <h2 className="mt-8 text-xl font-semibold text-white">Emergency handling</h2>
-      <p className="mt-2 text-muted">
-        For urgent issues (e.g. gas leaks, major leaks, heating failure in winter), we prioritise a
-        rapid response. Tenants can mark urgency when submitting a request, and we escalate
-        accordingly.
-      </p>
-
-      <h2 className="mt-8 text-xl font-semibold text-white">Contractor vetting and compliance</h2>
-      <p className="mt-2 text-muted">
-        All contractors are vetted for qualifications, insurance, and references. We obtain
-        multiple quotes where appropriate and ensure work meets gas safety, EPC, and electrical
-        compliance standards where required.
-      </p>
-
-      <div className="mt-10 rounded-xl border border-white/10 bg-white/5 p-6">
-        <p className="font-medium text-white">Tenants: report a maintenance issue</p>
-        <p className="mt-1 text-sm text-muted">
-          Use our form to submit a maintenance request. If you have portal access, you can also
-          submit from your dashboard.
-        </p>
-        <Link
-          href="/maintenance-request"
-          className="mt-4 inline-flex rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-black transition hover:bg-primary-light"
-        >
-          Submit maintenance request
-        </Link>
-      </div>
+      {/* Conclusion Section */}
+      <section className="py-16 sm:py-20 border-t border-white/5">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6">
+          <div className="text-center">
+            <p className="text-xl text-white/90 leading-relaxed">
+              By preserving the condition of your property and ensuring tenant satisfaction, we extend the lifecycle of your asset and reduce vacancy rates.
+            </p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
-
-

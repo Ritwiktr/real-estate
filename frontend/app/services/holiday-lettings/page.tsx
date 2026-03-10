@@ -8,30 +8,71 @@ export const metadata: Metadata = {
 
 export default function HolidayLettingsPage() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
-      <h1 className="text-3xl font-bold text-white">Holiday Let Management</h1>
-      <p className="mt-4 text-muted">
-        Whether you're letting a luxury flat in East London or a beachside retreat in West Mersea,
-        our holiday let management service delivers high occupancy, five-star guest reviews, and
-        full regulatory compliance.
-      </p>
+    <div className="min-h-screen bg-surface">
+      {/* Hero Section */}
+      <section className="relative flex min-h-[60vh] flex-col justify-end overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url(https://images.unsplash.com/photo-1469796466635-455ede028aca?w=1920&h=1080&fit=crop)",
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/70 to-black/90" />
+        
+        <div className="relative mx-auto w-full max-w-5xl px-4 pb-16 pt-32 sm:px-6 lg:pb-24">
+          <div className="max-w-4xl">
+            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+              Holiday Let Management
+            </h1>
+            <p className="mt-6 max-w-3xl text-lg leading-relaxed text-white/85 sm:text-xl">
+              Whether you're letting a luxury flat in East London or a beachside retreat in West Mersea, our holiday let management service delivers high occupancy, five-star guest reviews, and full regulatory compliance.
+            </p>
+          </div>
+        </div>
+      </section>
 
-      <h2 className="mt-8 text-xl font-semibold text-white">What we offer</h2>
-      <ul className="mt-3 list-inside list-disc space-y-2 text-muted">
-        <li>Short-let licensing and registration support</li>
-        <li>Listing creation for Airbnb, Booking.com, and Vrbo</li>
-        <li>Dynamic pricing and revenue optimisation</li>
-        <li>Professional cleaning, linen rotation, and guest check-ins</li>
-        <li>Local regulation compliance, including fire and safety standards</li>
-        <li>Real-time guest messaging and review management</li>
-      </ul>
+      {/* Services Section */}
+      <section className="py-16 sm:py-20">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6">
+          <div className="mb-16">
+            <h2 className="text-3xl font-bold text-white mb-12">
+              We offer
+            </h2>
+            
+            <div className="space-y-4">
+              {[
+                "Short-let licensing and registration support",
+                "Listing creation for Airbnb, Booking.com, and Vrbo",
+                "Dynamic pricing and revenue optimisation",
+                "Professional cleaning, linen rotation, and guest check-ins",
+                "Local regulation compliance, including fire and safety standards",
+                "Real-time guest messaging and review management"
+              ].map((service, index) => (
+                <div
+                  key={index}
+                  className="flex items-start gap-4 p-6 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 transition-all duration-300"
+                >
+                  <div className="flex-shrink-0 w-2 h-2 rounded-full bg-primary mt-3"></div>
+                  <p className="text-white/90 leading-relaxed text-lg">
+                    {service}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <h2 className="mt-8 text-xl font-semibold text-white">Designed for exceptional stays</h2>
-      <p className="mt-3 text-muted">
-        We create luxury holiday experiences that protect your property, enhance your returns, and
-        uphold your reputation — whether guests stay for a weekend or a season.
-      </p>
+      {/* Conclusion Section */}
+      <section className="py-16 sm:py-20 border-t border-white/5">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6">
+          <div className="text-center">
+            <p className="text-xl text-white/90 leading-relaxed">
+              We create luxury holiday experiences that protect your property, enhance your returns, and uphold your reputation.
+            </p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
-

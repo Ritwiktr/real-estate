@@ -21,6 +21,16 @@ const navLinks = [
     ],
   },
   {
+    label: "Forms",
+    children: [
+      { href: "/forms", label: "All Forms" },
+      { href: "/forms/how-to-rent", label: "How to Rent Guide" },
+      { href: "/forms/nrla-checklist", label: "NRLA Checklist" },
+      { href: "/forms/ast-room-only", label: "AST Room Only" },
+      { href: "/forms/joint-ast-agreement", label: "Joint AST Agreement" },
+    ],
+  },
+  {
     label: "Portal",
     children: [
       { href: "/login-portal", label: "Portal Overview" },
@@ -42,6 +52,7 @@ export default function Header({ variant = "sticky" }: HeaderProps) {
   const { user, logout, loading } = useAuth();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [formsOpen, setFormsOpen] = useState(false);
   const [portalOpen, setPortalOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const isHome = pathname === "/";
@@ -117,10 +128,16 @@ export default function Header({ variant = "sticky" }: HeaderProps) {
                     onClick={() => {
                       if (item.label === "Services") {
                         setServicesOpen((o) => !o);
+                        setFormsOpen(false);
+                        setPortalOpen(false);
+                      } else if (item.label === "Forms") {
+                        setFormsOpen((o) => !o);
+                        setServicesOpen(false);
                         setPortalOpen(false);
                       } else if (item.label === "Portal") {
                         setPortalOpen((o) => !o);
                         setServicesOpen(false);
+                        setFormsOpen(false);
                       }
                     }}
                     className={`flex items-center gap-1 px-4 py-2 text-sm font-medium transition hover:text-white ${
@@ -130,7 +147,7 @@ export default function Header({ variant = "sticky" }: HeaderProps) {
                     {item.label}
                     <span className="text-[10px] opacity-80">▾</span>
                   </button>
-                  {((item.label === "Services" && servicesOpen) || (item.label === "Portal" && portalOpen)) && item.children && (
+                  {((item.label === "Services" && servicesOpen) || (item.label === "Forms" && formsOpen) || (item.label === "Portal" && portalOpen)) && item.children && (
                     <div className="absolute left-0 top-full pt-1">
                       <div className="min-w-[220px] rounded-none border border-white/10 bg-panel/95 py-2 shadow-xl shadow-black/40 backdrop-blur-xl">
                         {item.children.map((c) => (
@@ -144,6 +161,7 @@ export default function Header({ variant = "sticky" }: HeaderProps) {
                             }`}
                             onClick={() => {
                               setServicesOpen(false);
+                              setFormsOpen(false);
                               setPortalOpen(false);
                             }}
                           >
@@ -249,17 +267,23 @@ export default function Header({ variant = "sticky" }: HeaderProps) {
                       onClick={() => {
                         if (item.label === "Services") {
                           setServicesOpen((o) => !o);
+                          setFormsOpen(false);
+                          setPortalOpen(false);
+                        } else if (item.label === "Forms") {
+                          setFormsOpen((o) => !o);
+                          setServicesOpen(false);
                           setPortalOpen(false);
                         } else if (item.label === "Portal") {
                           setPortalOpen((o) => !o);
                           setServicesOpen(false);
+                          setFormsOpen(false);
                         }
                       }}
                       className="flex w-full items-center justify-between py-2.5 text-sm font-medium text-white/90"
                     >
                       {item.label} ▾
                     </button>
-                    {((item.label === "Services" && servicesOpen) || (item.label === "Portal" && portalOpen)) && item.children && (
+                    {((item.label === "Services" && servicesOpen) || (item.label === "Forms" && formsOpen) || (item.label === "Portal" && portalOpen)) && item.children && (
                       <ul className="border-l border-white/10 pl-4">
                         {item.children.map((c) => (
                           <li key={c.href}>

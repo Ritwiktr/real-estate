@@ -2,7 +2,7 @@ import Link from "next/link";
 import { EnquiryForm } from "@/components/forms/EnquiryForm";
 import { PropertyCard } from "@/components/PropertyCard";
 import Footer from "@/components/Footer";
-import { HeroSearch } from "@/components/HeroSearch";
+import { HorizontalSearch } from "@/components/HorizontalSearch";
 import { getAreas, getFeaturedProperties, getProperties } from "@/lib/server-api";
 
 export const dynamic = "force-dynamic";
@@ -16,14 +16,14 @@ export default async function HomePage() {
   const featuredList = featured?.items ?? [];
   const areaList = areas ?? [];
   const topAreas = areaList.slice(0, 3);
-  // Show featured first; if none, show any recent properties so the section isn’t empty
+  // Show featured first; if none, show any recent properties so the section isn't empty
   const displayList = featuredList.length > 0 ? featuredList : (allResult?.items ?? []);
 
   const snapSection = "min-h-full flex-shrink-0 snap-start snap-always";
 
   return (
     <div className="h-full overflow-y-auto snap-y snap-mandatory">
-      {/* 1. Hero + Intro + Search */}
+      {/* 1. Hero */}
       <section className={`relative ${snapSection} flex flex-col overflow-hidden bg-surface`}>
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-60"
@@ -34,82 +34,91 @@ export default async function HomePage() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/70 to-black/90" />
         <div className="relative flex min-h-0 flex-1 flex-col">
-          <div className="relative mx-auto flex w-full max-w-6xl flex-1 flex-col justify-center px-4 py-10 sm:px-6 lg:py-14">
-            <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-center">
-              <div>
-                <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/70">
-                  London property management
-                </p>
-                <h1 className="mt-5 text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
-                  Full-service management
-                  <br />
-                  for landlords &amp; tenants
-                </h1>
-                <p className="mt-5 text-sm leading-relaxed text-white/85 sm:text-base">
-                  Welcome to ASTA Property Management — a refined, full-service property management
-                  firm based in London, dedicated to elevating rental experiences for landlords,
-                  tenants, and investors alike. We combine operational excellence with personable,
-                  transparent service to deliver seamless tenancy management, strategic property
-                  marketing, and legally compliant oversight across short- and long-term rentals.
-                </p>
-                <p className="mt-4 text-sm leading-relaxed text-white/85 sm:text-base">
-                  Led by Director Theresia Petersen, and supported by an expert team of experienced
-                  professionals, ASTA is committed to setting a new standard in London property
-                  management. Whether you own a single flat or a diverse portfolio, we provide
-                  tailored support with a focus on longevity, legal compliance, and rental return.
-                </p>
-                <p className="mt-4 text-sm leading-relaxed text-white/85 sm:text-base">
-                  Our team works across key London boroughs including Walthamstow, Islington,
-                  Hackney, East India Docks, Tower Hamlets, and West Mersea. From modern,
-                  well-appointed apartments to charming holiday lets, ASTA ensures every property is
-                  maintained to the highest standards — and every client receives bespoke,
-                  concierge-level service.
-                </p>
-                <div className="mt-6 flex flex-wrap gap-4">
-                  <Link href="/property-listings" className="btn-hero">
-                    View all listings
-                  </Link>
-                  <Link
-                    href="/services"
-                    className="inline-flex items-center justify-center rounded-md border border-white/40 bg-white/5 px-5 py-2.5 text-sm font-medium text-white shadow-sm transition hover:border-white hover:bg-white/10"
-                  >
-                    View services
-                  </Link>
-                </div>
-              </div>
-
-              <div className="rounded-2xl border border-white/10 bg-black/45 p-5 shadow-[0_22px_60px_rgba(0,0,0,0.75)] backdrop-blur">
-                <p className="text-xs font-semibold uppercase tracking-[0.25em] text-white/70">
-                  Search properties
-                </p>
-                <p className="mt-2 text-xs text-white/75 sm:text-sm">
-                  Whether you&apos;re searching for property management services in East London,
-                  listing a holiday home near the Essex coast, or looking for a tenant-ready flat to
-                  let in Islington, start by exploring our current listings.
-                </p>
-                <div className="mt-4">
-                  <HeroSearch areas={areaList} />
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-10 border-t border-white/10 pt-8 text-sm text-white/85 sm:text-base">
-              <div className="space-y-3 max-w-3xl">
-                <p>
-                  Explore our current Property Listings, learn more About Us, or view our full
-                  suite of Services. Landlords can access tailored resources via our Owners Portal,
-                  while tenants benefit from dedicated support, application guidance, and responsive
-                  maintenance reporting through our Tenants Page.
-                </p>
-                <p>
-                  At ASTA, we believe that intelligent property management blends efficiency with
-                  empathy, compliance with communication, and results with relationships. Let us
-                  help you unlock the full potential of your rental investment — one detail at a
-                  time. Contact us today or visit our FAQ page to learn more.
-                </p>
+          <div className="relative mx-auto flex w-full max-w-6xl flex-1 flex-col justify-center px-4 py-14 sm:px-6 lg:py-20">
+            <div className="text-center">
+              <h1 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
+                Full-service management
+                <br />
+                for landlords &amp; tenants
+              </h1>
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+                <Link href="/property-listings" className="btn-hero">
+                  View all listings
+                </Link>
+                <Link
+                  href="/services"
+                  className="inline-flex items-center justify-center rounded-md border border-white/40 bg-white/5 px-5 py-2.5 text-sm font-medium text-white shadow-sm transition hover:border-white hover:bg-white/10"
+                >
+                  View services
+                </Link>
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Intro copy – full text below the hero */}
+      <section className={`${snapSection} relative flex flex-col overflow-hidden bg-surface`}>
+        {/* Golden accent graphics */}
+        <div className="absolute left-0 top-1/4 h-32 w-32 rounded-full bg-gradient-to-br from-primary/20 to-secondary/10 blur-3xl" />
+        <div className="absolute right-0 bottom-1/4 h-40 w-40 rounded-full bg-gradient-to-tl from-secondary/15 to-primary/5 blur-3xl" />
+        <div className="absolute left-1/3 top-0 h-24 w-24 rounded-full bg-gradient-to-b from-primary/10 to-transparent blur-2xl" />
+        
+        <div className="relative mx-auto flex w-full max-w-5xl flex-1 flex-col justify-center px-4 py-10 sm:px-6 lg:py-14">
+          {/* Decorative golden line */}
+          <div className="mx-auto mb-8 h-px w-24 bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
+          
+          <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
+            <div className="relative space-y-6 text-sm leading-relaxed text-elegant-muted sm:text-base lg:text-lg">
+              {/* Golden accent border */}
+              <div className="absolute -left-4 top-0 h-full w-px bg-gradient-to-b from-primary/40 via-secondary/20 to-transparent" />
+              
+              <p className="relative text-base font-medium text-elegant sm:text-lg lg:text-xl">
+                <span className="absolute -left-6 top-2 h-2 w-2 rounded-full bg-gradient-to-r from-primary to-secondary shadow-lg shadow-primary/50" />
+                Welcome to ASTA Property Management — a refined, full-service property management
+                firm based in London, dedicated to elevating rental experiences for landlords,
+                tenants, and investors alike. We combine operational excellence with personable,
+                transparent service to deliver seamless tenancy management, strategic property
+                marketing, and legally compliant oversight across short- and long-term rentals.
+              </p>
+              <p>
+                Led by Director Theresia Petersen, and supported by an expert team of experienced
+                professionals, ASTA is committed to setting a new standard in property
+                management. Whether you own a single flat or a diverse portfolio, we provide
+                tailored support with a focus on longevity, legal compliance, and rental return.
+              </p>
+              <p>
+                Our team works across key London boroughs including Walthamstow, Islington,
+                Hackney, East India Docks, Tower Hamlets, and West Mersea. From modern,
+                well-appointed apartments to charming holiday lets, ASTA ensures every property is
+                maintained to the highest standards — and every client receives bespoke,
+                concierge-level service.
+              </p>
+            </div>
+            
+            <div className="relative space-y-6 text-sm leading-relaxed text-elegant-muted sm:text-base lg:text-lg">
+              {/* Golden accent elements */}
+              <div className="absolute -right-4 bottom-0 h-2/3 w-px bg-gradient-to-t from-primary/40 via-secondary/20 to-transparent" />
+              
+              <p className="relative rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 to-secondary/5 p-6 shadow-lg backdrop-blur-sm">
+                <span className="absolute -top-2 right-4 h-4 w-4 rotate-45 bg-gradient-to-br from-primary to-secondary shadow-lg shadow-primary/50" />
+                Explore our current Property Listings, learn more About Us, or view our full
+                suite of Services. Landlords can access tailored resources via our Owners Portal,
+                while tenants benefit from dedicated support, application guidance, and responsive
+                maintenance reporting through our Tenants Page.
+              </p>
+              <p className="relative">
+                <span className="absolute -right-6 top-1/2 h-3 w-3 -translate-y-1/2 rounded-full bg-gradient-to-r from-secondary to-primary shadow-lg shadow-secondary/50" />
+                At ASTA, we believe that intelligent property management blends efficiency with
+                empathy, compliance with communication, and results with relationships. Let us
+                help you unlock the full potential of your rental investment — one detail at a
+                time. Contact us today or visit our FAQ page to learn more.
+              </p>
+            </div>
+          </div>
+          
+          {/* Bottom decorative golden line */}
+          <div className="mx-auto mt-8 h-px w-32 bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
         </div>
       </section>
 
@@ -121,7 +130,9 @@ export default async function HomePage() {
             Featured listings
           </h2>
           <p className="section-subheading">
-            Handpicked rentals and holiday lettings.
+            Whether you're searching for property management services in East London,
+            listing a holiday home near the Essex coast, or looking for a tenant-ready flat to
+            let in Islington, explore our handpicked rentals and holiday lettings.
           </p>
           {displayList.length > 0 ? (
             <>
@@ -165,11 +176,11 @@ export default async function HomePage() {
           </>
         ) : (
           <div className="mt-6 flex flex-1 flex-col justify-center rounded-2xl border border-white/10 bg-panel/50 p-8 text-center">
-            <p className="text-elegant-muted">No properties loaded. This usually means the API isn’t responding.</p>
+            <p className="text-elegant-muted">No properties loaded. This usually means the API isn't responding.</p>
               <ul className="mx-auto mt-3 max-w-md list-inside list-disc text-left text-sm text-elegant-muted">
               <li>Start the backend: <code className="rounded bg-white/10 px-1 py-0.5 font-mono text-xs">cd backend && npm run dev</code></li>
               <li>Backend runs at <code className="rounded bg-white/10 px-1 py-0.5 font-mono text-xs">https://realestate-u3vr.onrender.com</code></li>
-              <li>If you haven’t seeded yet: <code className="rounded bg-white/10 px-1 py-0.5 font-mono text-xs">cd backend && npx prisma db seed</code></li>
+              <li>If you haven't seeded yet: <code className="rounded bg-white/10 px-1 py-0.5 font-mono text-xs">cd backend && npx prisma db seed</code></li>
               </ul>
               <Link href="/property-listings" className="btn-primary mt-4 inline-flex">
                 Browse properties
@@ -267,7 +278,22 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Footer after 5 sections (in scroll container so it’s reachable) */}
+      {/* Search Properties Section */}
+      <section className={`${snapSection} relative flex flex-col overflow-hidden bg-surface`}>
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40"
+          style={{
+            backgroundImage:
+              "url(https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920)",
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/80 to-black/90" />
+        <div className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-4 py-16 sm:px-6">
+          <HorizontalSearch areas={areaList} />
+        </div>
+      </section>
+
+      {/* Footer after all sections (in scroll container so it's reachable) */}
       <section className={`${snapSection} flex flex-col justify-center bg-surface`}>
         <Footer />
       </section>

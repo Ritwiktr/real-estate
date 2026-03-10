@@ -32,7 +32,7 @@ export default function FinancialPlanningRentalIncome2025Page() {
             Financial Planning for Rental Income: A Landlord's Guide to Profit in 2025
           </h1>
           <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-1 text-sm text-white/70">
-            <time dateTime="2024-12-28">28 December 2024</time>
+            <time dateTime="2025-01-28">28 January 2025</time>
             <span>By ASTA Property Management</span>
           </div>
         </div>
