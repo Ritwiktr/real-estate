@@ -153,7 +153,7 @@ export default function FormsPage() {
                     <button
                       onClick={() => handleDownload(form.downloadUrl, form.downloadUrl.split("/").pop() || 'document.pdf')}
                       className="rounded-lg border border-white/20 p-2 text-white transition hover:border-primary/50 hover:text-primary"
-                      title="Download with today's London date"
+                      title="Download"
                     >
                       <Download className="h-4 w-4" />
                     </button>

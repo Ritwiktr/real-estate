@@ -299,7 +299,7 @@ export default function ASTRoomInstructionsPage() {
                 className="flex items-center gap-2 rounded-lg border border-primary/30 bg-primary/10 px-4 py-2 text-primary hover:bg-primary/20 transition"
               >
                 <Download className="h-4 w-4" />
-                <span className="text-sm font-medium">Download with London date</span>
+                <span className="text-sm font-medium">Download</span>
               </button>
             </div>
           </div>

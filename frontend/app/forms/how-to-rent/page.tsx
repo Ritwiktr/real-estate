@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Download, BookOpen, CheckCircle, AlertCircle, Info } from "lucide-react";
+import { ArrowLeft, Download, BookOpen, CheckCircle, AlertCircle, FileText, ClipboardList, HelpCircle } from "lucide-react";
 import { formatFilenameWithLondonDate } from "@/lib/date-utils";
 
 export default function HowToRentPage() {
@@ -27,13 +27,13 @@ export default function HowToRentPage() {
   });
 
   const sections = [
-    { id: "overview", title: "Overview", icon: Info },
-    { id: "before-start", title: "Before You Start", icon: CheckCircle },
+    { id: "overview", title: "Overview", icon: FileText },
+    { id: "before-start", title: "Before You Start", icon: ClipboardList },
     { id: "looking", title: "Looking for Your Home", icon: BookOpen },
     { id: "found-place", title: "When You've Found a Place", icon: CheckCircle },
     { id: "living", title: "Living in Your Rented Home", icon: BookOpen },
     { id: "end-period", title: "At the End of the Fixed Period", icon: AlertCircle },
-    { id: "problems", title: "If Things Go Wrong", icon: AlertCircle },
+    { id: "problems", title: "If Things Go Wrong", icon: HelpCircle },
   ];
 
   const handleChecklistUpdate = (key: keyof typeof checklist) => {
@@ -587,7 +587,7 @@ export default function HowToRentPage() {
               className="flex items-center gap-2 rounded-lg border border-primary/30 bg-primary/10 px-4 py-2 text-primary hover:bg-primary/20 transition"
             >
               <Download className="h-4 w-4" />
-              <span className="text-sm font-medium">Download with London date</span>
+              <span className="text-sm font-medium">Download</span>
             </button>
           </div>
 
