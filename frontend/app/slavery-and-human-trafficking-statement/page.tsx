@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Slavery and Human Trafficking Statement",
+export const metadata: Metadata = buildMetadata({
+  title: "Modern Slavery Statement | Ethical Business Practices",
   description:
-    "ASTA Property Management’s commitment to preventing modern slavery and human trafficking in our business and supply chains.",
-};
+    "Our commitment to preventing modern slavery and maintaining ethical practices across our property management operations.",
+  path: "/slavery-and-human-trafficking-statement",
+});
 
 export default function SlaveryAndHumanTraffickingStatementPage() {
   return (

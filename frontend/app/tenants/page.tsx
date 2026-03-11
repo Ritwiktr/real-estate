@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Tenants",
+export const metadata: Metadata = buildMetadata({
+  title: "Tenant Services | London Rental Properties",
   description:
-    "At ASTA Property Management, we believe that renting a home should be a smooth, transparent, and secure experience.",
-};
+    "Resources and support for tenants including rental applications, maintenance reporting, and tenancy guidance.",
+  path: "/tenants",
+});
 
 const APPLICATION_STEPS = [
   {

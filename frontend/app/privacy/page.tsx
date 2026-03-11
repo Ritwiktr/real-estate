@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy",
+export const metadata: Metadata = buildMetadata({
+  title: "Privacy Policy & Terms",
   description:
-    "How ASTA Property Management collects, uses, stores, and protects your data in line with UK GDPR and the Data Protection Act 2018.",
-};
+    "Information about our privacy policy, data protection practices, and terms governing our property management services.",
+  path: "/privacy",
+});
 
 export default function PrivacyPage() {
   return (

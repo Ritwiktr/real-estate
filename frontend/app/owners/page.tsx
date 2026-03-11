@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Owners / Landlords",
+export const metadata: Metadata = buildMetadata({
+  title: "Property Management Services for Landlords",
   description:
-    "At ASTA Property Management, we understand that your property is more than a building — it’s a long-term investment and an important part of your financial future.",
-};
+    "Dedicated property management services for landlords including tenant sourcing, compliance management, and rental income oversight.",
+  path: "/owners",
+});
 
 export default function OwnersPage() {
   return (

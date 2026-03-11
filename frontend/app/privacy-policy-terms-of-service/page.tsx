@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy & Terms of Service",
+export const metadata: Metadata = buildMetadata({
+  title: "Privacy Policy & Terms | Property Management",
   description:
-    "Combined Privacy Policy and Terms of Service for ASTA Property Management. This URL redirects to the current Privacy Policy page.",
-};
+    "Information about our privacy policy, data protection practices, and terms governing our property management services.",
+  path: "/privacy-policy-terms-of-service",
+});
 
 export default function PrivacyPolicyTermsOfServiceRedirectPage() {
   redirect("/privacy");

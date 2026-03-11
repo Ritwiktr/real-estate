@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Financial Management and Reporting",
+export const metadata: Metadata = buildMetadata({
+  title: "Rental Income & Financial Management Services",
   description:
-    "Transparent rent collection, income and expenditure reporting, and yield optimisation for your property portfolio.",
-};
+    "Rent collection, financial reporting, and landlord income management services designed to simplify property ownership.",
+  path: "/services/financial-management",
+});
 
 export default function FinancialManagementPage() {
   return (

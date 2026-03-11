@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-export const metadata: Metadata = {
-  title: "Blog | ASTA Property Management",
+import { buildMetadata } from "@/lib/metadata";
+
+export const metadata: Metadata = buildMetadata({
+  title: "Property Management Advice & Housing News",
   description:
-    "Expert insight into London’s rental market, legal changes, financial planning, and lifestyle trends for landlords and tenants.",
-};
+    "Insights on UK housing law, landlord strategies, rental market trends, and property management advice.",
+  path: "/blog",
+});
+
 
 // Curated images per slug for elegant card thumbnails
 const BLOG_IMAGES: Record<string, string> = {

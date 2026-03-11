@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "About Us",
+export const metadata: Metadata = buildMetadata({
+  title: "About Our London Property Management Company",
   description:
-    "Learn about ASTA Property Management’s mission, values, and team delivering intelligent, compliant, human‑centred property management across London.",
-};
+    "Learn about our London property management company, our mission, values, and experienced team supporting landlords and tenants.",
+  path: "/about-us",
+});
+
 
 const TEAM = [
   {

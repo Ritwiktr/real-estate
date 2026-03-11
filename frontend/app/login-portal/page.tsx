@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Login Portal | ASTA Property Management",
+export const metadata: Metadata = buildMetadata({
+  title: "Client Portal Login | Landlords & Tenants",
   description:
-    "ASTA Property Management's secure Login Portal provides landlords and tenants with 24/7 access to vital account information and property management tools.",
-};
+    "Secure login portal for landlords and tenants to manage documents, maintenance requests, and tenancy information.",
+  path: "/login-portal",
+});
 
 export default function LoginPortalPage() {
   return (

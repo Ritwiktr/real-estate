@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Terms of Service",
+export const metadata: Metadata = buildMetadata({
+  title: "Terms of Service | Property Management",
   description:
-    "Contractual terms governing your use of ASTA Property Management services and digital platforms.",
-};
+    "Contractual terms governing your use of our property management services and digital platforms.",
+  path: "/terms",
+});
 
 export default function TermsPage() {
   return (

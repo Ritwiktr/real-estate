@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Property Maintenance and Inspections",
+export const metadata: Metadata = buildMetadata({
+  title: "Property Maintenance & Inspections London",
   description:
-    "Proactive and responsive property maintenance, regular inspections, and safety scheduling for ASTA-managed homes.",
-};
+    "Reliable property maintenance and inspection services for landlords in London ensuring properties remain safe, compliant, and well maintained.",
+  path: "/services/property-maintenance-inspections",
+});
 
 export default function PropertyMaintenanceInspectionsPage() {
   return (

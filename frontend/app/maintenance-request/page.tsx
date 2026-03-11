@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import { MaintenanceForm } from "@/components/forms/MaintenanceForm";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Maintenance Request",
-  description: "Submit a maintenance issue for your tenancy.",
-};
+export const metadata: Metadata = buildMetadata({
+  title: "Report a Property Maintenance Issue",
+  description:
+    "Submit maintenance requests quickly through our secure portal and track repair progress for your rental property.",
+  path: "/maintenance-request",
+});
 
 export default function MaintenanceRequestPage() {
   return (

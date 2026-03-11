@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Tenant Placement and Screening",
+export const metadata: Metadata = buildMetadata({
+  title: "Tenant Placement & Referencing Services London",
   description:
-    "Comprehensive tenant placement and screening for ASTA landlords, from strategic marketing to compliant onboarding.",
-};
+    "Professional tenant placement and screening services including referencing, affordability checks, and tenancy onboarding.",
+  path: "/services/tenant-placement-screening",
+});
 
 export default function TenantPlacementScreeningPage() {
   return (

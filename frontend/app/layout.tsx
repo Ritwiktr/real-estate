@@ -18,9 +18,21 @@ const montserrat = Montserrat({
   display: "swap",
 });
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://asta-property.example.com";
+
 export const metadata: Metadata = {
-  title: "ASTA Property Management | Find Your Next Home",
-  description: "ASTA Property Management – Explore exclusive properties. Premium rentals and holiday lettings with a seamless, personalized experience.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "London Property Management | Rental & Landlord Services",
+    template: "%s | ASTA Property Management",
+  },
+  description:
+    "Professional London property management services including tenancy management, landlord support, rental listings, and holiday lettings.",
+  openGraph: {
+    siteName: "ASTA Property Management",
+    type: "website",
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({

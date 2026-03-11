@@ -5,10 +5,14 @@ import { PropertyFilters } from "@/components/PropertyFilters";
 import { PropertyCard } from "@/components/PropertyCard";
 
 export const dynamic = "force-dynamic";
-export const metadata: Metadata = {
-  title: "Property Listings | ASTA Property Management",
-  description: "Explore our curated portfolio of rental and holiday properties.",
-};
+import { buildMetadata } from "@/lib/metadata";
+
+export const metadata: Metadata = buildMetadata({
+  title: "London Flats and Apartments for Rent",
+  description:
+    "Browse available London flats, apartments, and rental homes including furnished and unfurnished properties ready to move in.",
+  path: "/property-listings",
+});
 
 type SearchParams = {
   page?: string;

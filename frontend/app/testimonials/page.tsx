@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { TestimonialForm } from "@/components/forms/TestimonialForm";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Testimonials & Reviews",
+export const metadata: Metadata = buildMetadata({
+  title: "Client Reviews | Property Management London",
   description:
-    "Real stories from landlords and tenants who have experienced ASTA Property Management first-hand.",
-};
+    "Read testimonials from landlords and tenants who trust our professional property management services.",
+  path: "/testimonials",
+});
 
 const STATIC_TESTIMONIALS = [
   {

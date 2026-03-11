@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { EnquiryForm } from "@/components/forms/EnquiryForm";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Contact Us",
+export const metadata: Metadata = buildMetadata({
+  title: "Contact Our London Property Management Team",
   description:
-    "Contact ASTA Property Management for landlord services, tenant support, and holiday let management across London and beyond.",
-};
+    "Contact our team for property management services, rental enquiries, and landlord support in London.",
+  path: "/contact-us",
+});
 
 export default function ContactUsPage() {
   return (

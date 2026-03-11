@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "FAQs",
-  description: "Detailed answers to common questions from ASTA landlords and tenants.",
-};
+export const metadata: Metadata = buildMetadata({
+  title: "Property Management FAQs | Landlords & Tenants",
+  description:
+    "Answers to common questions about renting property, tenant rights, landlord responsibilities, and property management services.",
+  path: "/faqs",
+});
 
 const faqs = [
   {
