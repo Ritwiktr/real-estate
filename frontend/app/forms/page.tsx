@@ -1,10 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { FileText, Download, Users, Home, CheckSquare, BookOpen } from "lucide-react";
 import { formatFilenameWithLondonDate } from "@/lib/date-utils";
 
 export default function FormsPage() {
+  const [selectedCategory, setSelectedCategory] = useState("All");
   const handleDownload = (downloadUrl: string, originalFilename: string) => {
     // Extract the base filename without extension
     const baseName = originalFilename.replace(/\.[^/.]+$/, "");
@@ -105,7 +107,13 @@ export default function FormsPage() {
           {categories.map((category) => (
             <button
               key={category}
-              className="rounded-full border border-white/20 bg-panel/50 px-4 py-2 text-sm font-medium text-white transition hover:border-primary/50 hover:bg-primary/10"
+              type="button"
+              onClick={() => setSelectedCategory(category)}
+              className={`rounded-full border px-4 py-2 text-sm font-medium text-white transition hover:border-primary/50 hover:bg-primary/10 ${
+                selectedCategory === category
+                  ? "border-primary bg-primary/20"
+                  : "border-white/20 bg-panel/50"
+              }`}
             >
               {category}
             </button>
@@ -114,12 +122,14 @@ export default function FormsPage() {
 
         {/* Forms Grid */}
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {forms.map((form) => {
+          {forms
+            .filter((form) => selectedCategory === "All" || form.category === selectedCategory)
+            .map((form) => {
             const IconComponent = form.icon;
             return (
               <div
                 key={form.id}
-                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-panel/50 p-6 transition hover:border-primary/30 hover:bg-panel/70"
+                className="group relative flex h-full min-h-[280px] flex-col overflow-hidden rounded-2xl border border-white/10 bg-panel/50 p-6 transition hover:border-primary/30 hover:bg-panel/70"
               >
                 {/* Category Badge */}
                 <div className="absolute right-4 top-4">
@@ -129,20 +139,20 @@ export default function FormsPage() {
                 </div>
 
                 {/* Icon */}
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
+                <div className="mb-4 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10">
                   <IconComponent className="h-6 w-6 text-primary" />
                 </div>
 
                 {/* Content */}
-                <h3 className="text-lg font-semibold text-white group-hover:text-primary transition">
+                <h3 className="line-clamp-2 text-lg font-semibold text-white group-hover:text-primary transition">
                   {form.title}
                 </h3>
-                <p className="mt-2 text-sm text-elegant-muted leading-relaxed">
+                <p className="mt-2 min-h-[4.5rem] flex-1 text-sm text-elegant-muted leading-relaxed line-clamp-4">
                   {form.description}
                 </p>
 
                 {/* Actions */}
-                <div className="mt-6 flex items-center gap-3">
+                <div className="mt-6 flex shrink-0 items-center gap-3">
                   <Link
                     href={form.href}
                     className="flex-1 rounded-lg bg-primary px-4 py-2 text-center text-sm font-medium text-black transition hover:bg-primary-light"
