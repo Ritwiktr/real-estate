@@ -55,7 +55,7 @@ export function CustomSelect({
         aria-haspopup="listbox"
         aria-expanded={open}
         aria-label={ariaLabel ?? placeholder}
-        className={`min-w-[100px] rounded-none border border-white/20 bg-white/5 px-4 py-2.5 text-left text-sm text-white focus:border-white/40 focus:outline-none ${className ?? ""}`}
+        className={`rounded-none border border-white/20 bg-white/10 px-3 py-2.5 text-left text-sm text-white focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 backdrop-blur-sm min-w-0 ${className ?? ""}`}
       >
         {display}
       </button>

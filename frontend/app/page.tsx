@@ -52,6 +52,9 @@ export default async function HomePage() {
                   View services
                 </Link>
               </div>
+              <div className="mt-20 w-full max-w-6xl mx-auto">
+                <HorizontalSearch areas={areaList} />
+              </div>
             </div>
           </div>
         </div>
@@ -275,21 +278,6 @@ export default async function HomePage() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Search Properties Section */}
-      <section className={`${snapSection} relative flex flex-col overflow-hidden bg-surface`}>
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40"
-          style={{
-            backgroundImage:
-              "url(https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920)",
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/80 to-black/90" />
-        <div className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-4 py-16 sm:px-6">
-          <HorizontalSearch areas={areaList} />
         </div>
       </section>
 

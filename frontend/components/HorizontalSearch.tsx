@@ -26,7 +26,7 @@ export function HorizontalSearch({ areas = [] }: { areas?: Area[] }) {
   }
 
   const inputClass =
-    "rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-sm text-white placeholder-white/60 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 backdrop-blur-sm transition-all duration-200";
+    "rounded-none border border-white/20 bg-white/10 px-3 py-2.5 text-sm text-white placeholder-white/60 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 backdrop-blur-sm transition-all duration-200";
 
   const typeOptions = [
     { value: "RENTAL", label: "Rental" },
@@ -40,7 +40,7 @@ export function HorizontalSearch({ areas = [] }: { areas?: Area[] }) {
 
   return (
     <div className="w-full max-w-6xl mx-auto">
-      <div className="rounded-2xl border border-white/20 bg-black/60 p-6 shadow-2xl backdrop-blur-xl">
+      <div className="rounded-none border border-white/20 bg-black/35 p-6 shadow-2xl backdrop-blur-xl">
         <div className="mb-4">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-white/70">
             Search Properties
@@ -51,8 +51,8 @@ export function HorizontalSearch({ areas = [] }: { areas?: Area[] }) {
             let in Islington, start by exploring our current listings.
           </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3 items-end">
-          <div className="lg:col-span-2">
+        <div className="flex flex-wrap items-center justify-center gap-3">
+          <div className="flex-1 max-w-[160px] min-w-[100px]">
             <input
               type="text"
               placeholder="Location or search"
@@ -62,7 +62,7 @@ export function HorizontalSearch({ areas = [] }: { areas?: Area[] }) {
               aria-label="Search location"
             />
           </div>
-          <div>
+          <div className="w-[5.5rem]">
             <CustomSelect
               value={listingType}
               onChange={setListingType}
@@ -72,7 +72,7 @@ export function HorizontalSearch({ areas = [] }: { areas?: Area[] }) {
               className="w-full"
             />
           </div>
-          <div>
+          <div className="flex-1 max-w-[100px] min-w-[80px]">
             <CustomSelect
               value={areaId}
               onChange={setAreaId}
@@ -82,7 +82,7 @@ export function HorizontalSearch({ areas = [] }: { areas?: Area[] }) {
               className="w-full"
             />
           </div>
-          <div>
+          <div className="w-[5.5rem]">
             <input
               type="number"
               placeholder="Min. price"
@@ -92,7 +92,7 @@ export function HorizontalSearch({ areas = [] }: { areas?: Area[] }) {
               className={`w-full ${inputClass}`}
             />
           </div>
-          <div>
+          <div className="w-[4.5rem]">
             <CustomSelect
               value={beds}
               onChange={setBeds}
@@ -102,15 +102,13 @@ export function HorizontalSearch({ areas = [] }: { areas?: Area[] }) {
               className="w-full"
             />
           </div>
-          <div>
-            <button
-              type="button"
-              onClick={handleSearch}
-              className="w-full rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-black transition-all duration-200 hover:bg-primary-light hover:shadow-lg hover:shadow-primary/25"
-            >
-              Search
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={handleSearch}
+            className="rounded-none bg-primary px-5 py-2.5 text-sm font-semibold text-black transition-all duration-200 hover:bg-primary-light hover:shadow-lg hover:shadow-primary/25 shrink-0"
+          >
+            Search
+          </button>
         </div>
       </div>
     </div>
