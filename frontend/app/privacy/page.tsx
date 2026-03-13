@@ -71,7 +71,7 @@ export default function PrivacyPage() {
             <div className="space-y-3 text-muted">
               <h3 className="text-lg font-semibold text-white">2. Data We Collect</h3>
               <p>We collect personal data necessary for property management, including but not limited to:</p>
-              <ul className="list-disc list-inside space-y-1">
+              <ul className="list-disc pl-6 space-y-1">
                 <li>Names, contact details, and identification documents</li>
                 <li>Financial information for rent collection and reporting</li>
                 <li>Employment and reference details for tenant vetting</li>
@@ -83,7 +83,7 @@ export default function PrivacyPage() {
             <div className="space-y-3 text-muted">
               <h3 className="text-lg font-semibold text-white">3. How We Use Your Data</h3>
               <p>Your personal data is used to:</p>
-              <ul className="list-disc list-inside space-y-1">
+              <ul className="list-disc pl-6 space-y-1">
                 <li>Provide and manage tenancy and landlord services</li>
                 <li>Conduct credit and reference checks compliant with legal standards</li>
                 <li>Communicate with you regarding your tenancy or property</li>
@@ -95,7 +95,7 @@ export default function PrivacyPage() {
             <div className="space-y-3 text-muted">
               <h3 className="text-lg font-semibold text-white">4. Data Sharing</h3>
               <p>We do not sell your data. We share information only with:</p>
-              <ul className="list-disc list-inside space-y-1">
+              <ul className="list-disc pl-6 space-y-1">
                 <li>
                   Authorized third-party service providers (e.g., referencing agencies, maintenance
                   contractors) under strict confidentiality agreements
@@ -117,7 +117,7 @@ export default function PrivacyPage() {
             <div className="space-y-3 text-muted">
               <h3 className="text-lg font-semibold text-white">6. Your Rights</h3>
               <p>Under UK GDPR, you have the right to:</p>
-              <ul className="list-disc list-inside space-y-1">
+              <ul className="list-disc pl-6 space-y-1">
                 <li>Access your personal data</li>
                 <li>Request correction or deletion of inaccurate data</li>
                 <li>Object to or restrict processing</li>
@@ -143,7 +143,7 @@ export default function PrivacyPage() {
 
             <div className="space-y-3 text-muted">
               <h3 className="text-lg font-semibold text-white">Data Privacy Transparency</h3>
-              <ul className="list-disc list-inside space-y-1">
+              <ul className="list-disc pl-6 space-y-1">
                 <li>
                   We clearly explain what personal information we collect, why we need it, and how
                   it will be used before you provide it.
@@ -173,7 +173,7 @@ export default function PrivacyPage() {
 
             <div className="space-y-3 text-muted">
               <h3 className="text-lg font-semibold text-white">Service Terms Transparency</h3>
-              <ul className="list-disc list-inside space-y-1">
+              <ul className="list-disc pl-6 space-y-1">
                 <li>
                   Our service agreements clearly outline the scope, fees, and obligations for both
                   ASTA and our clients.
