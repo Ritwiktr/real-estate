@@ -12,6 +12,9 @@ const BLOG_IMAGES: Record<string, string> = {
   "financial-planning-rental-income-2025": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200",
   "holiday-let-licensing-uk-2025": "https://images.unsplash.com/photo-1469796466635-455ede028aca?w=1200",
   "sustainable-rentals-2025": "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=1200",
+  "uk-housing-law-changes-2026": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200",
+  "energy-efficiency-rental-properties-2026": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200",
+  "property-management-technology-2026": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1200",
 };
 const DEFAULT_BLOG_IMAGE = "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200";
 

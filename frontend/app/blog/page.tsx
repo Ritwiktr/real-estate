@@ -18,6 +18,9 @@ const BLOG_IMAGES: Record<string, string> = {
   "financial-planning-rental-income-2025": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800",
   "holiday-let-licensing-uk-2025": "https://images.unsplash.com/photo-1469796466635-455ede028aca?w=800",
   "sustainable-rentals-2025": "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=800",
+  "uk-housing-law-changes-2026": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800",
+  "energy-efficiency-rental-properties-2026": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800",
+  "property-management-technology-2026": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800",
 };
 const DEFAULT_BLOG_IMAGE = "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800";
 
@@ -71,6 +74,30 @@ const BLOG_POSTS = [
     publishedAt: "2025-01-15",
     author: "ASTA Property Management",
   },
+  {
+    id: "7",
+    slug: "uk-housing-law-changes-2026",
+    title: "Major UK Housing Law Changes Landlords Should Prepare for in 2026",
+    excerpt: "The UK rental market continues to evolve, and 2026 is expected to bring some of the most significant housing policy developments seen in recent years.",
+    publishedAt: "2026-01-10",
+    author: "ASTA Property Management",
+  },
+  {
+    id: "8",
+    slug: "energy-efficiency-rental-properties-2026",
+    title: "Energy Efficiency Regulations and Rental Properties: What 2026 May Bring",
+    excerpt: "Energy efficiency has become one of the most important issues affecting the UK property sector, and landlords are increasingly expected to ensure that rental homes meet higher environmental standards.",
+    publishedAt: "2026-01-15",
+    author: "ASTA Property Management",
+  },
+  {
+    id: "9",
+    slug: "property-management-technology-2026",
+    title: "How Technology Is Transforming Property Management in 2026",
+    excerpt: "Technology is rapidly changing how rental properties are managed, and 2026 is expected to see further advancements in digital tools designed to streamline property management and improve tenant experiences.",
+    publishedAt: "2026-01-20",
+    author: "ASTA Property Management",
+  },
 ];
 
 function getPostImage(slug: string) {
@@ -87,7 +114,9 @@ function formatDate(dateStr: string | null) {
 }
 
 export default function BlogPage() {
-  const items = BLOG_POSTS;
+  const items = [...BLOG_POSTS].sort(
+    (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+  );
 
   return (
     <div className="min-h-screen bg-surface">
