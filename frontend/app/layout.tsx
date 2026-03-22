@@ -20,18 +20,22 @@ const montserrat = Montserrat({
   display: "swap",
 });
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://asta-property.example.com";
+/** Local dev default so metadataBase matches the origin (favicon / OG URLs resolve to this host). */
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL?.trim() || "http://localhost:3000";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
+  applicationName: "ASTA Property Management",
   title: {
-    default: "London Property Management | Rental & Landlord Services",
+    default: "ASTA Property Management | London Property Management & Rentals",
     template: "%s | ASTA Property Management",
   },
   description:
     "Professional London property management services including tenancy management, landlord support, rental listings, and holiday lettings.",
   openGraph: {
     siteName: "ASTA Property Management",
+    title: "ASTA Property Management | London Property Management & Rentals",
     type: "website",
   },
   robots: { index: true, follow: true },

@@ -58,6 +58,12 @@ If you see "too many open files" or a 404 on `/`, run `ulimit -n 10240` in your 
 2. Terminal 2: `cd frontend && npm run dev`
 3. Open http://localhost:3000
 
+## Production (hosted frontend)
+
+The Next.js app is deployed on Render at **[https://realestate-frontend-h4u3.onrender.com/](https://realestate-frontend-h4u3.onrender.com/)**.
+
+`next build` reads `frontend/.env.production`, which sets `NEXT_PUBLIC_SITE_URL` to that origin so Open Graph, sitemap, and robots use the correct absolute URLs. Favicons are generated into `frontend/app/icon.png` and `frontend/app/apple-icon.png` from `public/asta-logo.png` + `public/asta-text.png` (`npm run favicons` in `frontend/`).
+
 ## Pages (17)
 
 | Route | Page |
