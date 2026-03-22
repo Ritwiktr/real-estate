@@ -9,7 +9,8 @@ import { dirname, join } from "path";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, "..");
 
-const BG = { r: 15, g: 14, b: 14, alpha: 1 };
+/** Transparent canvas so the favicon matches the PNGs (no solid fill behind the mark). */
+const BG = { r: 0, g: 0, b: 0, alpha: 0 };
 
 async function buildSquare(size, logoMaxH, textMaxH, gap) {
   const logoBuf = await sharp(join(root, "public", "asta-logo.png"))
