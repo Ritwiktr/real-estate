@@ -1,4 +1,5 @@
 import { prisma } from "../lib/prisma.js";
+import { CHANNEL_REPAIRS_WIZARD } from "./maintenanceRequestService.js";
 
 export async function getPropertyAnalytics(propertyId, landlordId) {
   const property = await prisma.property.findFirst({
@@ -38,10 +39,15 @@ export async function getPropertyAnalytics(propertyId, landlordId) {
       where: {
         propertyId,
         status: { notIn: ["resolved"] },
+        channel: { not: CHANNEL_REPAIRS_WIZARD },
       },
     }),
     prisma.maintenanceRequest.count({
-      where: { propertyId, status: "resolved" },
+      where: {
+        propertyId,
+        status: "resolved",
+        channel: { not: CHANNEL_REPAIRS_WIZARD },
+      },
     }),
     prisma.tenancyApplication.count({
       where: { propertyId, status: "PENDING" },

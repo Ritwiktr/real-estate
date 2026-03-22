@@ -17,6 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/register",
     "/portal",
     "/maintenance-request",
+    "/repairs",
     "/blog",
     "/blog/uk-housing-law-2025",
     "/blog/landlord-strategy-tips-2025",

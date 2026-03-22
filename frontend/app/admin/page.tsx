@@ -65,6 +65,9 @@ export default function AdminPage() {
           <p className="mt-1 text-muted">Dashboard overview and analytics</p>
         </div>
         <div className="flex items-center gap-3">
+          <Link href="/admin/repairs" className="text-sm font-medium text-primary hover:underline">
+            Repairs
+          </Link>
           <Link
             href="/portal"
             className="text-sm font-medium text-muted hover:text-white"

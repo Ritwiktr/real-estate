@@ -1,4 +1,5 @@
 import { prisma } from "../lib/prisma.js";
+import { CHANNEL_REPAIRS_WIZARD } from "./maintenanceRequestService.js";
 
 function slugify(text) {
   return text
@@ -19,7 +20,12 @@ export async function listByLandlord(landlordId, { page = 1, limit = 20 } = {}) 
       include: {
         images: { orderBy: { order: "asc" }, take: 1 },
         area: { select: { id: true, name: true, slug: true } },
-        _count: { select: { maintenanceRequests: true, tenancies: true } },
+        _count: {
+          select: {
+            maintenanceRequests: { where: { channel: { not: CHANNEL_REPAIRS_WIZARD } } },
+            tenancies: true,
+          },
+        },
       },
     }),
     prisma.property.count({ where }),

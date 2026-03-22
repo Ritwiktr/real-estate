@@ -38,7 +38,24 @@ export type MaintenanceSummary = {
   issueCategory: string;
   urgency: string;
   status: string;
+  channel?: string;
   createdAt: string;
+};
+
+export type MaintenanceRequestDetail = {
+  id: string;
+  tenantName: string;
+  tenantEmail: string;
+  propertyAddressOrRef: string;
+  issueCategory: string;
+  description?: string;
+  urgency: string;
+  status: string;
+  channel?: string;
+  photoAttachments?: string | null;
+  createdAt: string;
+  property?: { id: string; title: string; address: string; city?: string };
+  tenant?: { id: string; name: string | null; email: string };
 };
 
 function getToken(): string | null {
@@ -160,6 +177,13 @@ export const adminApi = {
     api<{ items: EnquirySummary[] }>("/api/enquiries", { params: { limit } }),
   listMaintenanceRequests: (limit = 5) =>
     api<{ items: MaintenanceSummary[] }>("/api/maintenance-requests", { params: { limit } }),
+  listRepairsWizard: (limit = 100) =>
+    api<{ items: MaintenanceRequestDetail[] }>("/api/admin/repairs", { params: { limit } }),
+  updateRepairRequestStatus: (id: string, status: "pending" | "in_progress" | "resolved") =>
+    api<MaintenanceRequestDetail>(`/api/admin/maintenance-requests/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify({ status }),
+    }),
   listPendingTestimonials: (limit = 50) =>
     api<{ items: Testimonial[] }>("/api/admin/testimonials", { params: { approved: "false", limit } }),
   updateTestimonialApproval: (id: string, isApproved: boolean) =>
@@ -170,19 +194,6 @@ export type LandlordProperty = Property & {
   status?: string;
   openMaintenanceCount?: number;
   activeTenanciesCount?: number;
-};
-
-export type MaintenanceRequestDetail = {
-  id: string;
-  tenantName: string;
-  tenantEmail: string;
-  propertyAddressOrRef: string;
-  issueCategory: string;
-  description?: string;
-  urgency: string;
-  status: string;
-  createdAt: string;
-  property?: { id: string; title: string; address: string; city?: string };
 };
 
 export const landlordApi = {
@@ -231,11 +242,42 @@ export type TenancyApplicationItem = {
   property?: { id: string; title: string; address: string; city?: string };
 };
 
+export type TenantMaintenanceSubmitBody = {
+  issueCategory: string;
+  description: string;
+  urgency?: string;
+  channel?: "GENERAL" | "REPAIRS_WIZARD";
+  roomOrFlat?: string;
+  /** Repairs wizard (POST /tenant/maintenance-requests): free-text building / property */
+  buildingOrProperty?: string;
+  /** Repairs wizard: tenant’s full postal / visit address */
+  fullAddress?: string;
+  /** Repairs wizard: best phone for follow-up */
+  contactPhone?: string;
+  /** Repairs wizard: access preference */
+  repairsAccessPreference?: "ABSENT_OK" | "TENANT_PRESENT";
+  repairsAlarmInfo?: string;
+  repairsParkingInfo?: string;
+  repairsPetInfo?: string;
+  repairsFurtherNotes?: string;
+  vulnerableOccupier?: boolean;
+  /** Required true for REPAIRS_WIZARD (server-validated) */
+  repairsConsentAccepted?: boolean;
+  issuePath?: string[];
+  /** Base64 data URLs (max 4); required for some repair types (see repairs taxonomy). */
+  photoAttachments?: string[];
+  repairLeafId?: string;
+};
+
 export const tenantApi = {
   listMaintenanceRequests: (limit?: number) =>
     api<{ items: MaintenanceRequestDetail[] }>("/api/tenant/maintenance-requests", { params: { limit } }),
-  submitMaintenanceRequest: (propertyId: string, body: { issueCategory: string; description: string; urgency?: string }) =>
+  /** Portal: request tied to a known property */
+  submitMaintenanceRequest: (propertyId: string, body: TenantMaintenanceSubmitBody) =>
     api<{ id: string; message: string }>(`/api/tenant/properties/${propertyId}/maintenance-requests`, { method: "POST", body: JSON.stringify(body) }),
+  /** /repairs guided flow: no property dropdown — building is free text */
+  submitRepairsWizardRequest: (body: TenantMaintenanceSubmitBody & { buildingOrProperty: string }) =>
+    api<{ id: string; message: string }>("/api/tenant/maintenance-requests", { method: "POST", body: JSON.stringify(body) }),
   listApplications: () =>
     api<{ items: TenancyApplicationItem[] }>("/api/tenant/applications"),
   getFinancials: () =>

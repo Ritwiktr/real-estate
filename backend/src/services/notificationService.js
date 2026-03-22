@@ -1,4 +1,5 @@
 import { prisma } from "../lib/prisma.js";
+import { CHANNEL_REPAIRS_WIZARD } from "./maintenanceRequestService.js";
 
 /**
  * Returns notifications for the current user based on role.
@@ -11,7 +12,10 @@ export async function getNotificationsForUser(userId, role, limit = 20) {
   if (role === "LANDLORD") {
     const [maintenance, applications] = await Promise.all([
       prisma.maintenanceRequest.findMany({
-        where: { property: { landlordId: userId } },
+        where: {
+          property: { landlordId: userId },
+          channel: { not: CHANNEL_REPAIRS_WIZARD },
+        },
         orderBy: { updatedAt: "desc" },
         take,
         include: {

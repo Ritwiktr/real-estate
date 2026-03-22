@@ -5,6 +5,8 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import Header from "@/components/Header";
 import MainWithHomeLayout from "@/components/MainWithHomeLayout";
 import LayoutWithConditionalFooter from "@/components/LayoutWithConditionalFooter";
+import CookieConsent from "@/components/CookieConsent";
+import ConsentAwareScripts from "@/components/ConsentAwareScripts";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -48,6 +50,8 @@ export default function RootLayout({
           <LayoutWithConditionalFooter>
             <MainWithHomeLayout>{children}</MainWithHomeLayout>
           </LayoutWithConditionalFooter>
+          <CookieConsent />
+          <ConsentAwareScripts />
         </AuthProvider>
       </body>
     </html>

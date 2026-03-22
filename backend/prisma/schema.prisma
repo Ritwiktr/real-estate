@@ -115,6 +115,10 @@ model MaintenanceRequest {
   description          String    @db.Text
   urgency              String    @default("MEDIUM")
   status               String    @default("pending")
+  /// GENERAL = visible to landlords; REPAIRS_WIZARD = tenant /repairs flow, admin-only for landlords
+  channel              String    @default("GENERAL")
+  /// JSON array of base64 data URLs from tenant repairs wizard (optional)
+  photoAttachments     String?   @db.Text
   propertyId           String?
   tenantId             String?
   createdAt            DateTime  @default(now())

@@ -1,6 +1,8 @@
 import { prisma } from "../lib/prisma.js";
 
 export async function getDashboardStats() {
+  // Single transaction = one DB connection (avoids exhausting Aiven’s small connection cap when
+  // combined with Promise.all fan-out and dev hot-reload creating extra Prisma clients).
   const [
     landlordsCount,
     tenantsCount,
@@ -11,7 +13,7 @@ export async function getDashboardStats() {
     recentMaintenance,
     recentApplications,
     recentEnquiries,
-  ] = await Promise.all([
+  ] = await prisma.$transaction([
     prisma.user.count({ where: { role: "LANDLORD" } }),
     prisma.user.count({ where: { role: "TENANT" } }),
     prisma.property.count(),

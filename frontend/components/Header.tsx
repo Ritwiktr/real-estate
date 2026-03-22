@@ -39,7 +39,7 @@ const navLinks = [
     ],
   },
   { href: "/blog", label: "Blog" },
-  { href: "/contact-us", label: "Contact" },
+  { href: "/repairs", label: "Repairs" },
 ];
 
 type HeaderProps = {
