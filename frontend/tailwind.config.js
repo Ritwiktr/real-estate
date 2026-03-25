@@ -12,14 +12,9 @@ module.exports = {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-50%)" },
         },
-        "city-marquee": {
-          "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(-50%)" },
-        },
       },
       animation: {
         "footer-marquee": "footer-marquee 45s linear infinite",
-        "city-marquee": "city-marquee 75s linear infinite",
       },
       colors: {
         primary: { DEFAULT: "#CBA38C", light: "#C39C86" },

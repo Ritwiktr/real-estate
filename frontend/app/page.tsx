@@ -3,7 +3,6 @@ import { EnquiryForm } from "@/components/forms/EnquiryForm";
 import { PropertyCard } from "@/components/PropertyCard";
 import Footer from "@/components/Footer";
 import { HorizontalSearch } from "@/components/HorizontalSearch";
-import { NeighbourhoodMarquee } from "@/components/NeighbourhoodMarquee";
 import {
   buildListingPool,
   pickSixDistinctNeighbourhoods,
@@ -236,9 +235,6 @@ export default async function HomePage() {
             </div>
           )}
         </div>
-        <section className="my-8 sm:my-10" aria-label="What we stand for">
-          <NeighbourhoodMarquee />
-        </section>
       </section>
 
       {/* 3. Get In Touch */}

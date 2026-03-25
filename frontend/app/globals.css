@@ -93,8 +93,7 @@ select {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-footer-marquee,
-  .animate-city-marquee {
+  .animate-footer-marquee {
     animation: none !important;
     transform: none !important;
   }
