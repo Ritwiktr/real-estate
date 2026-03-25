@@ -29,7 +29,7 @@ export function PropertyFilters({
     if (maxPrice) params.set("maxPrice", maxPrice);
     if (beds) params.set("beds", beds);
     params.set("page", "1");
-    router.push(`/properties?${params.toString()}`);
+    router.push(`/property-listings?${params.toString()}`);
   }, [search, listingType, areaId, minPrice, maxPrice, beds, router]);
 
   const inputClass = "rounded-lg border border-white/20 bg-white/5 px-3 py-2.5 text-sm text-white placeholder-muted focus:border-white/40 focus:outline-none [&>option]:bg-panel";

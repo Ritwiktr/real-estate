@@ -32,7 +32,7 @@ export default function TenantExpectations2025Page() {
             What Do Tenants Expect in 2025? The New Standards of Renting in London
           </h1>
           <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-1 text-sm text-white/70">
-            <time dateTime="2025-01-05">5 January 2025</time>
+            <time dateTime="2025-09-22">22 September 2025</time>
             <span>By ASTA Property Management</span>
           </div>
         </div>

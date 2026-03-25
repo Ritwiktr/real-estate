@@ -24,7 +24,7 @@ export function HeroSearch({ areas = [] }: { areas?: Area[] }) {
     if (maxPrice) params.set("maxPrice", maxPrice);
     if (beds) params.set("beds", beds);
     params.set("page", "1");
-    router.push(`/properties?${params.toString()}`);
+    router.push(`/property-listings?${params.toString()}`);
   }
 
   const inputClass =

@@ -1,9 +1,67 @@
 import Link from "next/link";
 import Image from "next/image";
 
+const ACCREDITATION_LOGOS = [
+  { src: "/accreditations/safeagent.png", alt: "safeagent accredited" },
+  { src: "/accreditations/tds.png", alt: "Tenancy Deposit Scheme member" },
+  {
+    src: "/accreditations/property-ombudsman.png",
+    alt: "The Property Ombudsman",
+  },
+  {
+    src: "/accreditations/green-small-business.png",
+    alt: "Green Small Business Certified",
+  },
+] as const;
+
+function AccreditationMarquee() {
+  return (
+    <div
+      className="relative overflow-hidden bg-transparent"
+      aria-label="Accreditations and memberships"
+    >
+      <div
+        className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-black to-transparent sm:w-20"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-black to-transparent sm:w-20"
+        aria-hidden
+      />
+      <div className="flex w-full overflow-hidden bg-transparent">
+        <div className="flex w-max animate-footer-marquee will-change-transform bg-transparent">
+          {[0, 1].map((set) => (
+            <div
+              key={set}
+              className="flex shrink-0 items-center gap-12 bg-transparent px-6 sm:gap-16 sm:px-10 md:gap-24"
+            >
+              {ACCREDITATION_LOGOS.map((logo) => (
+                <div
+                  key={`${set}-${logo.src}`}
+                  className="flex h-16 shrink-0 items-center bg-transparent sm:h-[4.5rem] md:h-20"
+                >
+                  <Image
+                    src={logo.src}
+                    alt={logo.alt}
+                    width={320}
+                    height={128}
+                    className="max-h-16 w-auto max-w-[min(280px,55vw)] bg-transparent object-contain object-center sm:max-h-[4.5rem] sm:max-w-[min(300px,48vw)] md:max-h-20 md:max-w-[340px]"
+                    unoptimized
+                    draggable={false}
+                  />
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Footer() {
   return (
-    <footer className="mt-auto border-t border-white/5 bg-surface text-white/80">
+    <footer className="mt-auto border-t border-white/5 bg-black text-white/80">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
@@ -51,7 +109,10 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-        <p className="mt-12 border-t border-white/10 pt-8 text-center text-xs text-white/50">
+        <div className="mt-12 border-t border-white/10 pt-8">
+          <AccreditationMarquee />
+        </div>
+        <p className="mt-6 text-center text-xs text-white/50">
           © {new Date().getFullYear()} ASTA Property Management
         </p>
       </div>

@@ -36,7 +36,7 @@ const STATIC_BLOG_POSTS: Record<string, { title: string; excerpt: string; publis
   "uk-housing-law-2025": {
     title: "Navigating UK Housing Law Changes: What Every Landlord Must Know in 2025",
     excerpt: "In 2025, the UK rental sector is undergoing its most transformative shift in decades. A series of legislative reforms are being introduced to improve housing quality, enhance tenant rights, and formalise the responsibilities of landlords.",
-    publishedAt: "2025-01-15",
+    publishedAt: "2025-10-08",
     author: "ASTA Property Management",
     body: "This blog post has been moved to a dedicated page. Please visit /blog/uk-housing-law-2025 for the full article."
   },

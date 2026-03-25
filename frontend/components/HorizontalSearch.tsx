@@ -22,7 +22,7 @@ export function HorizontalSearch({ areas = [] }: { areas?: Area[] }) {
     if (minPrice) params.set("minPrice", minPrice);
     if (beds) params.set("beds", beds);
     params.set("page", "1");
-    router.push(`/properties?${params.toString()}`);
+    router.push(`/property-listings?${params.toString()}`);
   }
 
   const inputClass =

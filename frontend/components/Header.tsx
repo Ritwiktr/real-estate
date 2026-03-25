@@ -58,19 +58,63 @@ export default function Header({ variant = "sticky" }: HeaderProps) {
   const isHome = pathname === "/";
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    const threshold = 32;
+    if (pathname !== "/") {
+      const onWin = () => setScrolled(window.scrollY > threshold);
+      window.addEventListener("scroll", onWin, { passive: true });
+      onWin();
+      return () => window.removeEventListener("scroll", onWin);
+    }
+
+    setScrolled(false);
+    let el: HTMLElement | null = null;
+    let raf = 0;
+    let attempts = 0;
+    const maxAttempts = 150;
+
+    const onInner = () => {
+      if (el) setScrolled(el.scrollTop > threshold);
+    };
+
+    const findAndAttach = () => {
+      el = document.querySelector(
+        "main.h-screen.overflow-hidden > div.overflow-y-auto"
+      ) as HTMLElement | null;
+      if (el) {
+        el.addEventListener("scroll", onInner, { passive: true });
+        onInner();
+        return true;
+      }
+      return false;
+    };
+
+    if (!findAndAttach()) {
+      const tick = () => {
+        attempts += 1;
+        if (findAndAttach() || attempts >= maxAttempts) return;
+        raf = requestAnimationFrame(tick);
+      };
+      raf = requestAnimationFrame(tick);
+    }
+
+    return () => {
+      cancelAnimationFrame(raf);
+      el?.removeEventListener("scroll", onInner);
+    };
+  }, [pathname]);
 
   const isStatic = variant === "static";
   const onHero = !isStatic && isHome && !scrolled;
   const headerBg = isStatic
     ? "bg-surface/95 border-white/5 backdrop-blur-md"
     : onHero
-      ? "bg-white/[0.06] backdrop-blur-md border-white/10 shadow-[inset_0_-1px_0_0_rgba(255,255,255,0.06)]"
-      : "bg-surface/95 backdrop-blur-md border-white/5";
-  const headerPosition = isStatic ? "" : onHero ? "absolute top-0 left-0 right-0" : "sticky top-0";
+      ? "bg-black/35 backdrop-blur-lg border-white/10 shadow-[inset_0_-1px_0_0_rgba(255,255,255,0.06)]"
+      : "border-white/10 bg-surface/98 shadow-[0_12px_40px_rgba(0,0,0,0.5)] backdrop-blur-xl";
+  const headerPosition = isStatic
+    ? ""
+    : isHome
+      ? "fixed top-0 left-0 right-0 z-50"
+      : "sticky top-0 z-50";
 
   const isActive = (href: string) => pathname === href;
   const isActiveParent = (item: { children?: { href: string }[] }) =>

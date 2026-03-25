@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/metadata";
+import { FAQAccordion } from "./FAQAccordion";
 
 export const metadata: Metadata = buildMetadata({
   title: "Property Management FAQs | Landlords & Tenants",
@@ -54,14 +55,7 @@ export default function FAQsPage() {
       <p className="section-subheading mt-4">
         Common questions from landlords and tenants.
       </p>
-      <dl className="mt-8 space-y-6">
-        {faqs.map((faq, i) => (
-          <div key={i} className="rounded-lg border border-white/10 bg-panel p-6">
-            <dt className="font-semibold text-white">{faq.q}</dt>
-            <dd className="mt-2 text-elegant-muted">{faq.a}</dd>
-          </div>
-        ))}
-      </dl>
+      <FAQAccordion items={faqs} />
     </div>
   );
 }

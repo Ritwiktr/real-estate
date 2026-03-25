@@ -1,6 +1,8 @@
 import Link from "next/link";
 
 type PropertyCardProps = {
+  /** When set, the card links here instead of the property detail page. */
+  href?: string;
   id: string;
   slug?: string;
   title: string;
@@ -16,6 +18,7 @@ type PropertyCardProps = {
 };
 
 export function PropertyCard({
+  href,
   id,
   slug,
   title,
@@ -31,9 +34,10 @@ export function PropertyCard({
 }: PropertyCardProps) {
   const typeLabel = listingType === "HOLIDAY_LET" ? "Holiday Let" : "Rental";
   const hrefSlug = slug ?? id;
+  const to = href ?? `/properties/${hrefSlug}`;
   return (
     <Link
-      href={`/properties/${hrefSlug}`}
+      href={to}
       className="group block overflow-hidden rounded-2xl border border-white/[0.08] bg-surface shadow-xl shadow-black/50 transition-all duration-300 hover:border-white/15 hover:shadow-2xl hover:shadow-black/60"
     >
       <div className="relative aspect-[4/3] overflow-hidden bg-panel">

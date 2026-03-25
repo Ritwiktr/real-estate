@@ -91,3 +91,11 @@ select {
     color: var(--color-muted);
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-footer-marquee,
+  .animate-city-marquee {
+    animation: none !important;
+    transform: none !important;
+  }
+}

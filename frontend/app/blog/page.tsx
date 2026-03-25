@@ -31,7 +31,7 @@ const BLOG_POSTS = [
     slug: "uk-housing-law-2025",
     title: "Navigating UK Housing Law Changes: What Every Landlord Must Know in 2025",
     excerpt: "In 2025, the UK rental sector is undergoing its most transformative shift in decades. A series of legislative reforms are being introduced to improve housing quality, enhance tenant rights, and formalise the responsibilities of landlords.",
-    publishedAt: "2025-01-15",
+    publishedAt: "2025-10-08",
     author: "ASTA Property Management",
   },
   {
@@ -39,7 +39,7 @@ const BLOG_POSTS = [
     slug: "landlord-strategy-tips-2025",
     title: "Landlord Strategy Tips for 2025: Maximising Returns While Minimising Risk",
     excerpt: "Property investment has always offered attractive long-term returns, but in 2025, success belongs to landlords who treat it not just as an asset — but as a business.",
-    publishedAt: "2025-01-10",
+    publishedAt: "2025-09-15",
     author: "ASTA Property Management",
   },
   {
@@ -47,7 +47,7 @@ const BLOG_POSTS = [
     slug: "tenant-expectations-2025",
     title: "What Do Tenants Expect in 2025? The New Standards of Renting in London",
     excerpt: "Renting in 2025 is a vastly different experience from just a few years ago. Today's tenants are informed, empowered, and demand more than a place to live — they expect a complete lifestyle experience.",
-    publishedAt: "2025-01-05",
+    publishedAt: "2025-09-22",
     author: "ASTA Property Management",
   },
   {
@@ -55,7 +55,7 @@ const BLOG_POSTS = [
     slug: "financial-planning-rental-income-2025",
     title: "Financial Planning for Rental Income: A Landlord's Guide to Profit in 2025",
     excerpt: "Effective financial planning is the backbone of any successful property investment strategy. As the UK rental sector becomes more regulated and tenants more selective, landlords must move from passive income models to active financial management.",
-    publishedAt: "2025-01-28",
+    publishedAt: "2025-10-24",
     author: "ASTA Property Management",
   },
   {
@@ -63,7 +63,7 @@ const BLOG_POSTS = [
     slug: "holiday-let-licensing-uk-2025",
     title: "Holiday Let Licensing and Marketing: What You Need to Know in 2025",
     excerpt: "The holiday let market in the UK has grown exponentially in recent years. However, in 2025, holiday lets are under the spotlight. Stricter regulation, licensing schemes, and marketing demands mean landlords must now operate more professionally than ever.",
-    publishedAt: "2025-01-20",
+    publishedAt: "2025-10-16",
     author: "ASTA Property Management",
   },
   {
@@ -71,7 +71,7 @@ const BLOG_POSTS = [
     slug: "sustainable-rentals-2025",
     title: "Sustainability in Lettings: Why Eco-Friendly Rentals Are in High Demand in 2025",
     excerpt: "Environmental considerations are shaping renter preferences and regulatory requirements in 2025. For modern tenants—particularly younger professionals and families—the environmental footprint of a home matters nearly as much as its location or amenities.",
-    publishedAt: "2025-01-15",
+    publishedAt: "2025-09-08",
     author: "ASTA Property Management",
   },
   {

@@ -32,7 +32,7 @@ export default function HolidayLetLicensingUK2025Page() {
             Holiday Let Licensing and Marketing: What You Need to Know in 2025
           </h1>
           <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-1 text-sm text-white/70">
-            <time dateTime="2025-01-20">20 January 2025</time>
+            <time dateTime="2025-10-16">16 October 2025</time>
             <span>By ASTA Property Management</span>
           </div>
         </div>

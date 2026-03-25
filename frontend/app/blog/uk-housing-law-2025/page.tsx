@@ -32,7 +32,7 @@ export default function UKHousingLaw2025Page() {
             Navigating UK Housing Law Changes: What Every Landlord Must Know in 2025
           </h1>
           <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-1 text-sm text-white/70">
-            <time dateTime="2025-01-15">15 January 2025</time>
+            <time dateTime="2025-10-08">8 October 2025</time>
             <span>By ASTA Property Management</span>
           </div>
         </div>

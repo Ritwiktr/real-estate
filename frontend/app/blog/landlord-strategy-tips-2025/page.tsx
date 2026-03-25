@@ -32,7 +32,7 @@ export default function LandlordStrategyTips2025Page() {
             Landlord Strategy Tips for 2025: Maximising Returns While Minimising Risk
           </h1>
           <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-1 text-sm text-white/70">
-            <time dateTime="2025-01-10">10 January 2025</time>
+            <time dateTime="2025-09-15">15 September 2025</time>
             <span>By ASTA Property Management</span>
           </div>
         </div>
