@@ -6,17 +6,17 @@ import { getBlogPost } from "@/lib/server-api";
 export const dynamic = "force-dynamic";
 
 const BLOG_IMAGES: Record<string, string> = {
-  "uk-housing-law-2025": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200",
-  "landlord-strategy-tips-2025": "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=1200",
-  "tenant-expectations-2025": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1200",
-  "financial-planning-rental-income-2025": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200",
-  "holiday-let-licensing-uk-2025": "https://images.unsplash.com/photo-1469796466635-455ede028aca?w=1200",
-  "sustainable-rentals-2025": "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=1200",
-  "uk-housing-law-changes-2026": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200",
-  "energy-efficiency-rental-properties-2026": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200",
-  "property-management-technology-2026": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1200",
+  "uk-housing-law-2025": "/images/blog-uk-housing-law-2025-hero.jpg",
+  "landlord-strategy-tips-2025": "/images/blog-landlord-strategy-tips-2025-hero.jpg",
+  "tenant-expectations-2025": "/images/blog-tenant-expectations-2025-hero.jpg",
+  "financial-planning-rental-income-2025": "/images/blog-financial-planning-2025-hero.jpg",
+  "holiday-let-licensing-uk-2025": "/images/blog-holiday-let-2025-hero.jpg",
+  "sustainable-rentals-2025": "/images/blog-sustainable-rentals-2025-hero.jpg",
+  "uk-housing-law-changes-2026": "/images/blog-uk-housing-law-changes-2026-hero.jpg",
+  "energy-efficiency-rental-properties-2026": "/images/blog-energy-efficiency-2026-hero.jpg",
+  "property-management-technology-2026": "/images/blog-property-management-tech-2026-hero.jpg",
 };
-const DEFAULT_BLOG_IMAGE = "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200";
+const DEFAULT_BLOG_IMAGE = "/images/blog-default-hero.jpg";
 
 function getPostImage(slug: string) {
   return BLOG_IMAGES[slug] ?? DEFAULT_BLOG_IMAGE;

@@ -16,7 +16,7 @@ export default function TenantPlacementScreeningPage() {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: "url(https://images.unsplash.com/photo-1560185127-6a1896ab1348?w=1920&h=1080&fit=crop)",
+            backgroundImage: "url(/images/service-tenant-placement-hero.jpg)",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/70 to-black/90" />

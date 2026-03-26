@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { buildMetadata } from "@/lib/metadata";
+import HeroContactMini from "@/components/HeroContactMini";
 
 export const metadata: Metadata = buildMetadata({
   title: "Property Management Services for Landlords",
@@ -18,11 +19,12 @@ export default function OwnersPage() {
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage:
-              "url(https://images.unsplash.com/photo-1600607687920-4e2a5345c9c3?w=1920)",
+              "url(/images/owners-hero.jpg)",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/85 to-black" />
         <div className="relative mx-auto w-full max-w-5xl px-4 pb-14 pt-28 sm:px-6 lg:pb-20">
+          <HeroContactMini className="absolute right-4 top-4 sm:right-6 sm:top-6" />
           <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/70">
             Owners / landlords
           </p>

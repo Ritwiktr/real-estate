@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { FAQAccordion } from "../faqs/FAQAccordion";
+import HeroContactMini from "@/components/HeroContactMini";
 
 export const metadata: Metadata = {
   title: "Login Portal Instructions & FAQ | ASTA Property Management",
@@ -59,11 +61,12 @@ export default function LoginPortalHelpPage() {
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage:
-              "url(https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1920)",
+              "url(/images/login-portal-help-hero.jpg)",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/80 to-black" />
         <div className="relative mx-auto w-full max-w-5xl px-4 pb-14 pt-28 sm:px-6 lg:pb-20">
+          <HeroContactMini className="absolute right-4 top-4 sm:right-6 sm:top-6" />
           <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/70">
             Support & Help
           </p>
@@ -147,19 +150,10 @@ export default function LoginPortalHelpPage() {
               {/* FAQ Section */}
               <div className="rounded-2xl border border-white/10 bg-panel/70 p-6 shadow-[0_18px_45px_rgba(0,0,0,0.65)]">
                 <h2 className="text-xl font-semibold text-white">Common Questions</h2>
-                
-                <div className="mt-6 space-y-6">
-                  {faqs.map((faq, index) => (
-                    <div key={index} className="border-b border-white/5 pb-4 last:border-b-0 last:pb-0">
-                      <h3 className="text-sm font-medium text-white">
-                        Q{index + 1}: {faq.question}
-                      </h3>
-                      <p className="mt-2 text-sm text-muted leading-relaxed">
-                        {faq.answer}
-                      </p>
-                    </div>
-                  ))}
-                </div>
+                <FAQAccordion
+                  className="mt-6"
+                  items={faqs.map((f) => ({ q: f.question, a: f.answer }))}
+                />
               </div>
             </div>
 

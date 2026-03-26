@@ -2,17 +2,33 @@ import Link from "next/link";
 import Image from "next/image";
 
 const ACCREDITATION_LOGOS = [
-  { src: "/accreditations/safeagent.png", alt: "safeagent accredited" },
-  { src: "/accreditations/tds.png", alt: "Tenancy Deposit Scheme member" },
+  {
+    src: "/accreditations/safeagent.png",
+    alt: "safeagent accredited",
+    width: 132,
+    height: 72,
+  },
+  {
+    src: "/accreditations/tds.png",
+    alt: "Tenancy Deposit Scheme member",
+    width: 108,
+    height: 72,
+  },
   {
     src: "/accreditations/property-ombudsman.png",
     alt: "The Property Ombudsman",
+    width: 156,
+    height: 72,
   },
   {
     src: "/accreditations/green-small-business.png",
     alt: "Green Small Business Certified",
+    width: 108,
+    height: 72,
   },
 ] as const;
+
+const BRAND_GOLD = "#CBA38C";
 
 function AccreditationMarquee() {
   return (
@@ -33,21 +49,32 @@ function AccreditationMarquee() {
           {[0, 1].map((set) => (
             <div
               key={set}
-              className="flex shrink-0 items-center gap-12 bg-transparent px-6 sm:gap-16 sm:px-10 md:gap-24"
+              className="flex shrink-0 items-center gap-6 bg-transparent px-3 sm:gap-8 sm:px-4 md:gap-10"
             >
               {ACCREDITATION_LOGOS.map((logo) => (
                 <div
                   key={`${set}-${logo.src}`}
-                  className="flex h-16 shrink-0 items-center bg-transparent sm:h-[4.5rem] md:h-20"
+                  className="flex shrink-0 items-center bg-transparent"
                 >
-                  <Image
-                    src={logo.src}
-                    alt={logo.alt}
-                    width={320}
-                    height={128}
-                    className="max-h-16 w-auto max-w-[min(280px,55vw)] bg-transparent object-contain object-center sm:max-h-[4.5rem] sm:max-w-[min(300px,48vw)] md:max-h-20 md:max-w-[340px]"
-                    unoptimized
-                    draggable={false}
+                  <span
+                    role="img"
+                    aria-label={logo.alt}
+                    className="block"
+                    style={{
+                      width: `${logo.width}px`,
+                      height: `${logo.height}px`,
+                      backgroundColor: BRAND_GOLD,
+                      WebkitMaskImage: `url(${logo.src})`,
+                      maskImage: `url(${logo.src})`,
+                      WebkitMaskRepeat: "no-repeat",
+                      maskRepeat: "no-repeat",
+                      WebkitMaskPosition: "center",
+                      maskPosition: "center",
+                      WebkitMaskSize: "contain",
+                      maskSize: "contain",
+                      WebkitMaskMode: "luminance",
+                      maskMode: "luminance",
+                    }}
                   />
                 </div>
               ))}

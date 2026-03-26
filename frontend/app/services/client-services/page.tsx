@@ -14,7 +14,7 @@ export default function ClientServicesPage() {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: "url(https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=1920&h=1080&fit=crop)",
+            backgroundImage: "url(/images/service-client-services-hero.jpg)",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/70 to-black/90" />

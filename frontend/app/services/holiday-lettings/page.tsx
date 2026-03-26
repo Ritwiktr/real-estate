@@ -14,7 +14,7 @@ export default function HolidayLettingsPage() {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: "url(https://images.unsplash.com/photo-1469796466635-455ede028aca?w=1920&h=1080&fit=crop)",
+            backgroundImage: "url(/images/service-holiday-lettings-hero.jpg)",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/70 to-black/90" />

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { TestimonialForm } from "@/components/forms/TestimonialForm";
 import { buildMetadata } from "@/lib/metadata";
 import { STATIC_TESTIMONIALS } from "@/lib/testimonials";
+import HeroContactMini from "@/components/HeroContactMini";
 
 export const metadata: Metadata = buildMetadata({
   title: "Client Reviews | Property Management London",
@@ -19,11 +20,12 @@ export default function TestimonialsPage() {
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40"
           style={{
             backgroundImage:
-              "url(https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=1920)",
+              "url(/images/testimonials-hero.jpg)",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/85 to-black" />
         <div className="relative mx-auto w-full max-w-5xl px-4 pb-12 pt-24 sm:px-6 lg:pb-16">
+          <HeroContactMini className="absolute right-4 top-4 sm:right-6 sm:top-6" />
           <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/70">
             Testimonials
           </p>

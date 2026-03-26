@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { buildMetadata } from "@/lib/metadata";
+import HeroContactMini from "@/components/HeroContactMini";
 
 export const metadata: Metadata = buildMetadata({
   title: "Property Management Advice & Housing News",
@@ -12,17 +13,17 @@ export const metadata: Metadata = buildMetadata({
 
 // Curated images per slug for elegant card thumbnails
 const BLOG_IMAGES: Record<string, string> = {
-  "uk-housing-law-2025": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800",
-  "landlord-strategy-tips-2025": "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800",
-  "tenant-expectations-2025": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800",
-  "financial-planning-rental-income-2025": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800",
-  "holiday-let-licensing-uk-2025": "https://images.unsplash.com/photo-1469796466635-455ede028aca?w=800",
-  "sustainable-rentals-2025": "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=800",
-  "uk-housing-law-changes-2026": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800",
-  "energy-efficiency-rental-properties-2026": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800",
-  "property-management-technology-2026": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800",
+  "uk-housing-law-2025": "/images/blog-uk-housing-law-2025-card.jpg",
+  "landlord-strategy-tips-2025": "/images/blog-landlord-strategy-tips-2025-card.jpg",
+  "tenant-expectations-2025": "/images/blog-tenant-expectations-2025-card.jpg",
+  "financial-planning-rental-income-2025": "/images/blog-financial-planning-2025-card.jpg",
+  "holiday-let-licensing-uk-2025": "/images/blog-holiday-let-2025-card.jpg",
+  "sustainable-rentals-2025": "/images/blog-sustainable-rentals-2025-card.jpg",
+  "uk-housing-law-changes-2026": "/images/blog-uk-housing-law-changes-2026-card.jpg",
+  "energy-efficiency-rental-properties-2026": "/images/blog-energy-efficiency-2026-card.jpg",
+  "property-management-technology-2026": "/images/blog-property-management-tech-2026-card.jpg",
 };
-const DEFAULT_BLOG_IMAGE = "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800";
+const DEFAULT_BLOG_IMAGE = "/images/blog-default-card.jpg";
 
 // Static blog posts from PDF
 const BLOG_POSTS = [
@@ -125,11 +126,12 @@ export default function BlogPage() {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: "url(https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920)",
+            backgroundImage: "url(/images/blog-index-hero.jpg)",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/70 to-black" />
         <div className="relative mx-auto w-full max-w-7xl px-4 pb-14 pt-28 sm:px-6 lg:pb-20">
+          <HeroContactMini className="absolute right-4 top-4 sm:right-6 sm:top-6" />
           <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/70">Insights</p>
           <h1 className="mt-4 text-4xl font-bold tracking-tight text-white sm:text-5xl">
             Blog

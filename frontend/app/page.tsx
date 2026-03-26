@@ -26,15 +26,15 @@ const HERO_BG_VIDEO_URL = (() => {
 
 /** Hero video poster (buffering) — same mood as “By the numbers” still */
 const HERO_POSTER_IMAGE =
-  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920";
+  "/images/home-hero-poster.jpg";
 
 /** Original hero still when video is disabled (`NEXT_PUBLIC_HERO_BG_VIDEO_URL=false`) */
 const HERO_STATIC_FALLBACK_IMAGE =
-  "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920";
+  "/images/home-hero-static-fallback.jpg";
 
 /** Testimonials section — photo only */
 const TESTIMONIALS_BG_IMAGE =
-  "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1920";
+  "/images/home-testimonials-section-bg.jpg";
 
 export default async function HomePage() {
   const [areas, featured, allResult] = await Promise.all([
@@ -61,8 +61,7 @@ export default async function HomePage() {
             muted
             loop
             playsInline
-            preload="metadata"
-            poster={HERO_POSTER_IMAGE}
+            preload="auto"
             aria-hidden
           >
             <source src={HERO_BG_VIDEO_URL} type="video/mp4" />
@@ -243,7 +242,7 @@ export default async function HomePage() {
           className="absolute inset-0 bg-cover bg-center bg-no-repeat brightness-[0.30] saturate-[0.8]"
           style={{
             backgroundImage:
-              "url(https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1920)",
+              "url(/images/home-contact-section-bg.jpg)",
           }}
         />
         <div className="absolute inset-0 bg-black/40" />
@@ -264,18 +263,10 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 4. Achievements – premium bg with refined overlay */}
-      <section className={`${homeSection} relative flex flex-col overflow-hidden bg-surface`}>
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: "url(https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920)",
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/75 to-black/85" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_50%,transparent_0%,rgba(0,0,0,0.5)_100%)]" />
+      {/* 4. Achievements – pure black with gold typography */}
+      <section className={`${homeSection} relative flex flex-col overflow-hidden bg-black`}>
         <div className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-4 py-12 sm:px-6">
-          <p className="text-center text-xs font-medium uppercase tracking-[0.3em] text-white/70">
+          <p className="text-center text-xs font-medium uppercase tracking-[0.3em] text-primary/80">
             By the numbers
           </p>
           <div className="mt-12 grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
@@ -286,10 +277,10 @@ export default async function HomePage() {
               { value: "15+", label: "Years experience" },
             ].map(({ value, label }) => (
               <div key={label} className="group text-center">
-                <p className="text-4xl font-bold tracking-tight text-white drop-shadow-sm sm:text-5xl lg:text-6xl">
+                <p className="text-4xl font-bold tracking-tight text-primary sm:text-5xl lg:text-6xl">
                   {value}
                 </p>
-                <p className="mt-2 text-xs font-medium uppercase tracking-[0.2em] text-white/60 transition group-hover:text-white/80">
+                <p className="mt-2 text-xs font-medium uppercase tracking-[0.2em] text-primary/70 transition group-hover:text-primary">
                   {label}
                 </p>
               </div>

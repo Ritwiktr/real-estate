@@ -14,7 +14,7 @@ const services = [
     href: "/services/tenant-placement-screening",
     title: "Tenant Placement and Screening",
     desc: "Professional marketing, thorough vetting, and compliant onboarding to secure the right tenant for every tenancy.",
-    image: "https://images.unsplash.com/photo-1560185127-6a1896ab1348?w=800",
+    image: "/images/services-tenant-placement-card.jpg",
     icon: "◇",
     stats: ["500+", "Tenants Placed"],
   },
@@ -22,7 +22,7 @@ const services = [
     href: "/services/property-maintenance-inspections",
     title: "Property Maintenance and Inspections",
     desc: "Proactive and responsive maintenance, regular inspections, and digital logs that protect your asset.",
-    image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800",
+    image: "/images/services-maintenance-inspections-card.jpg",
     icon: "◆",
     stats: ["24/7", "Support"],
   },
@@ -30,7 +30,7 @@ const services = [
     href: "/services/financial-management",
     title: "Financial Management and Reporting",
     desc: "Transparent rent collection, arrears tracking, and clear, export-ready financial reporting for your portfolio.",
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800",
+    image: "/images/services-financial-management-card.jpg",
     icon: "◈",
     stats: ["100%", "On-Time"],
   },
@@ -38,7 +38,7 @@ const services = [
     href: "/services/holiday-lettings",
     title: "Holiday Let Management",
     desc: "Licensing, dynamic pricing, guest experience, and compliance for holiday homes in West Mersea and beyond.",
-    image: "https://images.unsplash.com/photo-1469796466635-455ede028aca?w=800",
+    image: "/images/services-holiday-lettings-card.jpg",
     icon: "❖",
     stats: ["5★", "Guest Focus"],
   },
@@ -46,7 +46,7 @@ const services = [
     href: "/services/client-services",
     title: "Client Services and Compliance",
     desc: "Licensing, legal documentation, and NRLA-aligned tenancy support to keep you ahead of regulation.",
-    image: "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=800",
+    image: "/images/services-client-services-card.jpg",
     icon: "▣",
     stats: ["NRLA", "Aligned"],
   },
@@ -60,7 +60,7 @@ export default function ServicesPage() {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: "url(https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920)",
+            backgroundImage: "url(/images/services-index-hero.jpg)",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/60 to-black" />
@@ -96,7 +96,7 @@ export default function ServicesPage() {
                   className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 group-hover:scale-105"
                   style={{ backgroundImage: `url(${s.image})` }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-black/60" />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40" />
                 <div className="absolute inset-0 bg-primary/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
                 <div className="relative flex min-h-[280px] flex-col justify-between p-8 sm:p-10 lg:flex-row lg:items-end lg:justify-between lg:p-12">
@@ -156,7 +156,7 @@ export default function ServicesPage() {
         <div
           className="absolute inset-0 bg-cover bg-center opacity-30"
           style={{
-            backgroundImage: "url(https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920)",
+            backgroundImage: "url(/images/services-cta-background.jpg)",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/60" />

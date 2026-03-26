@@ -6,6 +6,7 @@ import { PropertyCard } from "@/components/PropertyCard";
 
 export const dynamic = "force-dynamic";
 import { buildMetadata } from "@/lib/metadata";
+import HeroContactMini from "@/components/HeroContactMini";
 
 export const metadata: Metadata = buildMetadata({
   title: "London Flats and Apartments for Rent",
@@ -42,20 +43,26 @@ export default async function PropertyListingsPage({ searchParams }: { searchPar
 
   return (
     <div className="min-h-screen bg-surface">
-      {/* Page header */}
-      <div className="border-b border-white/10">
-        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6">
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted">
+      {/* Hero header */}
+      <section className="relative overflow-hidden border-b border-white/10">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: "url(/images/home-hero-poster.jpg)" }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/80 to-black/90" />
+        <div className="relative mx-auto max-w-7xl px-4 py-10 sm:px-6">
+          <HeroContactMini className="absolute right-4 top-4 sm:right-6 sm:top-6" />
+          <p className="text-xs font-medium uppercase tracking-[0.2em] text-white/70">
             Listings
           </p>
           <h1 className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Explore exclusive properties
           </h1>
-          <p className="mt-2 text-lg text-muted">
+          <p className="mt-2 text-lg text-white/80">
             Showcasing a curated portfolio of exceptional homes
           </p>
         </div>
-      </div>
+      </section>
 
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
         <PropertyFilters areas={areas ?? []} searchParams={searchParams} />

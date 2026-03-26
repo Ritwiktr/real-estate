@@ -15,7 +15,7 @@ export default function SustainableRentals2025Page() {
       <section className="relative flex min-h-[50vh] flex-col justify-end overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url(https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=1200)" }}
+          style={{ backgroundImage: "url(/images/blog-sustainable-rentals-2025-hero.jpg)" }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/60 to-black" />
         <div className="relative mx-auto w-full max-w-4xl px-4 pb-12 pt-28 sm:px-6 lg:pb-16">
