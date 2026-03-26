@@ -60,21 +60,23 @@ function AccreditationMarquee() {
                     role="img"
                     aria-label={logo.alt}
                     className="block"
-                    style={{
-                      width: `${logo.width}px`,
-                      height: `${logo.height}px`,
-                      backgroundColor: BRAND_GOLD,
-                      WebkitMaskImage: `url(${logo.src})`,
-                      maskImage: `url(${logo.src})`,
-                      WebkitMaskRepeat: "no-repeat",
-                      maskRepeat: "no-repeat",
-                      WebkitMaskPosition: "center",
-                      maskPosition: "center",
-                      WebkitMaskSize: "contain",
-                      maskSize: "contain",
-                      WebkitMaskMode: "luminance",
-                      maskMode: "luminance",
-                    }}
+                    style={
+                      {
+                        width: `${logo.width}px`,
+                        height: `${logo.height}px`,
+                        backgroundColor: BRAND_GOLD,
+                        WebkitMaskImage: `url(${logo.src})`,
+                        maskImage: `url(${logo.src})`,
+                        WebkitMaskRepeat: "no-repeat",
+                        maskRepeat: "no-repeat",
+                        WebkitMaskPosition: "center",
+                        maskPosition: "center",
+                        WebkitMaskSize: "contain",
+                        maskSize: "contain",
+                        maskMode: "luminance",
+                        WebkitMaskMode: "luminance",
+                      } as React.CSSProperties & { WebkitMaskMode?: "luminance" }
+                    }
                   />
                 </div>
               ))}
