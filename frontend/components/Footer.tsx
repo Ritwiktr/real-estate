@@ -28,6 +28,8 @@ const ACCREDITATION_LOGOS = [
   },
 ] as const;
 
+const MARQUEE_LOGOS = [...ACCREDITATION_LOGOS, ...ACCREDITATION_LOGOS, ...ACCREDITATION_LOGOS] as const;
+
 const BRAND_GOLD = "#CBA38C";
 
 function AccreditationMarquee() {
@@ -51,9 +53,9 @@ function AccreditationMarquee() {
               key={set}
               className="flex shrink-0 items-center gap-6 bg-transparent px-3 sm:gap-8 sm:px-4 md:gap-10"
             >
-              {ACCREDITATION_LOGOS.map((logo) => (
+              {MARQUEE_LOGOS.map((logo, index) => (
                 <div
-                  key={`${set}-${logo.src}`}
+                  key={`${set}-${logo.src}-${index}`}
                   className="flex shrink-0 items-center bg-transparent"
                 >
                   <span

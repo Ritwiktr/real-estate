@@ -21,7 +21,7 @@ const BLOG_IMAGES: Record<string, string> = {
   "sustainable-rentals-2025": "/images/blog-sustainable-rentals-2025-card.jpg",
   "uk-housing-law-changes-2026": "/images/blog-uk-housing-law-changes-2026-card.jpg",
   "energy-efficiency-rental-properties-2026": "/images/blog-energy-efficiency-2026-card.jpg",
-  "property-management-technology-2026": "/images/blog-property-management-tech-2026-card.jpg",
+  "property-management-technology-2026": "/images/blog-property-management-tech-2026-custom.png",
 };
 const DEFAULT_BLOG_IMAGE = "/images/blog-default-card.jpg";
 
