@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { buildMetadata } from "@/lib/metadata";
+import HeroContactMini from "@/components/HeroContactMini";
 
 export const metadata: Metadata = buildMetadata({
   title: "Client Portal Login | Landlords & Tenants",
@@ -23,6 +24,7 @@ export default function LoginPortalPage() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/80 to-black" />
         <div className="relative mx-auto w-full max-w-5xl px-4 pb-16 pt-32 sm:px-6 lg:pb-20">
+          <HeroContactMini className="absolute right-4 top-4 sm:right-6 sm:top-6" />
           <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/70">
             Client Portal
           </p>

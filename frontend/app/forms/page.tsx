@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { FileText, Download, Users, Home, CheckSquare, BookOpen } from "lucide-react";
 import { formatFilenameWithLondonDate } from "@/lib/date-utils";
+import ContactSupportPanel from "@/components/ContactSupportPanel";
 
 export default function FormsPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -177,28 +178,7 @@ export default function FormsPage() {
           })}
         </div>
 
-        {/* Help Section */}
-        <div className="mt-16 rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 to-secondary/5 p-8 text-center">
-          <h2 className="text-xl font-semibold text-white">Need Help?</h2>
-          <p className="mt-2 text-elegant-muted">
-            If you need assistance completing any of these forms or have questions about the rental process, 
-            our team is here to help.
-          </p>
-          <div className="mt-6 flex flex-wrap justify-center gap-4">
-            <Link
-              href="/contact-us"
-              className="btn-primary"
-            >
-              Contact Support
-            </Link>
-            <Link
-              href="/faqs"
-              className="btn-outline"
-            >
-              View FAQs
-            </Link>
-          </div>
-        </div>
+        <ContactSupportPanel />
       </div>
     </div>
   );

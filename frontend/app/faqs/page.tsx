@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/metadata";
 import { FAQAccordion } from "./FAQAccordion";
+import ContactSupportPanel from "@/components/ContactSupportPanel";
 
 export const metadata: Metadata = buildMetadata({
   title: "Property Management FAQs | Landlords & Tenants",
@@ -56,6 +57,7 @@ export default function FAQsPage() {
         Common questions from landlords and tenants.
       </p>
       <FAQAccordion items={faqs} />
+      <ContactSupportPanel />
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { RepairsWizard } from "@/components/repairs/RepairsWizard";
 import { buildMetadata } from "@/lib/metadata";
+import ContactSupportPanel from "@/components/ContactSupportPanel";
 
 export const metadata: Metadata = buildMetadata({
   title: "Report a Repair",
@@ -20,6 +21,7 @@ export default function RepairsPage() {
       <div className="mt-8">
         <RepairsWizard />
       </div>
+      <ContactSupportPanel />
     </div>
   );
 }

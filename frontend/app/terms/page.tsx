@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/metadata";
+import HeroContactMini from "@/components/HeroContactMini";
 
 export const metadata: Metadata = buildMetadata({
   title: "Terms of Service | Property Management",
@@ -50,7 +51,8 @@ export default function TermsPage() {
         </aside>
 
         <main className="flex-1">
-          <header className="mb-8 border-b border-white/5 pb-6">
+          <header className="relative mb-8 border-b border-white/5 pb-6">
+            <HeroContactMini className="absolute right-0 top-0" />
             <p className="text-xs font-medium uppercase tracking-[0.2em] text-primary">
               Legal & Compliance
             </p>

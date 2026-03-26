@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { MaintenanceForm } from "@/components/forms/MaintenanceForm";
 import { buildMetadata } from "@/lib/metadata";
+import ContactSupportPanel from "@/components/ContactSupportPanel";
 
 export const metadata: Metadata = buildMetadata({
   title: "Report a Property Maintenance Issue",
@@ -19,6 +20,7 @@ export default function MaintenanceRequestPage() {
       <div className="mt-8 rounded-2xl border border-white/10 bg-panel/60 p-6 shadow-xl shadow-black/40">
         <MaintenanceForm />
       </div>
+      <ContactSupportPanel />
     </div>
   );
 }
