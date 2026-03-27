@@ -15,7 +15,7 @@ const services = [
     href: "/services/tenant-placement-screening",
     title: "Tenant Placement and Screening",
     desc: "Professional marketing, thorough vetting, and compliant onboarding to secure the right tenant for every tenancy.",
-    image: "/images/services-tenant-placement-card.jpg",
+    image: "/images/services-tenant-placement-uk-building.jpg",
     icon: "◇",
     stats: ["500+", "Tenants Placed"],
   },
