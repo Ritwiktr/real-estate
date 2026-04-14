@@ -15,7 +15,7 @@ const services = [
     href: "/services/tenant-placement-screening",
     title: "Tenant Placement and Screening",
     desc: "Professional marketing, thorough vetting, and compliant onboarding to secure the right tenant for every tenancy.",
-    image: "/images/services-tenant-placement-uk-building.jpg",
+    image: "/images/service-tenant-placement-hero.png",
     icon: "◇",
     stats: ["500+", "Tenants Placed"],
   },
@@ -39,7 +39,7 @@ const services = [
     href: "/services/holiday-lettings",
     title: "Holiday Let Management",
     desc: "Licensing, dynamic pricing, guest experience, and compliance for holiday homes in West Mersea and beyond.",
-    image: "/images/services-holiday-lettings-card.jpg",
+    image: "/images/service-holiday-lettings-hero.png",
     icon: "❖",
     stats: ["5★", "Guest Focus"],
   },
@@ -57,7 +57,7 @@ export default function ServicesPage() {
   return (
     <div className="min-h-screen bg-surface">
       {/* Hero with background image */}
-      <section className="relative flex min-h-[50vh] flex-col justify-end overflow-hidden">
+      <section className="relative page-banner flex min-h-[50vh] flex-col justify-end overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{

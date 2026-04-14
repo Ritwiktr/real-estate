@@ -10,11 +10,11 @@ export default function HolidayLettingsPage() {
   return (
     <div className="min-h-screen bg-surface">
       {/* Hero Section */}
-      <section className="relative flex min-h-[60vh] flex-col justify-end overflow-hidden">
+      <section className="relative page-banner flex min-h-[60vh] flex-col justify-end overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: "url(/images/service-holiday-lettings-hero.jpg)",
+            backgroundImage: "url(/images/service-holiday-lettings-hero.png)",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/70 to-black/90" />

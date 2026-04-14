@@ -56,7 +56,7 @@ export default function LoginPortalHelpPage() {
   return (
     <div className="min-h-screen bg-surface">
       {/* Hero Section */}
-      <section className="relative flex min-h-[40vh] flex-col justify-end overflow-hidden">
+      <section className="relative page-banner flex min-h-[40vh] flex-col justify-end overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{

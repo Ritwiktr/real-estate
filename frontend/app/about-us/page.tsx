@@ -52,7 +52,7 @@ export default function AboutUsPage() {
   return (
     <div className="min-h-screen bg-surface">
       {/* Hero with London skyline */}
-      <section className="relative flex min-h-[40vh] flex-col justify-end overflow-hidden">
+      <section className="relative page-banner flex min-h-[40vh] flex-col justify-end overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{

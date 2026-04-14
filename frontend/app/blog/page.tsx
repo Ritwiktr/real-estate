@@ -14,11 +14,11 @@ export const metadata: Metadata = buildMetadata({
 // Curated images per slug for elegant card thumbnails
 const BLOG_IMAGES: Record<string, string> = {
   "uk-housing-law-2025": "/images/blog-uk-housing-law-2025-card.jpg",
-  "landlord-strategy-tips-2025": "/images/blog-landlord-strategy-tips-2025-card.jpg",
+  "landlord-strategy-tips-2025": "/images/blog-landlord-strategy-tips-2025-hero.png",
   "tenant-expectations-2025": "/images/blog-tenant-expectations-2025-card.jpg",
-  "financial-planning-rental-income-2025": "/images/blog-financial-planning-2025-card.jpg",
+  "financial-planning-rental-income-2025": "/images/blog-financial-planning-2025-hero.png",
   "holiday-let-licensing-uk-2025": "/images/blog-holiday-let-2025-card.jpg",
-  "sustainable-rentals-2025": "/images/blog-sustainable-rentals-2025-card.jpg",
+  "sustainable-rentals-2025": "/images/blog-sustainable-rentals-2025-hero.png",
   "uk-housing-law-changes-2026": "/images/blog-uk-housing-law-changes-2026-card.jpg",
   "energy-efficiency-rental-properties-2026": "/images/blog-energy-efficiency-2026-card.jpg",
   "property-management-technology-2026": "/images/blog-property-management-tech-2026-custom.png",
@@ -122,7 +122,7 @@ export default function BlogPage() {
   return (
     <div className="min-h-screen bg-surface">
       {/* Hero */}
-      <section className="relative flex min-h-[40vh] flex-col justify-end overflow-hidden">
+      <section className="relative page-banner flex min-h-[40vh] flex-col justify-end overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{

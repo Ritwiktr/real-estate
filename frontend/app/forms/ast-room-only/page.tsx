@@ -728,25 +728,29 @@ export default function ASTRoomOnlyPage() {
             </Link>
           </div>
           
-          <div className="flex items-start justify-between">
-            <div>
+          <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+            <div className="min-w-0 flex-1">
               <h1 className="text-3xl font-bold text-white mb-2">AST Room Only Agreement 2024</h1>
               <p className="text-elegant-muted">
                 Assured Shorthold Tenancy Agreement for room-only lettings
               </p>
             </div>
-            
-            <div className="flex gap-3">
-              <button className="flex items-center gap-2 rounded-lg border border-white/20 px-4 py-2 text-white hover:border-primary/50 transition">
-                <Save className="h-4 w-4" />
-                <span className="text-sm font-medium">Save Draft</span>
+
+            <div className="flex w-full shrink-0 flex-col gap-3 md:w-auto md:flex-row md:items-center md:justify-end">
+              <button
+                type="button"
+                className="flex w-full items-center justify-center gap-2 rounded-lg border border-white/20 px-4 py-2.5 text-white hover:border-primary/50 md:w-auto md:justify-start md:py-2"
+              >
+                <Save className="h-4 w-4 shrink-0" />
+                <span className="text-sm font-medium whitespace-nowrap">Save Draft</span>
               </button>
               <button
+                type="button"
                 onClick={handleDownload}
-                className="flex items-center gap-2 rounded-lg border border-primary/30 bg-primary/10 px-4 py-2 text-primary hover:bg-primary/20 transition"
+                className="flex w-full items-center justify-center gap-2 rounded-lg border border-primary/30 bg-primary/10 px-4 py-2.5 text-primary hover:bg-primary/20 md:w-auto md:justify-start md:py-2"
               >
-                <Download className="h-4 w-4" />
-                <span className="text-sm font-medium">Download</span>
+                <Download className="h-4 w-4 shrink-0" />
+                <span className="text-sm font-medium whitespace-nowrap">Download</span>
               </button>
             </div>
           </div>

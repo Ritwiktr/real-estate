@@ -15,7 +15,7 @@ export default function TestimonialsPage() {
   return (
     <div className="min-h-screen bg-surface">
       {/* Hero with subtle background */}
-      <section className="relative flex min-h-[35vh] flex-col justify-end overflow-hidden">
+      <section className="relative page-banner flex min-h-[35vh] flex-col justify-end overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40"
           style={{

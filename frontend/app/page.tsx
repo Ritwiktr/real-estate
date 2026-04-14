@@ -53,7 +53,7 @@ export default async function HomePage() {
   return (
     <div className="h-full overflow-y-auto">
       {/* 1. Hero — video (default) or static house image */}
-      <section className={`relative ${homeSection} flex flex-col overflow-hidden bg-surface`}>
+      <section className={`relative page-banner ${homeSection} flex flex-col overflow-hidden bg-surface`}>
         {HERO_BG_VIDEO_URL ? (
           <video
             className="absolute inset-0 h-full min-h-full w-full min-w-full object-cover object-center opacity-[0.65]"

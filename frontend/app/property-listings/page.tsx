@@ -44,7 +44,7 @@ export default async function PropertyListingsPage({ searchParams }: { searchPar
   return (
     <div className="min-h-screen bg-surface">
       {/* Hero header */}
-      <section className="relative overflow-hidden border-b border-white/10">
+      <section className="relative page-banner overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: "url(/images/home-hero-poster.jpg)" }}

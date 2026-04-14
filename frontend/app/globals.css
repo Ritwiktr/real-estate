@@ -90,6 +90,10 @@ select {
   .text-elegant-muted {
     color: var(--color-muted);
   }
+  /** Hairline under full-bleed page heroes — matches primary / “Owners / Tenants” gold */
+  .page-banner {
+    border-bottom: 0.5px solid var(--color-primary);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

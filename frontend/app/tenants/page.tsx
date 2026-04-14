@@ -37,7 +37,7 @@ export default function TenantsPage() {
   return (
     <div className="min-h-screen bg-surface">
       {/* Hero with apartment interior */}
-      <section className="relative flex min-h-[40vh] flex-col justify-end overflow-hidden">
+      <section className="relative page-banner flex min-h-[40vh] flex-col justify-end overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
