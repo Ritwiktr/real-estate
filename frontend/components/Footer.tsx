@@ -31,6 +31,27 @@ const ACCREDITATION_LOGOS = [
 const MARQUEE_LOGOS = [...ACCREDITATION_LOGOS, ...ACCREDITATION_LOGOS, ...ACCREDITATION_LOGOS] as const;
 
 const BRAND_GOLD = "#CBA38C";
+const QUICK_LINKS = [
+  { href: "/owners", label: "For Owners" },
+  { href: "/tenants", label: "For Tenants" },
+  { href: "/blog", label: "Blog" },
+  { href: "/testimonials", label: "Testimonials" },
+  { href: "/property-listings", label: "Properties" },
+  { href: "/about-us", label: "About Us" },
+  { href: "/contact-us", label: "Contact" },
+] as const;
+
+const SUPPORT_LINKS = [
+  { href: "/faqs", label: "FAQs" },
+  { href: "/maintenance-request", label: "Maintenance Request" },
+  { href: "/login-portal", label: "Client Portal" },
+  { href: "/login-portal-help", label: "Portal Help" },
+] as const;
+
+const LEGAL_LINKS = [
+  { href: "/privacy", label: "Privacy Policy" },
+  { href: "/terms", label: "Terms of Service" },
+] as const;
 
 function AccreditationMarquee() {
   return (
@@ -84,66 +105,100 @@ function AccreditationMarquee() {
 
 export default function Footer() {
   const linkClass =
-    "rounded-sm transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] text-[var(--color-text)]/[0.93] hover:text-primary hover:decoration-primary/35 hover:underline hover:underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface";
+    "inline-block rounded-sm text-[15px] text-white/85 transition-all duration-300 ease-out hover:text-primary hover:translate-x-[2px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface";
+  const headingClass = "text-[11px] font-semibold uppercase tracking-[0.28em] text-primary/90";
 
   return (
-    <footer className="relative mt-auto border-t border-primary/40 bg-gradient-to-b from-panel via-surface to-overlay text-muted shadow-[inset_0_1px_0_0_rgba(255,255,255,0.045)]">
-      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+    <footer className="relative mt-auto overflow-hidden border-t border-primary/35 bg-gradient-to-br from-[#121111] via-[#0f0e0e] to-[#080808] text-muted">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_65%_45%_at_20%_-15%,rgba(203,163,140,0.14),transparent_65%)]" aria-hidden />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_85%_120%,rgba(203,163,140,0.09),transparent_70%)]" aria-hidden />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/65 to-transparent" aria-hidden />
+
+      <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-20">
+        <div className="grid gap-12 lg:grid-cols-[1.35fr_1fr_1fr_0.9fr]">
           <div>
-            <Link href="/" className="inline-block rounded-sm transition-opacity duration-300 hover:opacity-[0.92] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-panel">
+            <Link
+              href="/"
+              className="inline-block rounded-sm transition-opacity duration-300 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+            >
               <Image
                 src="/asta-logo.png"
                 alt="ASTA Property Management"
                 width={140}
                 height={42}
-                className="h-12 w-auto object-contain object-left bg-transparent"
+                className="h-12 w-auto object-contain object-left"
                 style={{ background: "transparent" }}
                 unoptimized
               />
             </Link>
-            <p className="mt-2 text-sm leading-relaxed text-muted/88">
+
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/72">
               Curated properties. A seamless experience.
             </p>
+
+            <div className="mt-6 rounded-2xl border border-white/10 bg-white/[0.025] p-5 backdrop-blur-sm">
+              <p className="text-[11px] font-medium uppercase tracking-[0.24em] text-primary/85">Need assistance?</p>
+              <p className="mt-2 text-sm leading-relaxed text-white/75">
+                Reach our team for landlord support, tenant guidance, and premium property management help.
+              </p>
+              <Link
+                href="/contact-us"
+                className="mt-4 inline-flex items-center rounded-md border border-primary/45 bg-primary/10 px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-primary transition hover:border-primary hover:bg-primary/15"
+              >
+                Contact Us
+              </Link>
+            </div>
           </div>
+
           <div>
-            <p className="text-xs font-medium uppercase tracking-[0.22em] text-primary/95">Explore</p>
-            <ul className="mt-3 space-y-2 text-sm">
-              <li><Link href="/owners" className={linkClass}>For Owners</Link></li>
-              <li><Link href="/tenants" className={linkClass}>For Tenants</Link></li>
-              <li><Link href="/blog" className={linkClass}>Blog</Link></li>
-              <li><Link href="/testimonials" className={linkClass}>Testimonials</Link></li>
-              <li><Link href="/property-listings" className={linkClass}>Properties</Link></li>
-              <li><Link href="/about-us" className={linkClass}>About Us</Link></li>
-              <li><Link href="/contact-us" className={linkClass}>Contact</Link></li>
+            <p className={headingClass}>Explore</p>
+            <ul className="mt-4 space-y-2.5">
+              {QUICK_LINKS.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className={linkClass}>
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
+
           <div>
-            <p className="text-xs font-medium uppercase tracking-[0.22em] text-primary/95">Support</p>
-            <ul className="mt-3 space-y-2 text-sm">
-              <li><Link href="/faqs" className={`block ${linkClass}`}>FAQs</Link></li>
-              <li><Link href="/maintenance-request" className={`block ${linkClass}`}>Maintenance Request</Link></li>
-              <li><Link href="/login-portal" className={`block ${linkClass}`}>Client Portal</Link></li>
-              <li><Link href="/login-portal-help" className={`block ${linkClass}`}>Portal Help</Link></li>
+            <p className={headingClass}>Support</p>
+            <ul className="mt-4 space-y-2.5">
+              {SUPPORT_LINKS.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className={linkClass}>
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
+
           <div>
-            <p className="text-xs font-medium uppercase tracking-[0.22em] text-primary/95">Legal</p>
-            <ul className="mt-3 space-y-2 text-sm">
-              <li><Link href="/privacy" className={`block ${linkClass}`}>Privacy Policy</Link></li>
-              <li><Link href="/terms" className={`block ${linkClass}`}>Terms of Service</Link></li>
+            <p className={headingClass}>Legal</p>
+            <ul className="mt-4 space-y-2.5">
+              {LEGAL_LINKS.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className={linkClass}>
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
       </div>
 
-      {/* Full-bleed accreditations — same width as footer / viewport, no side fades */}
-      <div className="mt-12 w-full border-t border-primary/15 pt-8 [box-shadow:inset_0_1px_0_0_rgba(255,255,255,0.04)]">
+      <div className="relative border-y border-primary/20 bg-black/20 py-7 [box-shadow:inset_0_1px_0_0_rgba(255,255,255,0.03),inset_0_-1px_0_0_rgba(255,255,255,0.03)]">
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-14 bg-gradient-to-r from-[#0b0b0b] to-transparent" aria-hidden />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-14 bg-gradient-to-l from-[#0b0b0b] to-transparent" aria-hidden />
         <AccreditationMarquee />
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 pb-14 pt-6 sm:px-6">
-        <p className="text-center text-[11px] font-medium uppercase tracking-[0.14em] text-muted/80">
+      <div className="mx-auto max-w-7xl px-4 pb-10 pt-7 sm:px-6">
+        <p className="text-center text-[11px] font-medium uppercase tracking-[0.18em] text-white/52">
           © {new Date().getFullYear()} ASTA Property Management
         </p>
       </div>
