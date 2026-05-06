@@ -94,6 +94,14 @@ select {
   .page-banner {
     border-bottom: 0.5px solid var(--color-primary);
   }
+
+  /** Light golden halo / outline (site primary), not black — for type on bright photography */
+  .text-shadow-primary-soft {
+    text-shadow:
+      0 0 1px color-mix(in srgb, var(--color-primary) 52%, transparent),
+      0 1px 4px color-mix(in srgb, var(--color-primary) 30%, transparent),
+      0 2px 10px color-mix(in srgb, var(--color-primary) 16%, transparent);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

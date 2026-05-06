@@ -24,7 +24,7 @@ const HERO_BG_VIDEO_URL = (() => {
   return env || PEXELS_HERO_BG_MP4;
 })();
 
-/** Hero video poster (buffering) — same mood as “By the numbers” still */
+/** Hero video poster (buffering) — same mood as "By the numbers" still */
 const HERO_POSTER_IMAGE =
   "/images/home-hero-poster.jpg";
 
@@ -37,16 +37,37 @@ const TESTIMONIALS_BG_IMAGE =
   "/images/home-testimonials-section-bg.jpg";
 
 export default async function HomePage() {
-  const [areas, featured, allResult] = await Promise.all([
-    getAreas(),
-    getFeaturedProperties(),
-    getProperties({ limit: "72" }),
-  ]);
-  const featuredList = (featured?.items ?? []) as HomeListingProperty[];
-  const areaList = areas ?? [];
-  const allItems = (allResult?.items ?? []) as HomeListingProperty[];
+  // Make API calls fault-tolerant by ensuring they never throw
+  let areas: any[] = [];
+  let featuredList: HomeListingProperty[] = [];
+  let allItems: HomeListingProperty[] = [];
+
+  try {
+    const [areasResult, featuredResult, allResult] = await Promise.allSettled([
+      getAreas().catch(() => []),
+      getFeaturedProperties().catch(() => ({ items: [] })),
+      getProperties({ limit: "72" }).catch(() => ({ items: [] })),
+    ]);
+
+    if (areasResult.status === 'fulfilled') {
+      areas = areasResult.value ?? [];
+    }
+    
+    if (featuredResult.status === 'fulfilled') {
+      featuredList = (featuredResult.value?.items ?? []) as HomeListingProperty[];
+    }
+    
+    if (allResult.status === 'fulfilled') {
+      allItems = (allResult.value?.items ?? []) as HomeListingProperty[];
+    }
+  } catch (error) {
+    console.error('Failed to fetch homepage data:', error);
+    // Continue with empty arrays
+  }
+
   const listingPool = buildListingPool(featuredList, allItems);
   const showcaseSix = pickSixDistinctNeighbourhoods(listingPool);
+  const areaList = areas;
 
   const homeSection = "min-h-full flex-shrink-0";
 
@@ -56,7 +77,7 @@ export default async function HomePage() {
       <section className={`relative page-banner ${homeSection} flex flex-col overflow-hidden bg-surface`}>
         {HERO_BG_VIDEO_URL ? (
           <video
-            className="absolute inset-0 h-full min-h-full w-full min-w-full object-cover object-center opacity-[0.65]"
+            className="absolute inset-0 h-full min-h-full w-full min-w-full object-cover object-center opacity-[0.82] brightness-[1.12] contrast-[1.06] saturate-[1.05]"
             autoPlay
             muted
             loop
@@ -68,12 +89,12 @@ export default async function HomePage() {
           </video>
         ) : (
           <div
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-60"
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.82] brightness-[1.08] contrast-[1.05]"
             style={{ backgroundImage: `url(${HERO_STATIC_FALLBACK_IMAGE})` }}
             aria-hidden
           />
         )}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/70 to-black/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/22 via-black/52 to-black/78" />
         <div className="relative flex min-h-0 flex-1 flex-col">
           <div className="relative mx-auto flex w-full max-w-6xl flex-1 flex-col justify-center px-4 py-14 sm:px-6 lg:py-20">
             <div className="text-center">
@@ -166,7 +187,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 2. Six listings — content-height only (no min-h-full) so the marquee band isn’t stretched in the layout */}
+      {/* 2. Six listings — content-height only (no min-h-full) so the marquee band isn't stretched in the layout */}
       <section className="flex shrink-0 flex-col bg-surface">
         <div className="mx-auto flex w-full max-w-7xl flex-col px-4 py-10 sm:px-6">
           <p className="section-label">Properties</p>
@@ -206,28 +227,13 @@ export default async function HomePage() {
           ) : (
             <div className="mt-6 flex flex-1 flex-col justify-center rounded-2xl border border-white/10 bg-panel/50 p-8 text-center">
               <p className="text-elegant-muted">
-                No properties loaded. This usually means the API isn&apos;t responding.
+                No properties loaded. API is now configured to use your backend.
               </p>
-              <ul className="mx-auto mt-3 max-w-md list-inside list-disc text-left text-sm text-elegant-muted">
-                <li>
-                  Start the backend:{" "}
-                  <code className="rounded bg-white/10 px-1 py-0.5 font-mono text-xs">
-                    cd backend && npm run dev
-                  </code>
-                </li>
-                <li>
-                  Backend runs at{" "}
-                  <code className="rounded bg-white/10 px-1 py-0.5 font-mono text-xs">
-                    https://realestate-u3vr.onrender.com
-                  </code>
-                </li>
-                <li>
-                  If you haven&apos;t seeded yet:{" "}
-                  <code className="rounded bg-white/10 px-1 py-0.5 font-mono text-xs">
-                    cd backend && npx prisma db seed
-                  </code>
-                </li>
-              </ul>
+              <p className="mt-2 text-sm text-elegant-muted">
+                Backend API: <code className="rounded bg-white/10 px-1 py-0.5 font-mono text-xs">
+                  https://www.astapropertymanagement.co.uk/api
+                </code>
+              </p>
               <Link href="/property-listings" className="btn-primary mt-4 inline-flex">
                 Browse properties
               </Link>
@@ -239,20 +245,20 @@ export default async function HomePage() {
       {/* 3. Get In Touch */}
       <section className={`${homeSection} relative flex flex-col overflow-hidden bg-surface`}>
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat brightness-[0.30] saturate-[0.8]"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat brightness-[0.92] contrast-[1.08] saturate-[0.95]"
           style={{
             backgroundImage:
               "url(/images/home-contact-section-bg.jpg)",
           }}
         />
-        <div className="absolute inset-0 bg-black/40" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/62 via-black/78 to-black/92" />
+        <div className="absolute inset-0 bg-black/18" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/28 via-black/42 to-black/65" />
         <div className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-4 py-10 sm:px-6">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
             <div>
-              <p className="section-label">Contact</p>
-              <h2 className="section-heading mt-2">Get in touch</h2>
-              <p className="section-subheading">
+              <p className="section-label text-[var(--color-text)] text-shadow-primary-soft">Contact</p>
+              <h2 className="section-heading mt-2 text-shadow-primary-soft">Get in touch</h2>
+              <p className="section-subheading text-[var(--color-text)] text-shadow-primary-soft">
                 Send an enquiry and we&apos;ll respond shortly.
               </p>
             </div>
@@ -292,21 +298,23 @@ export default async function HomePage() {
       {/* 5. Testimonials — photo background only */}
       <section className={`${homeSection} relative flex flex-col overflow-hidden bg-surface`}>
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat brightness-[0.32] saturate-[0.85]"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat brightness-[0.86] contrast-[1.08] saturate-[0.95]"
           style={{ backgroundImage: `url(${TESTIMONIALS_BG_IMAGE})` }}
           aria-hidden
         />
-        <div className="absolute inset-0 bg-black/38" aria-hidden />
+        <div className="absolute inset-0 bg-black/22" aria-hidden />
         <div
-          className="absolute inset-0 bg-gradient-to-b from-black/52 via-black/72 to-black/88"
+          className="absolute inset-0 bg-gradient-to-b from-black/32 via-black/46 to-black/68"
           aria-hidden
         />
         <div className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-4 py-12 sm:px-6 lg:py-16">
-          <p className="text-center text-xs font-medium uppercase tracking-[0.3em] text-white/80">
+          <p className="text-center text-xs font-medium uppercase tracking-[0.3em] text-[var(--color-text)] text-shadow-primary-soft">
             Testimonials
           </p>
-          <h2 className="section-heading mt-4 text-center text-white">What clients say</h2>
-          <p className="section-subheading mx-auto mt-3 max-w-2xl text-center text-white/75">
+          <h2 className="section-heading mt-4 text-center text-[var(--color-text)] text-shadow-primary-soft">
+            What clients say
+          </h2>
+          <p className="section-subheading mx-auto mt-3 max-w-2xl text-center text-[var(--color-text)] text-shadow-primary-soft">
             A few words from landlords and tenants. Tap a card to read more reviews.
           </p>
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">

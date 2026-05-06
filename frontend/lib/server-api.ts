@@ -1,4 +1,9 @@
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "https://realestate-u3vr.onrender.com";
+import { apiOriginFromPublicBase } from "@/lib/api-base";
+
+const API_ORIGIN = apiOriginFromPublicBase(
+  process.env.NEXT_PUBLIC_API_BASE,
+  "https://realestate-u3vr.onrender.com"
+);
 const FETCH_TIMEOUT_MS = 8000;
 
 async function fetchWithTimeout(
@@ -17,7 +22,7 @@ async function fetchWithTimeout(
 
 export async function getAreas() {
   try {
-    const res = await fetchWithTimeout(`${API_BASE}/api/areas`, { next: { revalidate: 60 } });
+    const res = await fetchWithTimeout(`${API_ORIGIN}/api/areas`, { next: { revalidate: 60 } });
     if (!res.ok) return [];
     return res.json();
   } catch {
@@ -27,7 +32,7 @@ export async function getAreas() {
 
 export async function getFeaturedProperties() {
   try {
-    const res = await fetchWithTimeout(`${API_BASE}/api/properties?featured=true&limit=6`, { next: { revalidate: 60 } });
+    const res = await fetchWithTimeout(`${API_ORIGIN}/api/properties?featured=true&limit=6`, { next: { revalidate: 60 } });
     if (!res.ok) return { items: [], total: 0, page: 1, limit: 6 };
     return res.json();
   } catch {
@@ -38,7 +43,7 @@ export async function getFeaturedProperties() {
 export async function getProperties(params: Record<string, string> = {}) {
   try {
     const q = new URLSearchParams(params).toString();
-    const res = await fetchWithTimeout(`${API_BASE}/api/properties?${q}`, { next: { revalidate: 30 } });
+    const res = await fetchWithTimeout(`${API_ORIGIN}/api/properties?${q}`, { next: { revalidate: 30 } });
     if (!res.ok) return { items: [], total: 0, page: 1, limit: 12 };
     return res.json();
   } catch {
@@ -48,7 +53,7 @@ export async function getProperties(params: Record<string, string> = {}) {
 
 export async function getProperty(id: string) {
   try {
-    const res = await fetchWithTimeout(`${API_BASE}/api/properties/${id}`, { next: { revalidate: 30 } });
+    const res = await fetchWithTimeout(`${API_ORIGIN}/api/properties/${id}`, { next: { revalidate: 30 } });
     if (!res.ok) return null;
     return res.json();
   } catch {
@@ -58,7 +63,7 @@ export async function getProperty(id: string) {
 
 export async function getPropertyAvailability(id: string) {
   try {
-    const res = await fetchWithTimeout(`${API_BASE}/api/properties/${id}/availability`, { next: { revalidate: 60 } });
+    const res = await fetchWithTimeout(`${API_ORIGIN}/api/properties/${id}/availability`, { next: { revalidate: 60 } });
     if (!res.ok) return { items: [] };
     return res.json();
   } catch {
@@ -68,7 +73,7 @@ export async function getPropertyAvailability(id: string) {
 
 export async function getBlogPosts(page = 1, limit = 10) {
   try {
-    const res = await fetchWithTimeout(`${API_BASE}/api/blog?page=${page}&limit=${limit}`, { next: { revalidate: 60 } });
+    const res = await fetchWithTimeout(`${API_ORIGIN}/api/blog?page=${page}&limit=${limit}`, { next: { revalidate: 60 } });
     if (!res.ok) return { items: [], total: 0 };
     return res.json();
   } catch {
@@ -78,7 +83,7 @@ export async function getBlogPosts(page = 1, limit = 10) {
 
 export async function getBlogPost(slug: string) {
   try {
-    const res = await fetchWithTimeout(`${API_BASE}/api/blog/${slug}`, { next: { revalidate: 60 } });
+    const res = await fetchWithTimeout(`${API_ORIGIN}/api/blog/${slug}`, { next: { revalidate: 60 } });
     if (!res.ok) return null;
     return res.json();
   } catch {
@@ -88,7 +93,7 @@ export async function getBlogPost(slug: string) {
 
 export async function getTestimonials() {
   try {
-    const res = await fetchWithTimeout(`${API_BASE}/api/testimonials`, { next: { revalidate: 60 } });
+    const res = await fetchWithTimeout(`${API_ORIGIN}/api/testimonials`, { next: { revalidate: 60 } });
     if (!res.ok) return [];
     return res.json();
   } catch {

@@ -46,11 +46,11 @@ export function PropertyCard({
             <img
               src={imageUrl}
               alt=""
-              className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+              className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03] brightness-[1.05] contrast-[1.04] saturate-[1.03]"
             />
-            {/* Dark overlay so property pics match the black theme */}
+            {/* Light vignette for text legibility without dulling the photo */}
             <div
-              className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent"
+              className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/48 via-black/12 to-transparent"
               aria-hidden
             />
           </>

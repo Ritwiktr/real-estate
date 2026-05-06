@@ -1,5 +1,11 @@
-/** Set NEXT_PUBLIC_API_BASE in production when frontend and backend are on different origins. */
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "";
+import { apiOriginFromPublicBase } from "@/lib/api-base";
+
+/** Same-origin /api/* (rewrite) when empty; otherwise full origin + path in api(). */
+const API_BASE = (() => {
+  const raw = process.env.NEXT_PUBLIC_API_BASE;
+  if (raw === undefined || String(raw).trim() === "") return "";
+  return apiOriginFromPublicBase(String(raw), "");
+})();
 
 export type User = { id: string; email: string; name: string | null; role: string };
 export type Property = {
